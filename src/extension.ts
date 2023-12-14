@@ -1,106 +1,97 @@
-"use strict";
+'use strict'
 
-import * as vscode from "vscode";
-import { TextEditorSelectionChangeKind } from "vscode";
+import { ConfigurationTarget, TextEditorSelectionChangeKind, commands, window, workspace } from 'vscode'
+import type { ExtensionContext } from 'vscode'
 
-export function activate(context: vscode.ExtensionContext) {
-    const initialConfig = vscode.workspace.getConfiguration("autoHide");
+export function activate(context: ExtensionContext) {
+  const initialConfig = workspace.getConfiguration('autoHide')
 
-    if (initialConfig.hideOnOpen) {
-        if (initialConfig.autoHideReferences) {
-            vscode.commands.executeCommand("closeReferenceSearch");
-        }
+  if (initialConfig.hideOnOpen) {
+    if (initialConfig.autoHideReferences)
+      commands.executeCommand('closeReferenceSearch')
 
-        if (initialConfig.autoHidePanel) {
-            vscode.commands.executeCommand("workbench.action.closePanel");
-        }
+    if (initialConfig.autoHidePanel)
+      commands.executeCommand('workbench.action.closePanel')
 
-        if (initialConfig.autoHideSideBar) {
-            vscode.commands.executeCommand("workbench.action.closeSidebar");
-        }
+    if (initialConfig.autoHideSideBar)
+      commands.executeCommand('workbench.action.closeSidebar')
 
-        if (initialConfig.autoHideAuxiliaryBar) {
-            vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
-        }
-    }
+    if (initialConfig.autoHideAuxiliaryBar)
+      commands.executeCommand('workbench.action.closeAuxiliaryBar')
+  }
 
-    vscode.window.onDidChangeTextEditorSelection(selection => {
-        const config = vscode.workspace.getConfiguration("autoHide");
-        const path = vscode.window.activeTextEditor.document.fileName;
-        const pathIsFile = path.includes(".") || path.includes("\\") || path.includes("/");
-        const scheme = selection.textEditor.document.uri.scheme;
+  window.onDidChangeTextEditorSelection((selection) => {
+    const config = workspace.getConfiguration('autoHide')
+    const path = window.activeTextEditor.document.fileName
+    const pathIsFile = path.includes('.') || path.includes('\\') || path.includes('/')
+    const scheme = selection.textEditor.document.uri.scheme
 
-        if (
-            (
-                selection.kind !== TextEditorSelectionChangeKind.Mouse && 
-                selection.kind !== TextEditorSelectionChangeKind.Keyboard
-            ) || // selection was not from a click or keyboard
-            selection.selections.length != 1 ||                      // no selections or multiselections
-            selection.selections.find(a => a.isEmpty) == null ||     // multiselections
-            !pathIsFile ||                                           // The debug window editor
-            scheme == "output"                                       // The output window
-        ) {
-            return;
-        }
+    if (
+      (
+        selection.kind !== TextEditorSelectionChangeKind.Mouse
+        && selection.kind !== TextEditorSelectionChangeKind.Keyboard
+      ) // selection was not from a click or keyboard
+      || selection.selections.length !== 1 // no selections or multiselections
+      || selection.selections.find(a => a.isEmpty) == null // multiselections
+      || !pathIsFile // The debug window editor
+      || scheme === 'output' // The output window
+    )
+      return
 
-        if (config.autoHideReferences) {
-            vscode.commands.executeCommand("closeReferenceSearch");
-        }
+    if (config.autoHideReferences)
+      commands.executeCommand('closeReferenceSearch')
 
-        setTimeout(function () {
-            if (config.autoHidePanel) {
-                vscode.commands.executeCommand("workbench.action.closePanel");
-            }
-        }, config.panelDelay);
+    setTimeout(() => {
+      if (config.autoHidePanel)
+        commands.executeCommand('workbench.action.closePanel')
+    }, config.panelDelay)
 
-        setTimeout(function () {
-            if (config.autoHideSideBar) {
-                vscode.commands.executeCommand("workbench.action.closeSidebar");
-            }
-        }, config.sideBarDelay);
+    setTimeout(() => {
+      if (config.autoHideSideBar)
+        commands.executeCommand('workbench.action.closeSidebar')
+    }, config.sideBarDelay)
 
-        setTimeout(function () {
-            if (config.autoHideAuxiliaryBar) {
-                vscode.commands.executeCommand("workbench.action.closeAuxiliaryBar");
-            }
-        }, config.sideBarDelay);
-    });
+    setTimeout(() => {
+      if (config.autoHideAuxiliaryBar)
+        commands.executeCommand('workbench.action.closeAuxiliaryBar')
+    }, config.sideBarDelay)
+  })
 
-    context.subscriptions.push(
-        vscode.commands.registerCommand("autoHide.toggleHidePanel", async () => {
-            let config = vscode.workspace.getConfiguration("autoHide");
-            await config.update(
-                "autoHidePanel",
-                !config.autoHidePanel,
-                vscode.ConfigurationTarget.Workspace
-            );
-        })
-    );
+  context.subscriptions.push(
+    commands.registerCommand('autoHide.toggleHidePanel', async () => {
+      const config = workspace.getConfiguration('autoHide')
+      await config.update(
+        'autoHidePanel',
+        !config.autoHidePanel,
+        ConfigurationTarget.Workspace,
+      )
+    }),
+  )
 
-    context.subscriptions.push(
-        vscode.commands.registerCommand("autoHide.toggleHideSideBar", async () => {
-            let config = vscode.workspace.getConfiguration("autoHide");
-            await config.update(
-                "autoHideSideBar",
-                !config.autoHideSideBar,
-                vscode.ConfigurationTarget.Workspace
-            );
-        })
-    );
+  context.subscriptions.push(
+    commands.registerCommand('autoHide.toggleHideSideBar', async () => {
+      const config = workspace.getConfiguration('autoHide')
+      await config.update(
+        'autoHideSideBar',
+        !config.autoHideSideBar,
+        ConfigurationTarget.Workspace,
+      )
+    }),
+  )
 
-    context.subscriptions.push(
-        vscode.commands.registerCommand(
-            "autoHide.toggleHideAuxiliaryBar",
-            async () => {
-                let config = vscode.workspace.getConfiguration("autoHide");
-                await config.update(
-                    "autoHideAuxiliaryBar",
-                    !config.autoHideAuxiliaryBar,
-                    vscode.ConfigurationTarget.Workspace
-                );
-            }
+  context.subscriptions.push(
+    commands.registerCommand(
+      'autoHide.toggleHideAuxiliaryBar',
+      async () => {
+        const config = workspace.getConfiguration('autoHide')
+        await config.update(
+          'autoHideAuxiliaryBar',
+          !config.autoHideAuxiliaryBar,
+          ConfigurationTarget.Workspace,
         )
-    );
+      },
+    ),
+  )
 }
 
 export function deactivate() { }
