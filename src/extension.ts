@@ -31,7 +31,10 @@ export function activate(context: vscode.ExtensionContext) {
         const scheme = selection.textEditor.document.uri.scheme;
 
         if (
-            selection.kind != TextEditorSelectionChangeKind.Mouse || // selection was not from a click
+            (
+                selection.kind !== TextEditorSelectionChangeKind.Mouse && 
+                selection.kind !== TextEditorSelectionChangeKind.Keyboard
+            ) || // selection was not from a click or keyboard
             selection.selections.length != 1 ||                      // no selections or multiselections
             selection.selections.find(a => a.isEmpty) == null ||     // multiselections
             !pathIsFile ||                                           // The debug window editor
