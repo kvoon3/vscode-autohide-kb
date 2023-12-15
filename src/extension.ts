@@ -37,18 +37,14 @@ export function activate(context: ExtensionContext) {
     if (config.autoHideReferences)
       commands.executeCommand('closeReferenceSearch')
 
-    setTimeout(() => {
-      if (config.autoHidePanel)
-        commands.executeCommand('workbench.action.closePanel')
-    }, config.panelDelay)
+    if (config.autoHidePanel)
+      commands.executeCommand('workbench.action.closePanel')
 
     if (config.autoHideSideBar)
       commands.executeCommand('workbench.action.closeSidebar')
 
-    setTimeout(() => {
-      if (config.autoHideAuxiliaryBar)
-        commands.executeCommand('workbench.action.closeAuxiliaryBar')
-    }, config.sideBarDelay)
+    if (config.autoHideAuxiliaryBar)
+      commands.executeCommand('workbench.action.closeAuxiliaryBar')
   })
 
   context.subscriptions.push(

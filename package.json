@@ -72,11 +72,6 @@
           "default": true,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
         },
-        "autoHide.panelDelay": {
-          "type": "number",
-          "default": 300,
-          "description": "How long to wait before hiding the panel. Same as for the side bar when the panel is on the side.  If the panel is on the bottom, there is no need for delay."
-        },
         "autoHide.hideOnOpen": {
           "type": "boolean",
           "default": false,
