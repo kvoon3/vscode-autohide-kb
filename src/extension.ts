@@ -1,6 +1,6 @@
 'use strict'
 
-import { ConfigurationTarget, TextEditorSelectionChangeKind, commands, window, workspace } from 'vscode'
+import { ConfigurationTarget, commands, window, workspace } from 'vscode'
 import type { ExtensionContext } from 'vscode'
 
 export function activate(context: ExtensionContext) {
@@ -27,11 +27,7 @@ export function activate(context: ExtensionContext) {
     const scheme = selection.textEditor.document.uri.scheme
 
     if (
-      (
-        selection.kind !== TextEditorSelectionChangeKind.Mouse
-        && selection.kind !== TextEditorSelectionChangeKind.Keyboard
-      ) // selection was not from a click or keyboard
-      || selection.selections.length !== 1 // no selections or multiselections
+      selection.selections.length !== 1 // no selections or multiselections
       || selection.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
@@ -46,10 +42,8 @@ export function activate(context: ExtensionContext) {
         commands.executeCommand('workbench.action.closePanel')
     }, config.panelDelay)
 
-    setTimeout(() => {
-      if (config.autoHideSideBar)
-        commands.executeCommand('workbench.action.closeSidebar')
-    }, config.sideBarDelay)
+    if (config.autoHideSideBar)
+      commands.executeCommand('workbench.action.closeSidebar')
 
     setTimeout(() => {
       if (config.autoHideAuxiliaryBar)
