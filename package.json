@@ -1,8 +1,8 @@
 {
-  "name": "vscode-autohide",
-  "displayName": "Auto Hide",
-  "version": "1.0.9",
-  "description": "A tool to autohide the sidebar and terminal panel.",
+  "name": "vscode-autohide-keyboard",
+  "displayName": "Auto Hide KB",
+  "version": "0.0.2",
+  "description": "forked from vscode-autohide",
   "categories": [
     "Other"
   ],
@@ -18,8 +18,8 @@
   "repository": {
     "url": "https://github.com/kwongliegaai/vscode-autohide"
   },
-  "publisher": "Kevin Kwong",
-  "type": "module",
+  "publisher": "kevin-kwong",
+  "type": "commonjs",
   "main": "./out/src/extension",
   "scripts": {
     "#postinstall": "node ./node_modules/vscode/bin/install",
@@ -71,11 +71,6 @@
           "type": "boolean",
           "default": true,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
-        },
-        "autoHide.sideBarDelay": {
-          "type": "number",
-          "default": 450,
-          "description": "How long to wait before hiding the side bar. A delay prevents text from being selected. A longer delay allows the horizontal scroll to adjust to the change in selection before the side bar hiding causes the horizontal scroll to adjust, avoiding conflicts."
         },
         "autoHide.panelDelay": {
           "type": "number",
