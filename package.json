@@ -1,7 +1,7 @@
 {
   "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "forked from vscode-autohide",
   "categories": [
     "Other"
