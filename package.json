@@ -46,6 +46,21 @@
         "command": "autoHide.toggleHidePanel",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Panel for Current Workspace"
+      },
+      {
+        "command": "autoHide.toggleHideByMouse",
+        "category": "Auto Hide",
+        "title": "Whether hide by mouse"
+      },
+      {
+        "command": "autoHide.switchToManualMode",
+        "category": "Auto Hide",
+        "title": "Switch to manual mode"
+      },
+      {
+        "command": "autoHide.switchToAutoMode",
+        "category": "Auto Hide",
+        "title": "Switch to auto mode"
       }
     ],
     "configuration": {
@@ -76,6 +91,16 @@
           "type": "boolean",
           "default": false,
           "description": "Hide side bar and panel when VSCode first opens."
+        },
+        "autoHide.hideByMouse": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable/Disable hide by mouse"
+        },
+        "autoHide.mode": {
+          "type": "number",
+          "default": 0,
+          "description": "mode: 0(auto)/1(manual)"
         }
       }
     }
