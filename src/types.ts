@@ -4,7 +4,7 @@ export interface ExtensionConfiguration {
   autoHidePanel: boolean
   autoHideReferences: boolean
   hideOnOpen: boolean
-  hideByMouse: boolean
+  hideOnlyMouse: boolean
   mode: Mode
 }
 

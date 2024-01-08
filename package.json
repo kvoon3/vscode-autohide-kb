@@ -85,9 +85,9 @@
           "type": "boolean",
           "description": "Hide side bar and panel when VSCode first opens."
         },
-        "autoHide.hideByMouse": {
+        "autoHide.hideOnlyMouse": {
           "type": "boolean",
-          "description": "Enable/Disable hide by mouse"
+          "description": "Enable/Disable hide only with mouse"
         },
         "autoHide.mode": {
           "type": "number",

@@ -26,9 +26,9 @@ export function activate(context: ExtensionContext) {
   runHide(initialConfig)
 
   window.onDidChangeTextEditorSelection((e) => {
-    const config = workspace.getConfiguration('autoHide')
+    const configs = getConfigs()
 
-    if (config.get<Mode>('mode') === Mode.Manual)
+    if (configs.mode === Mode.Manual)
       return
 
     const path = window.activeTextEditor.document.fileName
@@ -37,7 +37,7 @@ export function activate(context: ExtensionContext) {
 
     if (
       e.kind === undefined
-      || (!config.hideByMouse && e.kind === TextEditorSelectionChangeKind.Mouse)
+      || (configs.hideOnlyMouse && e.kind !== TextEditorSelectionChangeKind.Mouse)
       || e.selections.length !== 1 // no selections or multiselections
       || e.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
