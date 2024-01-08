@@ -1,36 +1,34 @@
 'use strict'
 
 import { ConfigurationTarget, TextEditorSelectionChangeKind, commands, window, workspace } from 'vscode'
-import type { ExtensionContext, WorkspaceConfiguration } from 'vscode'
+import type { ExtensionContext } from 'vscode'
+import type { ExtensionConfiguration } from './types'
+import { Mode } from './types'
+import { getConfigs } from './config'
 
-enum Mode {
-  Auto = 0,
-  Manual = 1
-}
-
-function runHide(config: WorkspaceConfiguration) {
-  if (config.get('autoHideReferences'))
+function runHide(config: ExtensionConfiguration) {
+  if (config.autoHideReferences)
     commands.executeCommand('closeReferenceSearch')
 
-  if (config.get('autoHidePanel'))
+  if (config.autoHidePanel)
     commands.executeCommand('workbench.action.closePanel')
 
-  if (config.get('autoHideSideBar'))
+  if (config.autoHideSideBar)
     commands.executeCommand('workbench.action.closeSidebar')
 
-  if (config.get('autoHideAuxiliaryBar'))
+  if (config.autoHideAuxiliaryBar)
     commands.executeCommand('workbench.action.closeAuxiliaryBar')
 }
 
 export function activate(context: ExtensionContext) {
-  const initialConfig = workspace.getConfiguration('autoHide')
+  const initialConfig = getConfigs()
 
   runHide(initialConfig)
 
   window.onDidChangeTextEditorSelection((e) => {
     const config = workspace.getConfiguration('autoHide')
 
-    if(config.get<Mode>('mode') === Mode.Manual)
+    if (config.get<Mode>('mode') === Mode.Manual)
       return
 
     const path = window.activeTextEditor.document.fileName
@@ -47,7 +45,7 @@ export function activate(context: ExtensionContext) {
     )
       return
 
-    runHide(config)
+    runHide(getConfigs())
   })
 
   context.subscriptions.push(
@@ -129,7 +127,7 @@ export function activate(context: ExtensionContext) {
   )
 
   context.subscriptions.push(
-    commands.registerCommand('autoHide.runHide', () => runHide(workspace.getConfiguration('autoHide')))
+    commands.registerCommand('autoHide.runHide', () => runHide(getConfigs())),
   )
 }
 
