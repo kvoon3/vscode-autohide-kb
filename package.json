@@ -1,6 +1,6 @@
 {
   "publisher": "kevin-kwong",
-  "name": "vscode-autohide-kb",
+  "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
   "version": "0.1.0",
