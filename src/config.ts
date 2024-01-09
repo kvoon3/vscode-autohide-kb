@@ -1,10 +1,11 @@
-import type { ExtensionContext } from 'vscode'
-import { workspace } from 'vscode'
+import { ConfigurationTarget, workspace } from 'vscode'
 import type { ExtensionConfiguration } from './types'
 import { Mode } from './types'
+import { EXT_NAMESPACE } from './meta'
+import { log } from './log'
 
 export function getConfig<T>(key: string, v?: T) {
-  return workspace.getConfiguration('autohide').get(key, v)
+  return workspace.getConfiguration(`${EXT_NAMESPACE}`).get(key, v)
 }
 
 export function getConfigs(): ExtensionConfiguration {
@@ -17,4 +18,14 @@ export function getConfigs(): ExtensionConfiguration {
     hideOnlyMouse: getConfig('hideOnlyMouse', true),
     mode: getConfig('mode', Mode.Auto),
   }
+}
+
+export async function updateConfig<K extends keyof ExtensionConfiguration>(
+  key: K,
+  value: ExtensionConfiguration[K],
+  target: ConfigurationTarget = ConfigurationTarget.Workspace,
+) {
+  log.log('updateconifg: before', key, value)
+  await workspace.getConfiguration(`${EXT_NAMESPACE}`).update(key, value, target)
+  log.log('updateConfig: after', getConfig(key))
 }

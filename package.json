@@ -1,12 +1,12 @@
 {
   "publisher": "kevin-kwong",
-  "name": "vscode-autohide-keyboard",
+  "name": "vscode-autohide-kb",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
   "version": "0.0.3",
-  "description": "forked from vscode-autohide",
+  "description": "Forked from AutoHide with optimized for a better keyboard-only usage experience",
   "repository": {
-    "url": "https://github.com/kwongliegaai/vscode-autohide"
+    "url": "https://github.com/kwongliegaai/vscode-autohide-kb"
   },
   "keywords": [
     "terminal",
@@ -20,13 +20,13 @@
   "categories": [
     "Other"
   ],
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "icon": "Images/Icons/Logo_128.png",
   "engines": {
-    "vscode": "^1.43.0"
+    "vscode": "^1.81.0"
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "contributes": {
     "commands": [
@@ -46,9 +46,9 @@
         "title": "Toggle Auto Hide Panel for Current Workspace"
       },
       {
-        "command": "autoHide.toggleHideByMouse",
+        "command": "autoHide.toggleHideOnlyMouse",
         "category": "Auto Hide",
-        "title": "Whether hide by mouse"
+        "title": "Toggle hide Only mouse"
       },
       {
         "command": "autoHide.switchToManualMode",
@@ -59,6 +59,11 @@
         "command": "autoHide.switchToAutoMode",
         "category": "Auto Hide",
         "title": "Switch to auto mode"
+      },
+      {
+        "command": "autoHide.runHide",
+        "category": "Auto Hide",
+        "title": "Run hide immediately"
       }
     ],
     "configuration": {
@@ -67,51 +72,66 @@
       "properties": {
         "autoHide.autoHideSideBar": {
           "type": "boolean",
+          "default": true,
           "description": "Hide the side bar when the user clicks into a text editor."
         },
         "autoHide.autoHideAuxiliaryBar": {
           "type": "boolean",
+          "default": true,
           "description": "Hide the auxiliary bar (second side bar) when the user clicks into a text editor."
         },
         "autoHide.autoHidePanel": {
           "type": "boolean",
+          "default": true,
           "description": "Hide the panel (output, terminal, etc.) when the user clicks into a text editor."
         },
         "autoHide.autoHideReferences": {
           "type": "boolean",
+          "default": false,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
         },
         "autoHide.hideOnOpen": {
           "type": "boolean",
+          "default": true,
           "description": "Hide side bar and panel when VSCode first opens."
         },
         "autoHide.hideOnlyMouse": {
           "type": "boolean",
+          "default": true,
           "description": "Enable/Disable hide only with mouse"
         },
         "autoHide.mode": {
-          "type": "number",
-          "description": "1. auto: 0; 2. manual: 1"
+          "type": "string",
+          "enum": [
+            "auto",
+            "manual"
+          ],
+          "default": "auto",
+          "description": "set auto/manual mode"
         }
       }
     }
   },
   "scripts": {
-    "#postinstall": "node ./node_modules/vscode/bin/install",
-    "#test": "node ./node_modules/vscode/bin/test",
-    "compile": "tsc -watch -p ./",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "publish": "vsce publish",
-    "vscode:prepublish": "tsc -p ./"
+    "pack": "vsce package --no-dependencies",
+    "dev": "nr build --watch",
+    "build": "tsup src/extension.ts --external vscode",
+    "publish": "vsce publish --no-dependencies",
+    "vscode:prepublish": "nr build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
+    "@antfu/ni": "^0.21.9",
     "@types/mocha": "^10.0.6",
     "@types/node": "^16.18.68",
+    "@vscode/vsce": "^2.22.0",
+    "@vue/reactivity": "^3.4.5",
     "eslint": "^8.55.0",
     "mocha": "^10.2.0",
     "taze": "^0.13.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "vscode": "^1.1.37"
   },

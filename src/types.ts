@@ -1,14 +1,14 @@
 export interface ExtensionConfiguration {
-  autoHideSideBar: boolean
-  autoHideAuxiliaryBar: boolean
-  autoHidePanel: boolean
-  autoHideReferences: boolean
-  hideOnOpen: boolean
-  hideOnlyMouse: boolean
-  mode: Mode
+  autoHideSideBar: boolean | undefined
+  autoHideAuxiliaryBar: boolean | undefined
+  autoHidePanel: boolean | undefined
+  autoHideReferences: boolean | undefined
+  hideOnOpen: boolean | undefined
+  hideOnlyMouse: boolean | undefined
+  mode: Mode | undefined
 }
 
 export enum Mode {
-  Auto = 0,
-  Manual = 1,
+  Auto = 'auto',
+  Manual = 'manual',
 }

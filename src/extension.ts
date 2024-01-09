@@ -1,39 +1,17 @@
-'use strict'
-
-import { ConfigurationTarget, TextEditorSelectionChangeKind, commands, window, workspace } from 'vscode'
+import { TextEditorSelectionChangeKind, window } from 'vscode'
 import type { ExtensionContext } from 'vscode'
-import type { ExtensionConfiguration } from './types'
-import { Mode } from './types'
+import { runHide } from './core'
+import { registerCommands } from './commands'
 import { getConfigs } from './config'
 
-function runHide(config: ExtensionConfiguration) {
-  if (config.autoHideReferences)
-    commands.executeCommand('closeReferenceSearch')
-
-  if (config.autoHidePanel)
-    commands.executeCommand('workbench.action.closePanel')
-
-  if (config.autoHideSideBar)
-    commands.executeCommand('workbench.action.closeSidebar')
-
-  if (config.autoHideAuxiliaryBar)
-    commands.executeCommand('workbench.action.closeAuxiliaryBar')
-}
-
-export function activate(context: ExtensionContext) {
-  const initialConfig = getConfigs()
-
-  runHide(initialConfig)
+export function activate(ctx: ExtensionContext) {
+  registerCommands(ctx)
 
   window.onDidChangeTextEditorSelection((e) => {
-    const configs = getConfigs()
-
-    if (configs.mode === Mode.Manual)
-      return
-
-    const path = window.activeTextEditor.document.fileName
-    const pathIsFile = path.includes('.') || path.includes('\\') || path.includes('/')
+    const path = window.activeTextEditor?.document.fileName
+    const pathIsFile = path?.includes('.') || path?.includes('\\') || path?.includes('/')
     const scheme = e.textEditor.document.uri.scheme
+    const configs = getConfigs()
 
     if (
       e.kind === undefined
@@ -45,90 +23,11 @@ export function activate(context: ExtensionContext) {
     )
       return
 
-    runHide(getConfigs())
+    runHide()
   })
 
-  context.subscriptions.push(
-    commands.registerCommand('autoHide.toggleHidePanel', async () => {
-      const config = workspace.getConfiguration('autoHide')
-      await config.update(
-        'autoHidePanel',
-        !config.autoHidePanel,
-        ConfigurationTarget.Workspace,
-      )
-    }),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand('autoHide.toggleHideSideBar', async () => {
-      const config = workspace.getConfiguration('autoHide')
-      await config.update(
-        'autoHideSideBar',
-        !config.autoHideSideBar,
-        ConfigurationTarget.Workspace,
-      )
-    }),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand(
-      'autoHide.toggleHideAuxiliaryBar',
-      async () => {
-        const config = workspace.getConfiguration('autoHide')
-        await config.update(
-          'autoHideAuxiliaryBar',
-          !config.autoHideAuxiliaryBar,
-          ConfigurationTarget.Workspace,
-        )
-      },
-    ),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand(
-      'autoHide.toggleHideByMouse',
-      async () => {
-        const config = workspace.getConfiguration('autoHide')
-        await config.update(
-          'hideByMouse',
-          !config.get('hideByMouse'),
-          ConfigurationTarget.Workspace,
-        )
-      },
-    ),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand(
-      'autoHide.switchToManualMode',
-      async () => {
-        const config = workspace.getConfiguration('autoHide')
-        await config.update(
-          'mode',
-          Mode.Manual,
-          ConfigurationTarget.Workspace,
-        )
-      },
-    ),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand(
-      'autoHide.switchToAutoMode',
-      async () => {
-        const config = workspace.getConfiguration('autoHide')
-        await config.update(
-          'mode',
-          Mode.Auto,
-          ConfigurationTarget.Workspace,
-        )
-      },
-    ),
-  )
-
-  context.subscriptions.push(
-    commands.registerCommand('autoHide.runHide', () => runHide(getConfigs())),
-  )
+  if (getConfigs().hideOnOpen)
+    runHide()
 }
 
 export function deactivate() { }
