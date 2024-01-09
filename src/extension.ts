@@ -3,6 +3,7 @@ import type { ExtensionContext } from 'vscode'
 import { runHide } from './core'
 import { registerCommands } from './commands'
 import { getConfigs } from './config'
+import { Mode } from './types'
 
 export function activate(ctx: ExtensionContext) {
   registerCommands(ctx)
@@ -14,7 +15,8 @@ export function activate(ctx: ExtensionContext) {
     const configs = getConfigs()
 
     if (
-      e.kind === undefined
+      configs.mode === Mode.Manual
+      || e.kind === undefined
       || (configs.hideOnlyMouse && e.kind !== TextEditorSelectionChangeKind.Mouse)
       || e.selections.length !== 1 // no selections or multiselections
       || e.selections.find(a => a.isEmpty) == null // multiselections
