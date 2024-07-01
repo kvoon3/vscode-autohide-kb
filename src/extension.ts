@@ -4,6 +4,7 @@ import { runHide } from './core'
 import { registerCommands } from './commands'
 import { getConfigs } from './config'
 import { Mode } from './types'
+import { log } from './log'
 
 export function activate(ctx: ExtensionContext) {
   registerCommands(ctx)
@@ -22,6 +23,10 @@ export function activate(ctx: ExtensionContext) {
       || e.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
+      || (
+        configs.hideFromGit
+        && !window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
+      )
     )
       return
 

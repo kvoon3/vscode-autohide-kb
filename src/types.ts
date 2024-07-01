@@ -5,6 +5,7 @@ export interface ExtensionConfiguration {
   autoHideReferences: boolean | undefined
   hideOnOpen: boolean | undefined
   hideOnlyMouse: boolean | undefined
+  hideFromGit: boolean | undefined
   mode: Mode | undefined
 }
 

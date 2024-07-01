@@ -16,6 +16,7 @@ export function getConfigs(): ExtensionConfiguration {
     autoHideReferences: getConfig('autoHideReferences', false),
     hideOnOpen: getConfig('hideOnOpen', true),
     hideOnlyMouse: getConfig('hideOnlyMouse', true),
+    hideFromGit: getConfig('hideFromGit', false),
     mode: getConfig('mode', Mode.Auto),
   }
 }
