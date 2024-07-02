@@ -10,10 +10,14 @@ export function activate(ctx: ExtensionContext) {
   registerCommands(ctx)
 
   window.onDidChangeTextEditorSelection((e) => {
+    const configs = getConfigs()
+
+    if (!configs.enable)
+      return
+
     const path = window.activeTextEditor?.document.fileName
     const pathIsFile = path?.includes('.') || path?.includes('\\') || path?.includes('/')
     const scheme = e.textEditor.document.uri.scheme
-    const configs = getConfigs()
 
     if (
       configs.mode === Mode.Manual
@@ -33,7 +37,9 @@ export function activate(ctx: ExtensionContext) {
     runHide()
   })
 
-  if (getConfigs().hideOnOpen)
+  const { enable, hideOnOpen } = getConfigs()
+
+  if (enable && hideOnOpen)
     runHide()
 }
 

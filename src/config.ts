@@ -6,6 +6,7 @@ import { EXT_NAMESPACE } from './meta'
 import { log } from './log'
 
 const defaultConfigs: ExtensionConfiguration = {
+  enable: true,
   autoHideSideBar: true,
   autoHideAuxiliaryBar: true,
   autoHidePanel: true,

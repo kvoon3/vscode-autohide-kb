@@ -7,6 +7,19 @@ import { getConfigs, updateConfig } from './config'
 
 export function registerCommands({ subscriptions }: ExtensionContext) {
   const { registerCommand } = commands
+
+  subscriptions.push(
+    registerCommand(`${EXT_NAMESPACE}.enable`, () => {
+      updateConfig('enable', true)
+    }),
+  )
+
+  subscriptions.push(
+    registerCommand(`${EXT_NAMESPACE}.disable`, () => {
+      updateConfig('enable', false)
+    }),
+  )
+
   subscriptions.push(
     registerCommand(`${EXT_NAMESPACE}.toggleHidePanel`, () => {
       updateConfig('autoHidePanel', !getConfigs().autoHidePanel)

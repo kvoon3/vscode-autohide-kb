@@ -1,4 +1,5 @@
 export interface ExtensionConfiguration {
+  enable: boolean | undefined
   autoHideSideBar: boolean | undefined
   autoHideAuxiliaryBar: boolean | undefined
   autoHidePanel: boolean | undefined

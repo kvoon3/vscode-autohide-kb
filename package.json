@@ -64,12 +64,27 @@
         "command": "autoHide.runHide",
         "category": "Auto Hide",
         "title": "Run hide immediately"
+      },
+      {
+        "command": "autoHide.enable",
+        "category": "Auto Hide",
+        "title": "Enable Auto Hide"
+      },
+      {
+        "command": "autoHide.disable",
+        "category": "Auto Hide",
+        "title": "Disable Auto Hide"
       }
     ],
     "configuration": {
       "type": "object",
       "title": "Auto Hide configuration",
       "properties": {
+        "autoHide.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Auto Hide"
+        },
         "autoHide.autoHideSideBar": {
           "type": "boolean",
           "default": true,
