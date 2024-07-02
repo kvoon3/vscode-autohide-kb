@@ -3,15 +3,21 @@ import { getConfigs } from './config'
 
 export function runHide() {
   const configs = getConfigs()
+  const { executeCommand } = commands
   if (configs.autoHideReferences)
-    commands.executeCommand('closeReferenceSearch')
+    executeCommand('closeReferenceSearch')
 
   if (configs.autoHidePanel)
-    commands.executeCommand('workbench.action.closePanel')
+    executeCommand('workbench.action.closePanel')
 
   if (configs.autoHideSideBar)
-    commands.executeCommand('workbench.action.closeSidebar')
+    executeCommand('workbench.action.closeSidebar')
 
   if (configs.autoHideAuxiliaryBar)
-    commands.executeCommand('workbench.action.closeAuxiliaryBar')
+    executeCommand('workbench.action.closeAuxiliaryBar')
+
+  if (configs.autoHideNotifications) {
+    executeCommand('notifications.hideList')
+    executeCommand('notification.hideToast')
+  }
 }

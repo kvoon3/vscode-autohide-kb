@@ -14,6 +14,7 @@ export function getConfigs(): ExtensionConfiguration {
     autoHideAuxiliaryBar: getConfig('autoHideAuxiliaryBar', true),
     autoHidePanel: getConfig('autoHidePanel', true),
     autoHideReferences: getConfig('autoHideReferences', false),
+    autoHideNotifications: getConfig('autoHideNotifications', false),
     hideOnOpen: getConfig('hideOnOpen', true),
     hideOnlyMouse: getConfig('hideOnlyMouse', true),
     hideFromGit: getConfig('hideFromGit', false),

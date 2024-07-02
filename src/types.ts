@@ -3,6 +3,7 @@ export interface ExtensionConfiguration {
   autoHideAuxiliaryBar: boolean | undefined
   autoHidePanel: boolean | undefined
   autoHideReferences: boolean | undefined
+  autoHideNotifications: boolean | undefined
   hideOnOpen: boolean | undefined
   hideOnlyMouse: boolean | undefined
   hideFromGit: boolean | undefined

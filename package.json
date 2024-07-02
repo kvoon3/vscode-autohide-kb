@@ -90,6 +90,11 @@
           "default": false,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
         },
+        "autoHide.autoHideNotifications": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide the notifications when the user clicks into a text editor."
+        },
         "autoHide.hideOnOpen": {
           "type": "boolean",
           "default": true,
