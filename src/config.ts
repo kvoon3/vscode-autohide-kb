@@ -38,7 +38,7 @@ export async function updateConfig<K extends keyof ExtensionConfiguration>(
   value: ExtensionConfiguration[K],
   target: ConfigurationTarget = ConfigurationTarget.Workspace,
 ) {
-  log.log('updateconifg: before', key, value)
+  log('updateconifg: before', key, value)
   await workspace.getConfiguration(`${EXT_NAMESPACE}`).update(key, value, target)
-  log.log('updateConfig: after', getConfig(key))
+  log('updateConfig: after', getConfig(key))
 }
