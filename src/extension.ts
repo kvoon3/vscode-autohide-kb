@@ -24,8 +24,8 @@ export function activate(ctx: ExtensionContext) {
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
       || (
-        configs.hideFromGit
-        && !window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
+        !configs.hideFromGit
+        && window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
       )
     )
       return
