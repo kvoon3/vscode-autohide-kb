@@ -3,7 +3,7 @@
   "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Forked from AutoHide with optimized for a better keyboard-only usage experience",
   "repository": {
     "url": "https://github.com/kvoon3/vscode-autohide-kb"
@@ -150,7 +150,6 @@
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish"
   },
-
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
     "@antfu/ni": "^0.21.9",
