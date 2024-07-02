@@ -18,6 +18,6 @@ export function runHide() {
 
   if (configs.autoHideNotifications) {
     executeCommand('notifications.hideList')
-    executeCommand('notification.hideToast')
+    executeCommand('notifications.hideToast')
   }
 }
