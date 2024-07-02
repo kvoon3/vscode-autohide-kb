@@ -5,16 +5,14 @@ export const isDebug = process.env.NODE_ENV === 'development'
 
 export const channel = window.createOutputChannel('Auto Hide KB')
 
-export const log = {
-  debug(...args: any[]) {
-    if (!isDebug)
-      return
-    // eslint-disable-next-line no-console
-    console.log(...args)
-    this.log(...args)
-  },
+export function log(...args: any[]) {
+  channel.appendLine(args.map(i => String(i)).join(' '))
+}
 
-  log(...args: any[]) {
-    channel.appendLine(args.map(i => String(i)).join(' '))
-  },
+export function debug(...args: any[]) {
+  if (!isDebug)
+    return
+    // eslint-disable-next-line no-console
+  console.log(...args)
+  log(...args)
 }
