@@ -1,25 +1,35 @@
 import { ConfigurationTarget, workspace } from 'vscode'
+import { objectEntries } from '@antfu/utils'
 import type { ExtensionConfiguration } from './types'
 import { Mode } from './types'
 import { EXT_NAMESPACE } from './meta'
 import { log } from './log'
 
-export function getConfig<T>(key: string, v?: T) {
-  return workspace.getConfiguration(`${EXT_NAMESPACE}`).get(key, v)
+const defaultConfigs: ExtensionConfiguration = {
+  autoHideSideBar: true,
+  autoHideAuxiliaryBar: true,
+  autoHidePanel: true,
+  autoHideReferences: false,
+  autoHideNotifications: false,
+  hideOnOpen: true,
+  hideOnlyMouse: true,
+  hideFromGit: false,
+  mode: Mode.Auto,
+}
+
+export function getConfig<K extends keyof ExtensionConfiguration>(
+  key: K,
+  defaultValue?: ExtensionConfiguration[K],
+) {
+  return workspace.getConfiguration(`${EXT_NAMESPACE}`).get(key, defaultValue)
 }
 
 export function getConfigs(): ExtensionConfiguration {
-  return {
-    autoHideSideBar: getConfig('autoHideSideBar', true),
-    autoHideAuxiliaryBar: getConfig('autoHideAuxiliaryBar', true),
-    autoHidePanel: getConfig('autoHidePanel', true),
-    autoHideReferences: getConfig('autoHideReferences', false),
-    autoHideNotifications: getConfig('autoHideNotifications', false),
-    hideOnOpen: getConfig('hideOnOpen', true),
-    hideOnlyMouse: getConfig('hideOnlyMouse', true),
-    hideFromGit: getConfig('hideFromGit', false),
-    mode: getConfig('mode', Mode.Auto),
-  }
+  return objectEntries(defaultConfigs)
+    .reduce((configs, [key, defaultValue]) => ({
+      ...configs,
+      [key]: getConfig(key, defaultValue),
+    }), {} as ExtensionConfiguration)
 }
 
 export async function updateConfig<K extends keyof ExtensionConfiguration>(

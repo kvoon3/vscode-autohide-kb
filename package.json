@@ -132,6 +132,9 @@
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish"
   },
+  "dependencies": {
+    "@antfu/utils": "^0.7.10"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
     "@antfu/ni": "^0.21.9",
