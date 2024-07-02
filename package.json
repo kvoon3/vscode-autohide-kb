@@ -6,7 +6,7 @@
   "version": "0.1.2",
   "description": "Forked from AutoHide with optimized for a better keyboard-only usage experience",
   "repository": {
-    "url": "https://github.com/kwongliegaai/vscode-autohide-kb"
+    "url": "https://github.com/kvoon3/vscode-autohide-kb"
   },
   "keywords": [
     "terminal",
@@ -15,7 +15,10 @@
     "bar",
     "hide",
     "auto",
-    "sidebar"
+    "sidebar",
+    "notifications",
+    "keyboard",
+    "vim"
   ],
   "categories": [
     "Other"
