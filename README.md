@@ -1,6 +1,6 @@
 # Auto Hide KB
 
-Auto Hide VSCode sidebar and panels.
+Auto Hide VSCode sidebar, panel and notifications.
 
 > This project is forked from [vscode-autohide](https://github.com/sirmspencer/vscode-autohide) and optimized for a better keyboard-only usage experience.
 
@@ -10,11 +10,15 @@ Auto Hide VSCode sidebar and panels.
 
 ## New Features
 
-1. Hiding can now be triggered by both keyboard and commands.
-2. Added the ability to switch between auto mode and manual mode.
+1. AutoHideKB can be triggered by mouse, keyboard or commands, when you use mouse/keyboard to nav through files.
+2. Added the ability to switch between auto mode and manual mode, you customize hide trigger time whatever you like.
+3. Hide notifications, notifications can also config to auto hide.
+4. Control hide behavior when look over git changes, [vscode-autohide](https://github.com/sirmspencer/vscode-autohide) always run hide when you open git changes.
 
 ## Commands
 
+- `autoHide.enable`: enable autohide
+- `autoHide.disable`: disable autohide
 - `autoHide.toggleHideOnlyMouse`: Toggle whether to hide only with the mouse
 - `autoHide.switchToAutoMode`: Switch to auto mode
 - `autoHide.switchToManualMode`: Switch to manual mode
@@ -22,97 +26,58 @@ Auto Hide VSCode sidebar and panels.
 
 ## Configuration
 
-### Hide Only with Mouse
+### Hide Notifications
 
-- Setting: `autoHide.hideOnlyMouse`
-- Value: `boolean`
+`autoHide.autoHideNotifications`: `boolean`
+
+### Trigger Hide Only with Mouse
+
+`autoHide.hideOnlyMouse`: `boolean`
 
 Whether to hide only with the mouse. When disabled, hiding will be triggered by keyboard, commands, and mouse interactions.
 
 ### Mode Switching
 
-- Setting: `autoHide.mode`
-- Value: `'auto' | 'manual'`
-  - auto: Auto mode. Automatically listens and triggers hide
-  - manual: Manual mode. Manually triggers hide with the command `autoHide.runHide`
+`autoHide.mode`: `'auto' | 'manual'`
 
-## Manual Mode
+When in `auto` mode, AutoHideKB will handle event and try to hide panel. If you wanna trigger hide manually, set the config to `manual` and execute `autoHide.runHide` command whatever you like.
 
-You can use the autoHide.runHide command at the appropriate time according to your preferences
+#### Manual Mode With Commands Palette
 
-### VSCodeVim
+Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
 
-Below is an example of a settings.json file with settings relevant to VSCodeVim:
+#### Manual Mode With VSCodeVim
+
+When you use VSCodeVim extension you can binding 'autoHide.runHide' with specific keys, for example:
 
 ```jsonc
 // settings.json
 {
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "i"
-      ],
-      "before": [
-        "i"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
+      "after": ["i"],
+      "before": ["i"],
+      "commands": ["autoHide.runHide"]
     },
     {
-      "after": [
-        "j"
-      ],
-      "before": [
-        "j"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
+      "after": ["j"],
+      "before": ["j"],
+      "commands": ["autoHide.runHide"]
     },
     {
-      "after": [
-        "k"
-      ],
-      "before": [
-        "k"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
+      "after": ["k"],
+      "before": ["k"],
+      "commands": ["autoHide.runHide"]
     },
     {
-      "after": [
-        "l"
-      ],
-      "before": [
-        "l"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
+      "after": ["l"],
+      "before": ["l"],
+      "commands": ["autoHide.runHide"]
     },
     {
-      "after": [
-        "h"
-      ],
-      "before": [
-        "h"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
-    },
-    {
-      "after": [
-        "w"
-      ],
-      "before": [
-        "w"
-      ],
-      "commands": [
-        "autoHide.runHide"
-      ]
+      "after": ["h"],
+      "before": ["h"],
+      "commands": ["autoHide.runHide"]
     }
   ]
 }
