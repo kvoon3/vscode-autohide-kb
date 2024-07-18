@@ -31,8 +31,9 @@ export const { activate, deactivate } = defineExtension(() => {
         !configs.hideFromGit.value
         && window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
       )
-    )
+    ) {
       return
+    }
 
     runHide()
   })
