@@ -1,17 +1,18 @@
 import { TextEditorSelectionChangeKind, window } from 'vscode'
-import type { ExtensionContext } from 'vscode'
+import { defineExtension, extensionContext } from 'reactive-vscode'
 import { runHide } from './core'
 import { registerCommands } from './commands'
-import { getConfigs } from './config'
-import { Mode } from './types'
+import { configs } from './config'
+import { logger } from './log'
 
-export function activate(ctx: ExtensionContext) {
-  registerCommands(ctx)
+export const { activate, deactivate } = defineExtension(() => {
+  logger.info('extension active')
+  logger.show()
+
+  registerCommands(extensionContext)
 
   window.onDidChangeTextEditorSelection((e) => {
-    const configs = getConfigs()
-
-    if (!configs['autoHide.enable'])
+    if (!configs.enable.value)
       return
 
     const path = window.activeTextEditor?.document.fileName
@@ -19,15 +20,15 @@ export function activate(ctx: ExtensionContext) {
     const scheme = e.textEditor.document.uri.scheme
 
     if (
-      configs['autoHide.mode'] === Mode.Manual
+      configs.mode.value === 'manual'
       || e.kind === undefined
-      || (configs['autoHide.hideOnlyMouse'] && e.kind !== TextEditorSelectionChangeKind.Mouse)
+      || (configs.hideOnlyMouse.value && e.kind !== TextEditorSelectionChangeKind.Mouse)
       || e.selections.length !== 1 // no selections or multiselections
       || e.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
       || (
-        !configs['autoHide.hideFromGit']
+        !configs.hideFromGit.value
         && window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
       )
     )
@@ -36,10 +37,6 @@ export function activate(ctx: ExtensionContext) {
     runHide()
   })
 
-  const { 'autoHide.enable': enable, 'autoHide.hideOnOpen': hideOnOpen } = getConfigs()
-
-  if (enable && hideOnOpen)
+  if (configs.enable.value && configs.hideOnOpen.value)
     runHide()
-}
-
-export function deactivate() { }
+})

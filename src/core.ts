@@ -1,22 +1,23 @@
 import { commands } from 'vscode'
-import { getConfigs } from './config'
+import { configs } from './config'
+import { logger } from './log'
 
 export function runHide() {
-  const configs = getConfigs()
+  logger.info('runHide', new Date().toLocaleString())
   const { executeCommand } = commands
-  if (configs['autoHide.autoHideReferences'])
+  if (configs.autohideReferences.value)
     executeCommand('closeReferenceSearch')
 
-  if (configs['autoHide.autoHidePanel'])
+  if (configs.autohidePanel.value)
     executeCommand('workbench.action.closePanel')
 
-  if (configs['autoHide.autoHideSideBar'])
+  if (configs.autohideSideBar.value)
     executeCommand('workbench.action.closeSidebar')
 
-  if (configs['autoHide.autoHideAuxiliaryBar'])
+  if (configs.autohideAuxiliaryBar.value)
     executeCommand('workbench.action.closeAuxiliaryBar')
 
-  if (configs['autoHide.autoHideNotifications']) {
+  if (configs.autohideNotifications.value) {
     executeCommand('notifications.hideList')
     executeCommand('notifications.hideToasts')
   }

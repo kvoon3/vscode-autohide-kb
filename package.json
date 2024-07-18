@@ -1,6 +1,6 @@
 {
   "publisher": "kevin-kwong",
-  "name": "vscode-autohide-keyboard",
+  "name": "autohide",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
   "version": "0.1.4",
@@ -34,47 +34,47 @@
   "contributes": {
     "commands": [
       {
-        "command": "autoHide.toggleHideSideBar",
+        "command": "autohide.toggleHideSideBar",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Side Bar for Current Workspace"
       },
       {
-        "command": "autoHide.toggleHideAuxiliaryBar",
+        "command": "autohide.toggleHideAuxiliaryBar",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Auxiliary Bar for Current Workspace"
       },
       {
-        "command": "autoHide.toggleHidePanel",
+        "command": "autohide.toggleHidePanel",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Panel for Current Workspace"
       },
       {
-        "command": "autoHide.toggleHideOnlyMouse",
+        "command": "autohide.toggleHideOnlyMouse",
         "category": "Auto Hide",
         "title": "Toggle hide Only mouse"
       },
       {
-        "command": "autoHide.switchToManualMode",
+        "command": "autohide.switchToManualMode",
         "category": "Auto Hide",
         "title": "Switch to manual mode"
       },
       {
-        "command": "autoHide.switchToAutoMode",
+        "command": "autohide.switchToAutoMode",
         "category": "Auto Hide",
         "title": "Switch to auto mode"
       },
       {
-        "command": "autoHide.runHide",
+        "command": "autohide.runHide",
         "category": "Auto Hide",
         "title": "Run hide immediately"
       },
       {
-        "command": "autoHide.enable",
+        "command": "autohide.enable",
         "category": "Auto Hide",
         "title": "Enable Auto Hide"
       },
       {
-        "command": "autoHide.disable",
+        "command": "autohide.disable",
         "category": "Auto Hide",
         "title": "Disable Auto Hide"
       }
@@ -83,52 +83,52 @@
       "type": "object",
       "title": "Auto Hide configuration",
       "properties": {
-        "autoHide.enable": {
+        "autohide.enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable Auto Hide"
         },
-        "autoHide.autoHideSideBar": {
+        "autohide.autohideSideBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the side bar when the user clicks into a text editor."
         },
-        "autoHide.autoHideAuxiliaryBar": {
+        "autohide.autohideAuxiliaryBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the auxiliary bar (second side bar) when the user clicks into a text editor."
         },
-        "autoHide.autoHidePanel": {
+        "autohide.autohidePanel": {
           "type": "boolean",
           "default": true,
           "description": "Hide the panel (output, terminal, etc.) when the user clicks into a text editor."
         },
-        "autoHide.autoHideReferences": {
+        "autohide.autohideReferences": {
           "type": "boolean",
           "default": false,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
         },
-        "autoHide.autoHideNotifications": {
+        "autohide.autohideNotifications": {
           "type": "boolean",
           "default": false,
           "description": "Hide the notifications when the user clicks into a text editor."
         },
-        "autoHide.hideOnOpen": {
+        "autohide.hideOnOpen": {
           "type": "boolean",
           "default": true,
           "description": "Hide side bar and panel when VSCode first opens."
         },
-        "autoHide.hideOnlyMouse": {
+        "autohide.hideOnlyMouse": {
           "type": "boolean",
           "default": true,
           "description": "Enable/Disable hide only with mouse"
         },
-        "autoHide.hideFromGit": {
+        "autohide.hideFromGit": {
           "type": "boolean",
           "default": false,
           "description": "Enable/Disable run hide when open git changes"
         },
-        "autoHide.mode": {
+        "autohide.mode": {
           "type": "string",
           "enum": [
             "auto",
@@ -148,7 +148,8 @@
     "build": "tsup src/extension.ts --external vscode",
     "publish": "vsce publish --no-dependencies",
     "vscode:prepublish": "nr build",
-    "release": "bumpp && nr publish"
+    "release": "bumpp && nr publish",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
@@ -161,6 +162,7 @@
     "bumpp": "^9.2.0",
     "eslint": "^8.55.0",
     "mocha": "^10.2.0",
+    "reactive-vscode": "^0.2.0-beta.7",
     "taze": "^0.13.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",

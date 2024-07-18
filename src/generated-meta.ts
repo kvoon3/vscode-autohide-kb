@@ -3,7 +3,7 @@
 
 // Meta info
 export const publisher = "kevin-kwong"
-export const name = "vscode-autohide-keyboard"
+export const name = "autohide"
 export const version = "0.1.4"
 export const displayName = "Auto Hide KB"
 export const description = "Forked from AutoHide with optimized for a better keyboard-only usage experience"
@@ -13,106 +13,106 @@ export const extensionId = `${publisher}.${name}`
  * Type union of all commands
  */
 export type CommandKey = 
-  | "autoHide.toggleHideSideBar"
-  | "autoHide.toggleHideAuxiliaryBar"
-  | "autoHide.toggleHidePanel"
-  | "autoHide.toggleHideOnlyMouse"
-  | "autoHide.switchToManualMode"
-  | "autoHide.switchToAutoMode"
-  | "autoHide.runHide"
-  | "autoHide.enable"
-  | "autoHide.disable"
+  | "autohide.toggleHideSideBar"
+  | "autohide.toggleHideAuxiliaryBar"
+  | "autohide.toggleHidePanel"
+  | "autohide.toggleHideOnlyMouse"
+  | "autohide.switchToManualMode"
+  | "autohide.switchToAutoMode"
+  | "autohide.runHide"
+  | "autohide.enable"
+  | "autohide.disable"
 
 /**
- * Commands map registed by `kevin-kwong.vscode-autohide-keyboard`
+ * Commands map registed by `kevin-kwong.autohide`
  */
 export const commands = {
   /**
    * Toggle Auto Hide Side Bar for Current Workspace
-   * @value `autoHide.toggleHideSideBar`
+   * @value `autohide.toggleHideSideBar`
    */
-  autoHideToggleHideSideBar: "autoHide.toggleHideSideBar",
+  toggleHideSideBar: "autohide.toggleHideSideBar",
   /**
    * Toggle Auto Hide Auxiliary Bar for Current Workspace
-   * @value `autoHide.toggleHideAuxiliaryBar`
+   * @value `autohide.toggleHideAuxiliaryBar`
    */
-  autoHideToggleHideAuxiliaryBar: "autoHide.toggleHideAuxiliaryBar",
+  toggleHideAuxiliaryBar: "autohide.toggleHideAuxiliaryBar",
   /**
    * Toggle Auto Hide Panel for Current Workspace
-   * @value `autoHide.toggleHidePanel`
+   * @value `autohide.toggleHidePanel`
    */
-  autoHideToggleHidePanel: "autoHide.toggleHidePanel",
+  toggleHidePanel: "autohide.toggleHidePanel",
   /**
    * Toggle hide Only mouse
-   * @value `autoHide.toggleHideOnlyMouse`
+   * @value `autohide.toggleHideOnlyMouse`
    */
-  autoHideToggleHideOnlyMouse: "autoHide.toggleHideOnlyMouse",
+  toggleHideOnlyMouse: "autohide.toggleHideOnlyMouse",
   /**
    * Switch to manual mode
-   * @value `autoHide.switchToManualMode`
+   * @value `autohide.switchToManualMode`
    */
-  autoHideSwitchToManualMode: "autoHide.switchToManualMode",
+  switchToManualMode: "autohide.switchToManualMode",
   /**
    * Switch to auto mode
-   * @value `autoHide.switchToAutoMode`
+   * @value `autohide.switchToAutoMode`
    */
-  autoHideSwitchToAutoMode: "autoHide.switchToAutoMode",
+  switchToAutoMode: "autohide.switchToAutoMode",
   /**
    * Run hide immediately
-   * @value `autoHide.runHide`
+   * @value `autohide.runHide`
    */
-  autoHideRunHide: "autoHide.runHide",
+  runHide: "autohide.runHide",
   /**
    * Enable Auto Hide
-   * @value `autoHide.enable`
+   * @value `autohide.enable`
    */
-  autoHideEnable: "autoHide.enable",
+  enable: "autohide.enable",
   /**
    * Disable Auto Hide
-   * @value `autoHide.disable`
+   * @value `autohide.disable`
    */
-  autoHideDisable: "autoHide.disable",
+  disable: "autohide.disable",
 } satisfies Record<string, CommandKey>
 
 /**
  * Type union of all configs
  */
 export type ConfigKey = 
-  | "autoHide.enable"
-  | "autoHide.autoHideSideBar"
-  | "autoHide.autoHideAuxiliaryBar"
-  | "autoHide.autoHidePanel"
-  | "autoHide.autoHideReferences"
-  | "autoHide.autoHideNotifications"
-  | "autoHide.hideOnOpen"
-  | "autoHide.hideOnlyMouse"
-  | "autoHide.hideFromGit"
-  | "autoHide.mode"
+  | "autohide.enable"
+  | "autohide.autohideSideBar"
+  | "autohide.autohideAuxiliaryBar"
+  | "autohide.autohidePanel"
+  | "autohide.autohideReferences"
+  | "autohide.autohideNotifications"
+  | "autohide.hideOnOpen"
+  | "autohide.hideOnlyMouse"
+  | "autohide.hideFromGit"
+  | "autohide.mode"
 
 export interface ConfigKeyTypeMap {
-  "autoHide.enable": boolean,
-  "autoHide.autoHideSideBar": boolean,
-  "autoHide.autoHideAuxiliaryBar": boolean,
-  "autoHide.autoHidePanel": boolean,
-  "autoHide.autoHideReferences": boolean,
-  "autoHide.autoHideNotifications": boolean,
-  "autoHide.hideOnOpen": boolean,
-  "autoHide.hideOnlyMouse": boolean,
-  "autoHide.hideFromGit": boolean,
-  "autoHide.mode": ("auto" | "manual"),
+  "autohide.enable": boolean,
+  "autohide.autohideSideBar": boolean,
+  "autohide.autohideAuxiliaryBar": boolean,
+  "autohide.autohidePanel": boolean,
+  "autohide.autohideReferences": boolean,
+  "autohide.autohideNotifications": boolean,
+  "autohide.hideOnOpen": boolean,
+  "autohide.hideOnlyMouse": boolean,
+  "autohide.hideFromGit": boolean,
+  "autohide.mode": ("auto" | "manual"),
 }
 
 export interface ConfigShorthandMap {
-  autoHideEnable: "autoHide.enable",
-  autoHideAutoHideSideBar: "autoHide.autoHideSideBar",
-  autoHideAutoHideAuxiliaryBar: "autoHide.autoHideAuxiliaryBar",
-  autoHideAutoHidePanel: "autoHide.autoHidePanel",
-  autoHideAutoHideReferences: "autoHide.autoHideReferences",
-  autoHideAutoHideNotifications: "autoHide.autoHideNotifications",
-  autoHideHideOnOpen: "autoHide.hideOnOpen",
-  autoHideHideOnlyMouse: "autoHide.hideOnlyMouse",
-  autoHideHideFromGit: "autoHide.hideFromGit",
-  autoHideMode: "autoHide.mode",
+  enable: "autohide.enable",
+  autohideSideBar: "autohide.autohideSideBar",
+  autohideAuxiliaryBar: "autohide.autohideAuxiliaryBar",
+  autohidePanel: "autohide.autohidePanel",
+  autohideReferences: "autohide.autohideReferences",
+  autohideNotifications: "autohide.autohideNotifications",
+  hideOnOpen: "autohide.hideOnOpen",
+  hideOnlyMouse: "autohide.hideOnlyMouse",
+  hideFromGit: "autohide.hideFromGit",
+  mode: "autohide.mode",
 }
 
 export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
@@ -122,117 +122,137 @@ export interface ConfigItem<T extends keyof ConfigKeyTypeMap> {
 
 
 /**
- * Configs map registed by `kevin-kwong.vscode-autohide-keyboard`
+ * Configs map registed by `kevin-kwong.autohide`
  */
 export const configs = {
   /**
    * Enable Auto Hide
-   * @key `autoHide.enable`
+   * @key `autohide.enable`
    * @default `true`
    * @type `boolean`
    */
-  autoHideEnable: {
-    key: "autoHide.enable",
+  enable: {
+    key: "autohide.enable",
     default: true,
-  } as ConfigItem<"autoHide.enable">,
+  } as ConfigItem<"autohide.enable">,
   /**
    * Hide the side bar when the user clicks into a text editor.
-   * @key `autoHide.autoHideSideBar`
+   * @key `autohide.autohideSideBar`
    * @default `true`
    * @type `boolean`
    */
-  autoHideAutoHideSideBar: {
-    key: "autoHide.autoHideSideBar",
+  autohideSideBar: {
+    key: "autohide.autohideSideBar",
     default: true,
-  } as ConfigItem<"autoHide.autoHideSideBar">,
+  } as ConfigItem<"autohide.autohideSideBar">,
   /**
    * Hide the auxiliary bar (second side bar) when the user clicks into a text editor.
-   * @key `autoHide.autoHideAuxiliaryBar`
+   * @key `autohide.autohideAuxiliaryBar`
    * @default `true`
    * @type `boolean`
    */
-  autoHideAutoHideAuxiliaryBar: {
-    key: "autoHide.autoHideAuxiliaryBar",
+  autohideAuxiliaryBar: {
+    key: "autohide.autohideAuxiliaryBar",
     default: true,
-  } as ConfigItem<"autoHide.autoHideAuxiliaryBar">,
+  } as ConfigItem<"autohide.autohideAuxiliaryBar">,
   /**
    * Hide the panel (output, terminal, etc.) when the user clicks into a text editor.
-   * @key `autoHide.autoHidePanel`
+   * @key `autohide.autohidePanel`
    * @default `true`
    * @type `boolean`
    */
-  autoHideAutoHidePanel: {
-    key: "autoHide.autoHidePanel",
+  autohidePanel: {
+    key: "autohide.autohidePanel",
     default: true,
-  } as ConfigItem<"autoHide.autoHidePanel">,
+  } as ConfigItem<"autohide.autohidePanel">,
   /**
    * Hide the References panel (`Go to References`) when the user clicks into a text editor.
-   * @key `autoHide.autoHideReferences`
+   * @key `autohide.autohideReferences`
    * @default `false`
    * @type `boolean`
    */
-  autoHideAutoHideReferences: {
-    key: "autoHide.autoHideReferences",
+  autohideReferences: {
+    key: "autohide.autohideReferences",
     default: false,
-  } as ConfigItem<"autoHide.autoHideReferences">,
+  } as ConfigItem<"autohide.autohideReferences">,
   /**
    * Hide the notifications when the user clicks into a text editor.
-   * @key `autoHide.autoHideNotifications`
+   * @key `autohide.autohideNotifications`
    * @default `false`
    * @type `boolean`
    */
-  autoHideAutoHideNotifications: {
-    key: "autoHide.autoHideNotifications",
+  autohideNotifications: {
+    key: "autohide.autohideNotifications",
     default: false,
-  } as ConfigItem<"autoHide.autoHideNotifications">,
+  } as ConfigItem<"autohide.autohideNotifications">,
   /**
    * Hide side bar and panel when VSCode first opens.
-   * @key `autoHide.hideOnOpen`
+   * @key `autohide.hideOnOpen`
    * @default `true`
    * @type `boolean`
    */
-  autoHideHideOnOpen: {
-    key: "autoHide.hideOnOpen",
+  hideOnOpen: {
+    key: "autohide.hideOnOpen",
     default: true,
-  } as ConfigItem<"autoHide.hideOnOpen">,
+  } as ConfigItem<"autohide.hideOnOpen">,
   /**
    * Enable/Disable hide only with mouse
-   * @key `autoHide.hideOnlyMouse`
+   * @key `autohide.hideOnlyMouse`
    * @default `true`
    * @type `boolean`
    */
-  autoHideHideOnlyMouse: {
-    key: "autoHide.hideOnlyMouse",
+  hideOnlyMouse: {
+    key: "autohide.hideOnlyMouse",
     default: true,
-  } as ConfigItem<"autoHide.hideOnlyMouse">,
+  } as ConfigItem<"autohide.hideOnlyMouse">,
   /**
    * Enable/Disable run hide when open git changes
-   * @key `autoHide.hideFromGit`
+   * @key `autohide.hideFromGit`
    * @default `false`
    * @type `boolean`
    */
-  autoHideHideFromGit: {
-    key: "autoHide.hideFromGit",
+  hideFromGit: {
+    key: "autohide.hideFromGit",
     default: false,
-  } as ConfigItem<"autoHide.hideFromGit">,
+  } as ConfigItem<"autohide.hideFromGit">,
   /**
    * set auto/manual mode
-   * @key `autoHide.mode`
+   * @key `autohide.mode`
    * @default `"auto"`
    * @type `string`
    */
-  autoHideMode: {
-    key: "autoHide.mode",
+  mode: {
+    key: "autohide.mode",
     default: "auto",
-  } as ConfigItem<"autoHide.mode">,
+  } as ConfigItem<"autohide.mode">,
 }
 
 export interface ScopedConfigKeyTypeMap {
+  "enable": boolean,
+  "autohideSideBar": boolean,
+  "autohideAuxiliaryBar": boolean,
+  "autohidePanel": boolean,
+  "autohideReferences": boolean,
+  "autohideNotifications": boolean,
+  "hideOnOpen": boolean,
+  "hideOnlyMouse": boolean,
+  "hideFromGit": boolean,
+  "mode": ("auto" | "manual"),
 }
 
 export const scopedConfigs = {
-  scope: "vscode-autohide-keyboard",
+  scope: "autohide",
   defaults: {
+    "enable": true,
+    "autohideSideBar": true,
+    "autohideAuxiliaryBar": true,
+    "autohidePanel": true,
+    "autohideReferences": false,
+    "autohideNotifications": false,
+    "hideOnOpen": true,
+    "hideOnlyMouse": true,
+    "hideFromGit": false,
+    "mode": "auto",
   } satisfies ScopedConfigKeyTypeMap,
 }
 

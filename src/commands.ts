@@ -1,29 +1,28 @@
 import type { ExtensionContext } from 'vscode'
-import { commands } from 'vscode'
 import { objectKeys } from '@antfu/utils'
-import { Mode } from './types'
+import type { ShallowRef } from 'reactive-vscode'
+import { useCommand } from 'reactive-vscode'
 import { runHide } from './core'
-import { getConfigs, updateConfig } from './config'
 import type { CommandKey } from './generated-meta'
+import { configs } from './config'
 
-export function registerCommands({ subscriptions }: ExtensionContext) {
-  const { registerCommand } = commands
+export function registerCommands(ctx: ShallowRef<ExtensionContext | null>) {
+  if (!ctx.value)
+    return
 
   const commandsMap: Record<CommandKey, () => void> = {
-    'autoHide.enable': () => updateConfig('autoHide.enable', true),
-    'autoHide.disable': () => updateConfig('autoHide.enable', false),
-    'autoHide.toggleHidePanel': () => updateConfig('autoHide.autoHidePanel', !getConfigs()['autoHide.autoHidePanel']),
-    'autoHide.toggleHideSideBar': () => updateConfig('autoHide.autoHideSideBar', !getConfigs()['autoHide.autoHideSideBar']),
-    'autoHide.toggleHideAuxiliaryBar': () => updateConfig('autoHide.autoHideAuxiliaryBar', !getConfigs()['autoHide.autoHideAuxiliaryBar']),
-    'autoHide.toggleHideOnlyMouse': () => updateConfig('autoHide.hideOnlyMouse', !getConfigs()['autoHide.hideOnlyMouse']),
-    'autoHide.switchToManualMode': () => updateConfig('autoHide.mode', Mode.Manual),
-    'autoHide.switchToAutoMode': () => updateConfig('autoHide.mode', Mode.Auto),
-    'autoHide.runHide': () => runHide(),
+    'autohide.enable': () => configs.enable.value = true,
+    'autohide.disable': () => configs.enable.value = false,
+    'autohide.toggleHidePanel': () => !configs.autohidePanel.value,
+    'autohide.toggleHideSideBar': () => !configs.autohideSideBar.value,
+    'autohide.toggleHideAuxiliaryBar': () => !configs.autohideAuxiliaryBar.value,
+    'autohide.toggleHideOnlyMouse': () => !configs.hideOnlyMouse.value,
+    'autohide.switchToManualMode': () => configs.mode.value = 'manual',
+    'autohide.switchToAutoMode': () => configs.mode.value = 'auto',
+    'autohide.runHide': () => runHide(),
   }
 
   objectKeys(commandsMap).forEach((key) => {
-    subscriptions.push(
-      registerCommand(key, commandsMap[key]),
-    )
+    useCommand(key, commandsMap[key])
   })
 }
