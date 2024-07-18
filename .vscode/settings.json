@@ -11,7 +11,7 @@
       {
         "match": "package.json",
         "isAsync": true,
-        "cmd": "nlx vscode-ext-gen"
+        "cmd": "nr update"
       }
     ]
   }

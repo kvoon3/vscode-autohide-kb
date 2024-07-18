@@ -149,24 +149,30 @@
     "publish": "vsce publish --no-dependencies",
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "update": "vscode-ext-gen --output src/generated/meta.ts",
+    "prepare": "esno scripts/prepare.js && nr update"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
     "@antfu/ni": "^0.21.9",
     "@antfu/utils": "^0.7.10",
+    "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^16.18.68",
     "@vscode/vsce": "^2.22.0",
     "@vue/reactivity": "^3.4.5",
     "bumpp": "^9.2.0",
     "eslint": "^8.55.0",
+    "esno": "^4.7.0",
+    "fs-extra": "^11.2.0",
     "mocha": "^10.2.0",
     "reactive-vscode": "^0.2.0-beta.7",
     "taze": "^0.13.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
-    "vscode": "^1.1.37"
+    "vscode": "^1.1.37",
+    "vscode-ext-gen": "^0.3.2"
   },
   "extensionKind": [
     "ui",

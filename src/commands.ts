@@ -3,7 +3,7 @@ import { objectKeys } from '@antfu/utils'
 import type { ShallowRef } from 'reactive-vscode'
 import { useCommand } from 'reactive-vscode'
 import { runHide } from './core'
-import type { CommandKey } from './generated-meta'
+import type { CommandKey } from './generated/meta'
 import { configs } from './config'
 
 export function registerCommands(ctx: ShallowRef<ExtensionContext | null>) {
