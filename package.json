@@ -152,7 +152,7 @@
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
     "update": "vscode-ext-gen --output src/generated/meta.ts",
-    "prepare": "esno scripts/prepare.js && nr update",
+    "prepare": "simple-git-hooks && esno scripts/prepare.js && nr update",
     "up": "taze -I major"
   },
   "devDependencies": {
@@ -168,8 +168,10 @@
     "eslint": "^9.7.0",
     "esno": "^4.7.0",
     "fs-extra": "^11.2.0",
+    "lint-staged": "^15.2.7",
     "mocha": "^10.6.0",
     "reactive-vscode": "^0.2.0-beta.7",
+    "simple-git-hooks": "^2.11.1",
     "taze": "^0.16.1",
     "tsup": "^8.1.2",
     "typescript": "^5.5.3",
@@ -179,5 +181,11 @@
   "extensionKind": [
     "ui",
     "workspace"
-  ]
+  ],
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
 }
