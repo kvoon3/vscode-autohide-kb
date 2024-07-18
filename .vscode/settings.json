@@ -5,5 +5,14 @@
   },
   "search.exclude": {
     "dist": true // set this to false to include "dist" folder in search results
+  },
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "package.json",
+        "isAsync": true,
+        "cmd": "nlx vscode-ext-gen"
+      }
+    ]
   }
 }

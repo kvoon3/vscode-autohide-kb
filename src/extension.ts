@@ -4,7 +4,6 @@ import { runHide } from './core'
 import { registerCommands } from './commands'
 import { getConfigs } from './config'
 import { Mode } from './types'
-import { log } from './log'
 
 export function activate(ctx: ExtensionContext) {
   registerCommands(ctx)
@@ -12,7 +11,7 @@ export function activate(ctx: ExtensionContext) {
   window.onDidChangeTextEditorSelection((e) => {
     const configs = getConfigs()
 
-    if (!configs.enable)
+    if (!configs['autoHide.enable'])
       return
 
     const path = window.activeTextEditor?.document.fileName
@@ -20,15 +19,15 @@ export function activate(ctx: ExtensionContext) {
     const scheme = e.textEditor.document.uri.scheme
 
     if (
-      configs.mode === Mode.Manual
+      configs['autoHide.mode'] === Mode.Manual
       || e.kind === undefined
-      || (configs.hideOnlyMouse && e.kind !== TextEditorSelectionChangeKind.Mouse)
+      || (configs['autoHide.hideOnlyMouse'] && e.kind !== TextEditorSelectionChangeKind.Mouse)
       || e.selections.length !== 1 // no selections or multiselections
       || e.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
       || (
-        !configs.hideFromGit
+        !configs['autoHide.hideFromGit']
         && window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
       )
     )
@@ -37,7 +36,7 @@ export function activate(ctx: ExtensionContext) {
     runHide()
   })
 
-  const { enable, hideOnOpen } = getConfigs()
+  const { 'autoHide.enable': enable, 'autoHide.hideOnOpen': hideOnOpen } = getConfigs()
 
   if (enable && hideOnOpen)
     runHide()

@@ -1,44 +1,21 @@
 import { ConfigurationTarget, workspace } from 'vscode'
-import { objectEntries } from '@antfu/utils'
-import type { ExtensionConfiguration } from './types'
-import { Mode } from './types'
-import { EXT_NAMESPACE } from './meta'
-import { log } from './log'
+import type { ConfigKey, ConfigKeyTypeMap } from './generated-meta'
+import { configs } from './generated-meta'
 
-const defaultConfigs: ExtensionConfiguration = {
-  enable: true,
-  autoHideSideBar: true,
-  autoHideAuxiliaryBar: true,
-  autoHidePanel: true,
-  autoHideReferences: false,
-  autoHideNotifications: false,
-  hideOnOpen: true,
-  hideOnlyMouse: true,
-  hideFromGit: false,
-  mode: Mode.Auto,
+export function getConfigs(): ConfigKeyTypeMap {
+  return Object.values(configs).reduce((accu, item) => {
+    const { key, default: defaultValue } = item
+    return {
+      ...accu,
+      [key]: workspace.getConfiguration().get(key, defaultValue),
+    }
+  }, {} as ConfigKeyTypeMap)
 }
 
-export function getConfig<K extends keyof ExtensionConfiguration>(
+export async function updateConfig<K extends ConfigKey>(
   key: K,
-  defaultValue?: ExtensionConfiguration[K],
-) {
-  return workspace.getConfiguration(`${EXT_NAMESPACE}`).get(key, defaultValue)
-}
-
-export function getConfigs(): ExtensionConfiguration {
-  return objectEntries(defaultConfigs)
-    .reduce((configs, [key, defaultValue]) => ({
-      ...configs,
-      [key]: getConfig(key, defaultValue),
-    }), {} as ExtensionConfiguration)
-}
-
-export async function updateConfig<K extends keyof ExtensionConfiguration>(
-  key: K,
-  value: ExtensionConfiguration[K],
+  value: ConfigKeyTypeMap[K],
   target: ConfigurationTarget = ConfigurationTarget.Workspace,
 ) {
-  log('updateconifg: before', key, value)
-  await workspace.getConfiguration(`${EXT_NAMESPACE}`).update(key, value, target)
-  log('updateConfig: after', getConfig(key))
+  await workspace.getConfiguration().update(key, value, target)
 }
