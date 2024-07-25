@@ -1,6 +1,6 @@
 {
   "publisher": "kevin-kwong",
-  "name": "autohide",
+  "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
   "version": "0.1.4",
@@ -35,47 +35,47 @@
   "contributes": {
     "commands": [
       {
-        "command": "autohide.toggleHideSideBar",
+        "command": "autoHide.toggleHideSideBar",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Side Bar for Current Workspace"
       },
       {
-        "command": "autohide.toggleHideAuxiliaryBar",
+        "command": "autoHide.toggleHideAuxiliaryBar",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Auxiliary Bar for Current Workspace"
       },
       {
-        "command": "autohide.toggleHidePanel",
+        "command": "autoHide.toggleHidePanel",
         "category": "Auto Hide",
         "title": "Toggle Auto Hide Panel for Current Workspace"
       },
       {
-        "command": "autohide.toggleHideOnlyMouse",
+        "command": "autoHide.toggleHideOnlyMouse",
         "category": "Auto Hide",
         "title": "Toggle hide Only mouse"
       },
       {
-        "command": "autohide.switchToManualMode",
+        "command": "autoHide.switchToManualMode",
         "category": "Auto Hide",
         "title": "Switch to manual mode"
       },
       {
-        "command": "autohide.switchToAutoMode",
+        "command": "autoHide.switchToAutoMode",
         "category": "Auto Hide",
         "title": "Switch to auto mode"
       },
       {
-        "command": "autohide.runHide",
+        "command": "autoHide.runHide",
         "category": "Auto Hide",
         "title": "Run hide immediately"
       },
       {
-        "command": "autohide.enable",
+        "command": "autoHide.enable",
         "category": "Auto Hide",
         "title": "Enable Auto Hide"
       },
       {
-        "command": "autohide.disable",
+        "command": "autoHide.disable",
         "category": "Auto Hide",
         "title": "Disable Auto Hide"
       }
@@ -151,7 +151,7 @@
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
-    "update": "vscode-ext-gen --output src/generated/meta.ts",
+    "update": "vscode-ext-gen --output src/generated/meta.ts --prefix autohide",
     "prepare": "simple-git-hooks && esno scripts/prepare.js && nr update",
     "up": "taze -I major"
   },
@@ -176,7 +176,7 @@
     "tsup": "^8.1.2",
     "typescript": "^5.5.3",
     "vscode": "^1.1.37",
-    "vscode-ext-gen": "^0.3.2"
+    "vscode-ext-gen": "./vscode-ext-gen-fork-0.3.2.tgz"
   },
   "extensionKind": [
     "ui",

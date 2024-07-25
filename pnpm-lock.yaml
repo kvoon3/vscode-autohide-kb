@@ -69,8 +69,8 @@ importers:
         specifier: ^1.1.37
         version: 1.1.37
       vscode-ext-gen:
-        specifier: ^0.3.2
-        version: 0.3.2
+        specifier: ./vscode-ext-gen-fork-0.3.2.tgz
+        version: file:vscode-ext-gen-fork-0.3.2.tgz
 
 packages:
 
@@ -3259,8 +3259,9 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  vscode-ext-gen@0.3.2:
-    resolution: {integrity: sha512-1dO0TaELmtrOzHN9pAGO2YWofNCN4Z2SVvw9vAa9C1RJqVWhvHlPLfTaNi6U8F3cJ7c87H8lK1OCK9hHc9NuIw==}
+  vscode-ext-gen@file:vscode-ext-gen-fork-0.3.2.tgz:
+    resolution: {integrity: sha512-QE1aSpgno9R90CDKX5VU1UxnRJRi+gI8HGgDpJj+9RXLQERhv1dPO1g5wwPTlehERqcbkgz3M9LTTFbLsJgmeg==, tarball: file:vscode-ext-gen-fork-0.3.2.tgz}
+    version: 0.3.2
     hasBin: true
 
   vscode-test@0.4.3:
@@ -6738,7 +6739,7 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  vscode-ext-gen@0.3.2:
+  vscode-ext-gen@file:vscode-ext-gen-fork-0.3.2.tgz:
     dependencies:
       cac: 6.7.14
       scule: 1.3.0
