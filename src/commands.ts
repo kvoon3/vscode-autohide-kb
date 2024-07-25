@@ -11,15 +11,15 @@ export function registerCommands(ctx: ShallowRef<ExtensionContext | null>) {
     return
 
   const commandsMap: Record<CommandKey, () => void> = {
-    'autohide.enable': () => configs.enable.value = true,
-    'autohide.disable': () => configs.enable.value = false,
-    'autohide.toggleHidePanel': () => !configs.autohidePanel.value,
-    'autohide.toggleHideSideBar': () => !configs.autohideSideBar.value,
-    'autohide.toggleHideAuxiliaryBar': () => !configs.autohideAuxiliaryBar.value,
-    'autohide.toggleHideOnlyMouse': () => !configs.hideOnlyMouse.value,
-    'autohide.switchToManualMode': () => configs.mode.value = 'manual',
-    'autohide.switchToAutoMode': () => configs.mode.value = 'auto',
-    'autohide.runHide': () => runHide(),
+    'autoHide.enable': () => configs.enable.value = true,
+    'autoHide.disable': () => configs.enable.value = false,
+    'autoHide.toggleHidePanel': () => !configs.autoHidePanel.value,
+    'autoHide.toggleHideSideBar': () => !configs.autoHideSideBar.value,
+    'autoHide.toggleHideAuxiliaryBar': () => !configs.autoHideAuxiliaryBar.value,
+    'autoHide.toggleHideOnlyMouse': () => !configs.hideOnlyMouse.value,
+    'autoHide.switchToManualMode': () => configs.mode.value = 'manual',
+    'autoHide.switchToAutoMode': () => configs.mode.value = 'auto',
+    'autoHide.runHide': () => runHide(),
   }
 
   objectKeys(commandsMap).forEach((key) => {

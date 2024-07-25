@@ -5,7 +5,7 @@
   "type": "commonjs",
   "version": "0.2.0",
   "packageManager": "pnpm@9.5.0",
-  "description": "Forked from AutoHide with optimized for a better keyboard-only usage experience",
+  "description": "Forked from Auto Hide with optimized for a better keyboard-only usage experience",
   "repository": {
     "url": "https://github.com/kvoon3/vscode-autohide-kb"
   },
@@ -84,52 +84,52 @@
       "type": "object",
       "title": "Auto Hide configuration",
       "properties": {
-        "autohide.enable": {
+        "autoHide.enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable Auto Hide"
         },
-        "autohide.autohideSideBar": {
+        "autoHide.autoHideSideBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the side bar when the user clicks into a text editor."
         },
-        "autohide.autohideAuxiliaryBar": {
+        "autoHide.autoHideAuxiliaryBar": {
           "type": "boolean",
           "default": true,
           "description": "Hide the auxiliary bar (second side bar) when the user clicks into a text editor."
         },
-        "autohide.autohidePanel": {
+        "autoHide.autoHidePanel": {
           "type": "boolean",
           "default": true,
           "description": "Hide the panel (output, terminal, etc.) when the user clicks into a text editor."
         },
-        "autohide.autohideReferences": {
+        "autoHide.autoHideReferences": {
           "type": "boolean",
           "default": false,
           "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
         },
-        "autohide.autohideNotifications": {
+        "autoHide.autoHideNotifications": {
           "type": "boolean",
           "default": false,
           "description": "Hide the notifications when the user clicks into a text editor."
         },
-        "autohide.hideOnOpen": {
+        "autoHide.hideOnOpen": {
           "type": "boolean",
           "default": true,
           "description": "Hide side bar and panel when VSCode first opens."
         },
-        "autohide.hideOnlyMouse": {
+        "autoHide.hideOnlyMouse": {
           "type": "boolean",
           "default": true,
           "description": "Enable/Disable hide only with mouse"
         },
-        "autohide.hideFromGit": {
+        "autoHide.hideFromGit": {
           "type": "boolean",
           "default": false,
           "description": "Enable/Disable run hide when open git changes"
         },
-        "autohide.mode": {
+        "autoHide.mode": {
           "type": "string",
           "enum": [
             "auto",
@@ -151,7 +151,7 @@
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
-    "update": "vscode-ext-gen --output src/generated/meta.ts --prefix autohide",
+    "update": "vscode-ext-gen --output src/generated/meta.ts --prefix autoHide",
     "prepare": "simple-git-hooks && esno scripts/prepare.js && nr update",
     "up": "taze -I major"
   },
