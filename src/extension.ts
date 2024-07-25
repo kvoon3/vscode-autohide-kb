@@ -1,6 +1,6 @@
 import { TextEditorSelectionChangeKind, window } from 'vscode'
 import { defineExtension, extensionContext } from 'reactive-vscode'
-import { runHide } from './core'
+import { throttledRunHide } from './core'
 import { registerCommands } from './commands'
 import { configs } from './config'
 import { logger } from './log'
@@ -35,9 +35,9 @@ export const { activate, deactivate } = defineExtension(() => {
       return
     }
 
-    runHide()
+    throttledRunHide ()
   })
 
   if (configs.enable.value && configs.hideOnOpen.value)
-    runHide()
+    throttledRunHide()
 })

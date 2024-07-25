@@ -2,9 +2,28 @@ import { commands } from 'vscode'
 import { configs } from './config'
 import { logger } from './log'
 
-export function runHide() {
-  logger.info('runHide', new Date().toLocaleString())
+export function throttle(callback: () => void) {
+  let lastRunTime: number | undefined
+
+  return () => {
+    const now = Date.now()
+
+    if (
+      lastRunTime
+      && now - lastRunTime < configs.throttleTime.value
+    ) {
+      return
+    }
+
+    callback()
+    logger.info('runHide', new Date().toLocaleString())
+    lastRunTime = now
+  }
+}
+
+function runHide() {
   const { executeCommand } = commands
+
   if (configs.autoHideReferences.value)
     executeCommand('closeReferenceSearch')
 
@@ -22,3 +41,5 @@ export function runHide() {
     executeCommand('notifications.hideToasts')
   }
 }
+
+export const throttledRunHide = throttle(runHide)

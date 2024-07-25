@@ -137,6 +137,11 @@
           ],
           "default": "auto",
           "description": "set auto/manual mode"
+        },
+        "autoHide.throttleTime": {
+          "type": "number",
+          "default": 500,
+          "description": "set throttle time"
         }
       }
     }

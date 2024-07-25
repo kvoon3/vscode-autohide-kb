@@ -2,7 +2,7 @@ import type { ExtensionContext } from 'vscode'
 import { objectKeys } from '@antfu/utils'
 import type { ShallowRef } from 'reactive-vscode'
 import { useCommand } from 'reactive-vscode'
-import { runHide } from './core'
+import { throttledRunHide } from './core'
 import type { CommandKey } from './generated/meta'
 import { configs } from './config'
 
@@ -19,7 +19,7 @@ export function registerCommands(ctx: ShallowRef<ExtensionContext | null>) {
     'autoHide.toggleHideOnlyMouse': () => !configs.hideOnlyMouse.value,
     'autoHide.switchToManualMode': () => configs.mode.value = 'manual',
     'autoHide.switchToAutoMode': () => configs.mode.value = 'auto',
-    'autoHide.runHide': () => runHide(),
+    'autoHide.runHide': () => throttledRunHide(),
   }
 
   objectKeys(commandsMap).forEach((key) => {
