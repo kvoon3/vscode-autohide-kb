@@ -5,7 +5,7 @@
   "type": "commonjs",
   "version": "0.2.1",
   "packageManager": "pnpm@9.5.0",
-  "description": "Forked from Auto Hide with optimized for a better keyboard-only usage experience",
+  "description": "Keyboard friendly Auto Hide",
   "repository": {
     "url": "https://github.com/kvoon3/vscode-autohide-kb"
   },
