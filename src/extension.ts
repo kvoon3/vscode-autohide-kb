@@ -7,7 +7,6 @@ import { logger } from './log'
 
 export const { activate, deactivate } = defineExtension(() => {
   logger.info('extension active')
-  logger.show()
 
   registerCommands(extensionContext)
 
