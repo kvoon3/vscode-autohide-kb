@@ -3,7 +3,7 @@
   "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
   "type": "commonjs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "packageManager": "pnpm@9.5.0",
   "description": "Keyboard friendly Auto Hide",
   "repository": {
