@@ -3,5 +3,3 @@ node_modules
 .key
 *.vsix
 src/generated
-
-!vscode-ext-gen-fork-0.3.2.tgz
