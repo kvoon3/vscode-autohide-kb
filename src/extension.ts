@@ -28,7 +28,7 @@ export const { activate, deactivate } = defineExtension(() => {
       || scheme === 'output' // The output window
       || (
         !configs.hideFromGit.value
-        && window.visibleTextEditors.find(i => i.document.uri.scheme === 'git')
+        && window.visibleTextEditors.find(i => i.document.uri.scheme.includes('git'))
       )
     ) {
       return
