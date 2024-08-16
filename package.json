@@ -50,19 +50,29 @@
         "title": "Toggle Auto Hide Panel for Current Workspace"
       },
       {
+        "command": "autoHide.toggleHideReferences",
+        "category": "Auto Hide",
+        "title": "Toggle Auto Hide References for Current Workspace"
+      },
+      {
+        "command": "autoHide.toggleHideNotifications",
+        "category": "Auto Hide",
+        "title": "Toggle Auto Hide Notifications for Current Workspace"
+      },
+      {
         "command": "autoHide.toggleHideOnlyMouse",
         "category": "Auto Hide",
         "title": "Toggle hide Only mouse"
       },
       {
-        "command": "autoHide.switchToManualMode",
+        "command": "autoHide.toggleHidefromGit",
         "category": "Auto Hide",
-        "title": "Switch to manual mode"
+        "title": "Toggle hide from git"
       },
       {
-        "command": "autoHide.switchToAutoMode",
+        "command": "autoHide.toggleMode",
         "category": "Auto Hide",
-        "title": "Switch to auto mode"
+        "title": "toggle to manual/auto mode"
       },
       {
         "command": "autoHide.runHide",
@@ -70,64 +80,64 @@
         "title": "Run hide immediately"
       },
       {
-        "command": "autoHide.enable",
+        "command": "autoHide.toggleEnable",
         "category": "Auto Hide",
-        "title": "Enable Auto Hide"
-      },
-      {
-        "command": "autoHide.disable",
-        "category": "Auto Hide",
-        "title": "Disable Auto Hide"
+        "title": "Toggle enable"
       }
     ],
     "configuration": {
       "type": "object",
       "title": "Auto Hide configuration",
       "properties": {
+        "autoHide.ui": {
+          "type": "object",
+          "properties": {
+            "sideBar": {
+              "type": "boolean",
+              "default": true,
+              "description": "Side bar hideable"
+            },
+            "auxiliaryBar": {
+              "type": "boolean",
+              "default": true,
+              "description": "Auxiliary bar hideable"
+            },
+            "panel": {
+              "type": "boolean",
+              "default": true,
+              "description": "Panel hideable"
+            },
+            "references": {
+              "type": "boolean",
+              "default": false,
+              "description": "References panel hideable"
+            },
+            "notifications": {
+              "type": "boolean",
+              "default": true,
+              "description": "Notifications hideable"
+            }
+          }
+        },
         "autoHide.enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable Auto Hide"
         },
-        "autoHide.autoHideSideBar": {
+        "autoHide.triggerOnOpen": {
           "type": "boolean",
           "default": true,
-          "description": "Hide the side bar when the user clicks into a text editor."
+          "description": "Trigger hide when VSCode first opens."
         },
-        "autoHide.autoHideAuxiliaryBar": {
+        "autoHide.triggerOnlyMouse": {
           "type": "boolean",
           "default": true,
-          "description": "Hide the auxiliary bar (second side bar) when the user clicks into a text editor."
+          "description": "Enable/Disable hide only with mouse event"
         },
-        "autoHide.autoHidePanel": {
-          "type": "boolean",
-          "default": true,
-          "description": "Hide the panel (output, terminal, etc.) when the user clicks into a text editor."
-        },
-        "autoHide.autoHideReferences": {
+        "autoHide.triggerFromGit": {
           "type": "boolean",
           "default": false,
-          "description": "Hide the References panel (`Go to References`) when the user clicks into a text editor."
-        },
-        "autoHide.autoHideNotifications": {
-          "type": "boolean",
-          "default": false,
-          "description": "Hide the notifications when the user clicks into a text editor."
-        },
-        "autoHide.hideOnOpen": {
-          "type": "boolean",
-          "default": true,
-          "description": "Hide side bar and panel when VSCode first opens."
-        },
-        "autoHide.hideOnlyMouse": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable hide only with mouse"
-        },
-        "autoHide.hideFromGit": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/Disable run hide when open git changes"
+          "description": "Enable/Disable run hide when move to git changes"
         },
         "autoHide.mode": {
           "type": "string",
@@ -161,12 +171,12 @@
     "up": "taze -I major"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.25.2",
+    "@antfu/eslint-config": "^2.26.0",
     "@antfu/ni": "^0.22.4",
     "@antfu/utils": "^0.7.10",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.15",
+    "@types/node": "^20.16.1",
     "@vscode/vsce": "^2.32.0",
     "@vue/reactivity": "^3.4.38",
     "bumpp": "^9.5.1",
@@ -181,7 +191,7 @@
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "vscode": "^1.1.37",
-    "vscode-ext-gen": "^0.3.6"
+    "vscode-ext-gen": "^0.3.7"
   },
   "extensionKind": [
     "ui",

@@ -10,7 +10,7 @@ export function throttle(callback: () => void) {
 
     if (
       lastRunTime
-      && now - lastRunTime < configs.throttleTime.value
+      && now - lastRunTime < configs.throttleTime
     ) {
       return
     }
@@ -24,19 +24,19 @@ export function throttle(callback: () => void) {
 function runHide() {
   const { executeCommand } = commands
 
-  if (configs.autoHideReferences.value)
+  if (configs.ui!.references)
     executeCommand('closeReferenceSearch')
 
-  if (configs.autoHidePanel.value)
+  if (configs.ui!.panel)
     executeCommand('workbench.action.closePanel')
 
-  if (configs.autoHideSideBar.value)
+  if (configs.ui!.sideBar)
     executeCommand('workbench.action.closeSidebar')
 
-  if (configs.autoHideAuxiliaryBar.value)
+  if (configs.ui!.auxiliaryBar)
     executeCommand('workbench.action.closeAuxiliaryBar')
 
-  if (configs.autoHideNotifications.value) {
+  if (configs.ui!.notifications) {
     executeCommand('notifications.hideList')
     executeCommand('notifications.hideToasts')
   }

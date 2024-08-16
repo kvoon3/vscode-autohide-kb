@@ -11,7 +11,7 @@ export const { activate, deactivate } = defineExtension(() => {
   registerCommands(extensionContext)
 
   window.onDidChangeTextEditorSelection((e) => {
-    if (!configs.enable.value)
+    if (!configs.enable)
       return
 
     const path = window.activeTextEditor?.document.fileName
@@ -19,15 +19,15 @@ export const { activate, deactivate } = defineExtension(() => {
     const scheme = e.textEditor.document.uri.scheme
 
     if (
-      configs.mode.value === 'manual'
+      configs.mode === 'manual'
       || e.kind === undefined
-      || (configs.hideOnlyMouse.value && e.kind !== TextEditorSelectionChangeKind.Mouse)
+      || (configs.triggerOnlyMouse && e.kind !== TextEditorSelectionChangeKind.Mouse)
       || e.selections.length !== 1 // no selections or multiselections
       || e.selections.find(a => a.isEmpty) == null // multiselections
       || !pathIsFile // The debug window editor
       || scheme === 'output' // The output window
       || (
-        !configs.hideFromGit.value
+        !configs.triggerFromGit
         && window.visibleTextEditors.find(i => i.document.uri.scheme.includes('git'))
       )
     ) {
@@ -37,6 +37,6 @@ export const { activate, deactivate } = defineExtension(() => {
     throttledRunHide ()
   })
 
-  if (configs.enable.value && configs.hideOnOpen.value)
+  if (configs.enable && configs.triggerOnOpen)
     throttledRunHide()
 })
