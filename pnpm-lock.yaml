@@ -24,11 +24,11 @@ importers:
         specifier: ^10.0.7
         version: 10.0.7
       '@types/node':
-        specifier: ^20.16.1
-        version: 20.16.1
+        specifier: ^22.4.2
+        version: 22.4.2
       '@vscode/vsce':
-        specifier: ^2.32.0
-        version: 2.32.0
+        specifier: ^3.0.0
+        version: 3.0.0
       '@vue/reactivity':
         specifier: ^3.4.38
         version: 3.4.38
@@ -51,8 +51,8 @@ importers:
         specifier: ^10.7.3
         version: 10.7.3
       reactive-vscode:
-        specifier: ^0.2.0
-        version: 0.2.0(@types/vscode@1.91.0)
+        specifier: ^0.2.1
+        version: 0.2.1(@types/vscode@1.91.0)
       simple-git-hooks:
         specifier: ^2.11.1
         version: 2.11.1
@@ -69,8 +69,8 @@ importers:
         specifier: ^1.1.37
         version: 1.1.37
       vscode-ext-gen:
-        specifier: ^0.3.7
-        version: 0.3.7
+        specifier: ^0.4.2
+        version: 0.4.2
 
 packages:
 
@@ -599,8 +599,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@reactive-vscode/reactivity@0.2.0':
-    resolution: {integrity: sha512-TUDA8YSrd7Zhtg8mxb0VyJzBmLeuf9EnOM2O1XFI2zxPqlDKzNfYdI8L3nrM0S+FqnzV6sHcRsr9i1aonD7Org==}
+  '@reactive-vscode/reactivity@0.2.1':
+    resolution: {integrity: sha512-b0qkAdwNom/w/GgmY5/qf54gN3mdUwrk9BNp9BaHrfnmQ5N7JqgzIAU5VF4cEly9gElTDRgwvl5CQBgVz1R7Gg==}
 
   '@rollup/rollup-android-arm-eabi@4.19.0':
     resolution: {integrity: sha512-JlPfZ/C7yn5S5p0yKk7uhHTTnFlvTgLetl2VxqE518QgyM7C9bSfFTYvB/Q/ftkq0RIPY4ySxTz+/wKJ/dXC0w==}
@@ -739,8 +739,8 @@ packages:
   '@types/mocha@10.0.7':
     resolution: {integrity: sha512-GN8yJ1mNTcFcah/wKEFIJckJx9iJLoMSzWcfRRuxz/Jk+U6KQNnml+etbtxFK8lPjzOw3zp4Ha/kjSst9fsHYw==}
 
-  '@types/node@20.16.1':
-    resolution: {integrity: sha512-zJDo7wEadFtSyNz5QITDfRcrhqDvQI1xQNQ0VoizPjM/dVAODqqIUWbJPkvsxmTI0MYRGRikcdjMPhOssnPejQ==}
+  '@types/node@22.4.2':
+    resolution: {integrity: sha512-nAvM3Ey230/XzxtyDcJ+VjvlzpzoHwLsF7JaDRfoI0ytO0mVheerNmM45CtA0yOILXwXXxOrcUWH3wltX+7PSw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -898,9 +898,9 @@ packages:
   '@vscode/vsce-sign@2.0.4':
     resolution: {integrity: sha512-0uL32egStKYfy60IqnynAChMTbL0oqpqk0Ew0YHiIb+fayuGZWADuIPHWUcY1GCnAA+VgchOPDMxnc2R3XGWEA==}
 
-  '@vscode/vsce@2.32.0':
-    resolution: {integrity: sha512-3EFJfsgrSftIqt3EtdRcAygy/OJ3hstyI1cDmIgkU9CFZW5C+3djr6mfosndCUqcVYuyjmxOK1xmFp/Bq7+NIg==}
-    engines: {node: '>= 16'}
+  '@vscode/vsce@3.0.0':
+    resolution: {integrity: sha512-UKYcC7fcSw6AUK6nlfm8A8WSOA41H3DRAwafCMp9CQpg3K9COAQKkrgQ+dKPhwkFTP7SPZNEiulDpPLwvr5QQQ==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   '@vue/compiler-core@3.4.32':
@@ -1765,6 +1765,11 @@ packages:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
 
+  glob@11.0.0:
+    resolution: {integrity: sha512-9UiX/Bl6J2yaBbxKoEBRm4Cipxgok8kQYcOPEhScPwebu2I0HoQOuYdIO6S3hLuWoZgpDpwQZMzTFxgpkyT76g==}
+    engines: {node: 20 || >=22}
+    hasBin: true
+
   glob@7.1.2:
     resolution: {integrity: sha512-MJTUg1kjuLeQCJ+ccE4Vpa6kKVXkPYJ2mOCQyUuKLcLQsdrMCpBPUi8qVE6+YuaJkozeA9NusTAw3hLr8Xe5EQ==}
     deprecated: Glob versions prior to v9 are no longer supported
@@ -2016,6 +2021,10 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
+  jackspeak@4.0.1:
+    resolution: {integrity: sha512-cub8rahkh0Q/bw1+GxP7aeSe29hHHn2V4m29nnDlvCdlgU+3UGxkZp7Z53jLUdpX3jdTO0nJZUDl3xvbWc2Xog==}
+    engines: {node: 20 || >=22}
+
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
@@ -2190,6 +2199,10 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
+
+  lru-cache@11.0.0:
+    resolution: {integrity: sha512-Qv32eSV1RSCfhY3fpPE2GNZ8jgM9X7rdAfemLWqTUxwiyIC4jJ6Sy0fZ8H+oLWevO6i4/bizg7c8d8i6bxrzbA==}
+    engines: {node: 20 || >=22}
 
   lru-cache@6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
@@ -2540,6 +2553,10 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
+  path-scurry@2.0.0:
+    resolution: {integrity: sha512-ypGJsmGtdXUOeM5u93TyeIEfEhM6s+ljAhrk5vAvSx8uyY/02OvrZnA0YNGUrPXfpJMgI1ODd3nwz8Npx4O4cg==}
+    engines: {node: 20 || >=22}
+
   path-type@4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
@@ -2651,8 +2668,8 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  reactive-vscode@0.2.0:
-    resolution: {integrity: sha512-dNmpEeuIP25w5aYbmjHT7/6H7weCiKH60gzGIe41ZGoTNLlGNNCm6Ec2GyJSGnSAxjS8qtyrfN2xTfp4nIpKpg==}
+  reactive-vscode@0.2.1:
+    resolution: {integrity: sha512-xm8AVllz/6TyP8BNGpyIv15vmiJ3E+zxck0G0F8UWBrpg3LbrEbkC7pTQjeamKYBPG8ldkRvY1ehApvWusjonA==}
     peerDependencies:
       '@types/vscode': ^1.89.0
 
@@ -3128,8 +3145,8 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  vscode-ext-gen@0.3.7:
-    resolution: {integrity: sha512-LR5C0eWY1bc6jH5szoAudg4OcOIfJx9wYKKVMdacoeZja68uRyHcUbn1cqgYxjqVlNpcWDETr62Uyua2PsB2tw==}
+  vscode-ext-gen@0.4.2:
+    resolution: {integrity: sha512-5yPd8BinOIYD5OAZ6UwPvU5Auyis/b9dt+gGpBycJLEpQxsbsk/ooC4zfQQlm4tuXhkeLbJrsY9RnrB+jvfTww==}
     hasBin: true
 
   vscode-test@0.4.3:
@@ -3681,7 +3698,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@reactive-vscode/reactivity@0.2.0': {}
+  '@reactive-vscode/reactivity@0.2.1': {}
 
   '@rollup/rollup-android-arm-eabi@4.19.0':
     optional: true
@@ -3793,13 +3810,13 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.16.1
+      '@types/node': 22.4.2
 
   '@types/json-schema@7.0.15': {}
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.16.1
+      '@types/node': 22.4.2
 
   '@types/mdast@3.0.15':
     dependencies:
@@ -3807,7 +3824,7 @@ snapshots:
 
   '@types/mocha@10.0.7': {}
 
-  '@types/node@20.16.1':
+  '@types/node@22.4.2':
     dependencies:
       undici-types: 6.19.6
 
@@ -3982,7 +3999,7 @@ snapshots:
       '@vscode/vsce-sign-win32-arm64': 2.0.2
       '@vscode/vsce-sign-win32-x64': 2.0.2
 
-  '@vscode/vsce@2.32.0':
+  '@vscode/vsce@3.0.0':
     dependencies:
       '@azure/identity': 4.4.0
       '@vscode/vsce-sign': 2.0.4
@@ -3992,7 +4009,7 @@ snapshots:
       cockatiel: 3.1.3
       commander: 6.2.1
       form-data: 4.0.0
-      glob: 7.2.3
+      glob: 11.0.0
       hosted-git-info: 4.1.0
       jsonc-parser: 3.3.1
       leven: 3.1.0
@@ -5038,6 +5055,15 @@ snapshots:
       package-json-from-dist: 1.0.0
       path-scurry: 1.11.1
 
+  glob@11.0.0:
+    dependencies:
+      foreground-child: 3.2.1
+      jackspeak: 4.0.1
+      minimatch: 10.0.1
+      minipass: 7.1.2
+      package-json-from-dist: 1.0.0
+      path-scurry: 2.0.0
+
   glob@7.1.2:
     dependencies:
       fs.realpath: 1.0.0
@@ -5291,6 +5317,12 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
+  jackspeak@4.0.1:
+    dependencies:
+      '@isaacs/cliui': 8.0.2
+    optionalDependencies:
+      '@pkgjs/parseargs': 0.11.0
+
   jiti@1.21.6: {}
 
   jiti@2.0.0-beta.2: {}
@@ -5473,6 +5505,8 @@ snapshots:
       wrap-ansi: 9.0.0
 
   lru-cache@10.4.3: {}
+
+  lru-cache@11.0.0: {}
 
   lru-cache@6.0.0:
     dependencies:
@@ -5880,6 +5914,11 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
+  path-scurry@2.0.0:
+    dependencies:
+      lru-cache: 11.0.0
+      minipass: 7.1.2
+
   path-type@4.0.0: {}
 
   pathe@1.1.2: {}
@@ -5987,9 +6026,9 @@ snapshots:
       strip-json-comments: 2.0.1
     optional: true
 
-  reactive-vscode@0.2.0(@types/vscode@1.91.0):
+  reactive-vscode@0.2.1(@types/vscode@1.91.0):
     dependencies:
-      '@reactive-vscode/reactivity': 0.2.0
+      '@reactive-vscode/reactivity': 0.2.1
       '@types/vscode': 1.91.0
 
   read-pkg-up@7.0.1:
@@ -6493,7 +6532,7 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  vscode-ext-gen@0.3.7:
+  vscode-ext-gen@0.4.2:
     dependencies:
       cac: 6.7.14
       scule: 1.3.0

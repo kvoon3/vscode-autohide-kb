@@ -16,33 +16,38 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 ## Commands
 
-| ID                                | Description                                          |
-| --------------------------------- | ---------------------------------------------------- |
-| `autoHide.toggleHideSideBar`      | Toggle Auto Hide Side Bar for Current Workspace      |
-| `autoHide.toggleHideAuxiliaryBar` | Toggle Auto Hide Auxiliary Bar for Current Workspace |
-| `autoHide.toggleHidePanel`        | Toggle Auto Hide Panel for Current Workspace         |
-| `autoHide.toggleHideOnlyMouse`    | Toggle whether to hide only with the mouse           |
-| `autoHide.switchToAutoMode`       | Switch to auto mode                                  |
-| `autoHide.switchToManualMode`     | Switch to manual mode                                |
-| `autoHide.runHide`                | Execute hide immediately                             |
-| `autoHide.enable`                 | Enable autohide                                      |
-| `autoHide.disable`                | Disable autohide                                     |
+<!-- commands -->
 
-## Configuration
+| Command                            | Title                                                           |
+| ---------------------------------- | --------------------------------------------------------------- |
+| `autoHide.toggleHideSideBar`       | Auto Hide: Toggle Auto Hide Side Bar for Current Workspace      |
+| `autoHide.toggleHideAuxiliaryBar`  | Auto Hide: Toggle Auto Hide Auxiliary Bar for Current Workspace |
+| `autoHide.toggleHidePanel`         | Auto Hide: Toggle Auto Hide Panel for Current Workspace         |
+| `autoHide.toggleHideReferences`    | Auto Hide: Toggle Auto Hide References for Current Workspace    |
+| `autoHide.toggleHideNotifications` | Auto Hide: Toggle Auto Hide Notifications for Current Workspace |
+| `autoHide.toggleHideOnlyMouse`     | Auto Hide: Toggle hide Only mouse                               |
+| `autoHide.toggleHidefromGit`       | Auto Hide: Toggle hide from git                                 |
+| `autoHide.toggleMode`              | Auto Hide: toggle to manual/auto mode                           |
+| `autoHide.runHide`                 | Auto Hide: Run hide immediately                                 |
+| `autoHide.toggleEnable`            | Auto Hide: Toggle enable                                        |
 
-| Setting                                     | Description                                                                                                                                                                |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `autoHide.enable`: `boolean`                | Enable/Disable Auto Hide                                                                                                                                                   |
-| `autoHide.autoHideSideBar`: `boolean`       | Hide the side bar when the user clicks into a text editor.                                                                                                                 |
-| `autoHide.autoHideAuxiliaryBar`: `boolean`  | Hide the auxiliary bar (second side bar) when the user clicks into a text editor.                                                                                          |
-| `autoHide.autoHidePanel`: `boolean`         | Hide the panel (output, terminal, etc.) when the user clicks into a text editor.                                                                                           |
-| `autoHide.autoHideReferences`: `boolean`    | Hide the References panel (`Go to References`) when the user clicks into a text editor.                                                                                    |
-| `autoHide.autoHideNotifications`: `boolean` | Hide the notifications when the user clicks into a text editor.                                                                                                            |
-| `autoHide.hideOnOpen`: `boolean`            | Hide side bar and panel when VSCode first opens.                                                                                                                           |
-| `autoHide.hideOnlyMouse`: `boolean`         | Enable/Disable hide only with mouse. If disabled, keyboard and commands will also trigger hide.                                                                            |
-| `autoHide.hideFromGit`: `boolean`           | Enable/Disable run hide when open git changes.                                                                                                                             |
-| `autoHide.mode`: `'auto' \| 'manual'`       | Set auto/manual mode. In `auto` mode, AutoHideKB will handle event and try to hide panel. In `manual` mode, you can trigger hide manually with `autoHide.runHide` command. |
-| `autoHide.throttleTime`: `number`           | Set throttle time in milliseconds.                                                                                                                                         |
+<!-- commands -->
+
+## Configurations
+
+<!-- configs -->
+
+| Key                         | Description                                      | Type      | Default                                                                                                |
+| --------------------------- | ------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------ |
+| `autoHide.ui`               |                                                  | `object`  | `{ "sideBar": true, "auxiliaryBar": true, "panel": true, "references": false, "notifications": true }` |
+| `autoHide.enable`           | Enable Auto Hide                                 | `boolean` | `true`                                                                                                 |
+| `autoHide.triggerOnOpen`    | Trigger hide when VSCode first opens.            | `boolean` | `true`                                                                                                 |
+| `autoHide.triggerOnlyMouse` | Enable/Disable hide only with mouse event        | `boolean` | `true`                                                                                                 |
+| `autoHide.triggerFromGit`   | Enable/Disable run hide when move to git changes | `boolean` | `false`                                                                                                |
+| `autoHide.mode`             | set auto/manual mode                             | `string`  | `"auto"`                                                                                               |
+| `autoHide.throttleTime`     | set throttle time                                | `number`  | `500`                                                                                                  |
+
+<!-- configs -->
 
 ### Mode
 
