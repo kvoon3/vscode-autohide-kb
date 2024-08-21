@@ -12,7 +12,7 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 ## New Features
 
 1. Triggered by keyboard and commands
-2. throttle trigger event
+2. Throttle trigger event
 3. Auto/Manual mode switching
 4. Whitelist support
 5. More ui to hide
