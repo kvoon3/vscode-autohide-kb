@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: [
-    'src/extensions.ts',
+    'src/index.ts',
   ],
   format: ['cjs'],
   shims: false,

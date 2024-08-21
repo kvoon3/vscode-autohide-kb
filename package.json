@@ -24,8 +24,13 @@
   "categories": [
     "Other"
   ],
-  "main": "./dist/extension.js",
-  "icon": "Images/Icons/Logo_128.png",
+  "main": "./dist/index.js",
+  "icon": "res/logo.png",
+  "files": [
+    "LICENSE.md",
+    "dist/*",
+    "res/*"
+  ],
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -35,39 +40,9 @@
   "contributes": {
     "commands": [
       {
-        "command": "autoHide.toggleHideSideBar",
+        "command": "autoHide.toggleEnable",
         "category": "Auto Hide",
-        "title": "Toggle Auto Hide Side Bar for Current Workspace"
-      },
-      {
-        "command": "autoHide.toggleHideAuxiliaryBar",
-        "category": "Auto Hide",
-        "title": "Toggle Auto Hide Auxiliary Bar for Current Workspace"
-      },
-      {
-        "command": "autoHide.toggleHidePanel",
-        "category": "Auto Hide",
-        "title": "Toggle Auto Hide Panel for Current Workspace"
-      },
-      {
-        "command": "autoHide.toggleHideReferences",
-        "category": "Auto Hide",
-        "title": "Toggle Auto Hide References for Current Workspace"
-      },
-      {
-        "command": "autoHide.toggleHideNotifications",
-        "category": "Auto Hide",
-        "title": "Toggle Auto Hide Notifications for Current Workspace"
-      },
-      {
-        "command": "autoHide.toggleHideOnlyMouse",
-        "category": "Auto Hide",
-        "title": "Toggle hide Only mouse"
-      },
-      {
-        "command": "autoHide.toggleHidefromGit",
-        "category": "Auto Hide",
-        "title": "Toggle hide from git"
+        "title": "Toggle enable"
       },
       {
         "command": "autoHide.toggleMode",
@@ -78,24 +53,25 @@
         "command": "autoHide.runHide",
         "category": "Auto Hide",
         "title": "Run hide immediately"
-      },
-      {
-        "command": "autoHide.toggleEnable",
-        "category": "Auto Hide",
-        "title": "Toggle enable"
       }
     ],
     "configuration": {
       "type": "object",
       "title": "Auto Hide configuration",
       "properties": {
+        "autoHide.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether enable Auto Hide"
+        },
         "autoHide.ui": {
+          "description": "UI hideable settings",
           "type": "object",
           "properties": {
-            "sideBar": {
+            "sidebar": {
               "type": "boolean",
               "default": true,
-              "description": "Side bar hideable"
+              "description": "Sidebar hideable"
             },
             "auxiliaryBar": {
               "type": "boolean",
@@ -110,7 +86,7 @@
             "references": {
               "type": "boolean",
               "default": false,
-              "description": "References panel hideable"
+              "description": "References hideable"
             },
             "notifications": {
               "type": "boolean",
@@ -119,25 +95,27 @@
             }
           }
         },
-        "autoHide.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable Auto Hide"
-        },
         "autoHide.triggerOnOpen": {
           "type": "boolean",
           "default": true,
-          "description": "Trigger hide when VSCode first opens."
+          "description": "Whether trigger when open"
         },
-        "autoHide.triggerOnlyMouse": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable/Disable hide only with mouse event"
-        },
-        "autoHide.triggerFromGit": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable/Disable run hide when move to git changes"
+        "autoHide.triggerKind": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mouse",
+              "command",
+              "keyboard"
+            ]
+          },
+          "default": [
+            "mouse",
+            "command",
+            "keyboard"
+          ],
+          "description": "Use which kind of event to trigger hide"
         },
         "autoHide.mode": {
           "type": "string",
@@ -146,12 +124,23 @@
             "manual"
           ],
           "default": "auto",
-          "description": "set auto/manual mode"
+          "description": "Auto/Manual mode"
         },
         "autoHide.throttleTime": {
           "type": "number",
           "default": 500,
-          "description": "set throttle time"
+          "description": "Throttle trigger time in ms"
+        },
+        "autoHide.whitelist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "git",
+            "debug"
+          ],
+          "description": "set whitelist for editor scheme, support RegExp"
         }
       }
     }
@@ -160,8 +149,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "pack": "vsce package --no-dependencies",
-    "dev": "nr build --watch",
-    "build": "tsup src/extension.ts --external vscode",
+    "dev": "tsup --watch",
+    "build": " tsup",
     "publish": "vsce publish --no-dependencies",
     "vscode:prepublish": "nr build",
     "release": "bumpp && nr publish",
@@ -171,9 +160,10 @@
     "up": "taze -I major"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.26.0",
+    "@antfu/eslint-config": "^2.26.1",
     "@antfu/ni": "^0.22.4",
     "@antfu/utils": "^0.7.10",
+    "@reactive-vscode/vueuse": "^0.2.1",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.7",
     "@types/node": "^22.4.2",
@@ -190,7 +180,6 @@
     "taze": "^0.16.6",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
-    "vscode": "^1.1.37",
     "vscode-ext-gen": "^0.4.2"
   },
   "extensionKind": [

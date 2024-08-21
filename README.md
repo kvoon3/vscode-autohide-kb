@@ -1,35 +1,31 @@
-# Auto Hide KB
+<h1 align="center">Auto Hide KB <sup>VS Code</sup></h1>
 
+<p align="center">
+<a href="https://marketplace.visualstudio.com/items?itemName=antfu.array-index-inlay" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/kevin-kwong.vscode-autohide-keyboard.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+<a href="https://kermanx.github.io/reactive-vscode/" target="__blank"><img src="https://img.shields.io/badge/made_with-reactive--vscode-%23eee?style=flat"  alt="Made with reactive-vscode" /></a>
+</p>
+
+<p align="center">
 Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only usage experience.
-
-<p align='center'>
-<b>English</b> | <a href="https://github.com/kvoon3/vscode-autohide-kb/blob/master/README.zh-CN.md">简体中文</a>
 </p>
 
 ## New Features
 
-1. Can be triggered by keyboard and commands, auto hide worked fine not only when you click.
-2. Auto/Manual mode switching, customize trigger time whatever you like.
-3. Hide notifications, notifications can also config to auto hide.
-4. Control hide behavior when look over git changes, [vscode-autohide](https://github.com/sirmspencer/vscode-autohide) always run hide when you open git changes.
-5. Added throttle time to reduce the event frequency.
+1. Triggered by keyboard and commands
+2. throttle trigger event
+3. Auto/Manual mode switching
+4. Whitelist support
+5. More ui to hide
 
 ## Commands
 
 <!-- commands -->
 
-| Command                            | Title                                                           |
-| ---------------------------------- | --------------------------------------------------------------- |
-| `autoHide.toggleHideSideBar`       | Auto Hide: Toggle Auto Hide Side Bar for Current Workspace      |
-| `autoHide.toggleHideAuxiliaryBar`  | Auto Hide: Toggle Auto Hide Auxiliary Bar for Current Workspace |
-| `autoHide.toggleHidePanel`         | Auto Hide: Toggle Auto Hide Panel for Current Workspace         |
-| `autoHide.toggleHideReferences`    | Auto Hide: Toggle Auto Hide References for Current Workspace    |
-| `autoHide.toggleHideNotifications` | Auto Hide: Toggle Auto Hide Notifications for Current Workspace |
-| `autoHide.toggleHideOnlyMouse`     | Auto Hide: Toggle hide Only mouse                               |
-| `autoHide.toggleHidefromGit`       | Auto Hide: Toggle hide from git                                 |
-| `autoHide.toggleMode`              | Auto Hide: toggle to manual/auto mode                           |
-| `autoHide.runHide`                 | Auto Hide: Run hide immediately                                 |
-| `autoHide.toggleEnable`            | Auto Hide: Toggle enable                                        |
+| Command                 | Title                                 |
+| ----------------------- | ------------------------------------- |
+| `autoHide.toggleEnable` | Auto Hide: Toggle enable              |
+| `autoHide.toggleMode`   | Auto Hide: toggle to manual/auto mode |
+| `autoHide.runHide`      | Auto Hide: Run hide immediately       |
 
 <!-- commands -->
 
@@ -37,57 +33,57 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 <!-- configs -->
 
-| Key                         | Description                                      | Type      | Default                                                                                                |
-| --------------------------- | ------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------------ |
-| `autoHide.ui`               |                                                  | `object`  | `{ "sideBar": true, "auxiliaryBar": true, "panel": true, "references": false, "notifications": true }` |
-| `autoHide.enable`           | Enable Auto Hide                                 | `boolean` | `true`                                                                                                 |
-| `autoHide.triggerOnOpen`    | Trigger hide when VSCode first opens.            | `boolean` | `true`                                                                                                 |
-| `autoHide.triggerOnlyMouse` | Enable/Disable hide only with mouse event        | `boolean` | `true`                                                                                                 |
-| `autoHide.triggerFromGit`   | Enable/Disable run hide when move to git changes | `boolean` | `false`                                                                                                |
-| `autoHide.mode`             | set auto/manual mode                             | `string`  | `"auto"`                                                                                               |
-| `autoHide.throttleTime`     | set throttle time                                | `number`  | `500`                                                                                                  |
+| Key                      | Description                                     | Type      | Default                                                                                                |
+| ------------------------ | ----------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| `autoHide.enable`        | Whether enable Auto Hide                        | `boolean` | `true`                                                                                                 |
+| `autoHide.ui`            | UI hideable settings                            | `object`  | `{ "sidebar": true, "auxiliaryBar": true, "panel": true, "references": false, "notifications": true }` |
+| `autoHide.triggerOnOpen` | Whether trigger when open                       | `boolean` | `true`                                                                                                 |
+| `autoHide.triggerKind`   | Use which kind of event to trigger hide         | `array`   | `["mouse","command","keyboard"]`                                                                       |
+| `autoHide.mode`          | Auto/Manual mode                                | `string`  | `"auto"`                                                                                               |
+| `autoHide.throttleTime`  | Throttle trigger time in ms                     | `number`  | `500`                                                                                                  |
+| `autoHide.whitelist`     | set whitelist for editor scheme, support RegExp | `array`   | `["git","debug"]`                                                                                      |
 
 <!-- configs -->
 
-### Mode
+### Manual Mode
 
-#### Manual Mode With Commands Palette
+Usage example:
 
-Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
+1. Commands palette:
 
-#### Manual Mode With VSCodeVim
+    Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
 
-When you use VSCodeVim extension you can binding 'autoHide.runHide' with specific keys, for example:
+2. VSCodeVim:
 
-```jsonc
-// settings.json
-{
-  "vim.normalModeKeyBindingsNonRecursive": [
+    ```jsonc
+    // settings.json
     {
-      "after": ["i"],
-      "before": ["i"],
-      "commands": ["autoHide.runHide"]
-    },
-    {
-      "after": ["j"],
-      "before": ["j"],
-      "commands": ["autoHide.runHide"]
-    },
-    {
-      "after": ["k"],
-      "before": ["k"],
-      "commands": ["autoHide.runHide"]
-    },
-    {
-      "after": ["l"],
-      "before": ["l"],
-      "commands": ["autoHide.runHide"]
-    },
-    {
-      "after": ["h"],
-      "before": ["h"],
-      "commands": ["autoHide.runHide"]
+      "vim.normalModeKeyBindingsNonRecursive": [
+        {
+          "after": ["i"],
+          "before": ["i"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["j"],
+          "before": ["j"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["k"],
+          "before": ["k"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["l"],
+          "before": ["l"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["h"],
+          "before": ["h"],
+          "commands": ["autoHide.runHide"]
+        }
+      ]
     }
-  ]
-}
-```
+    ```
