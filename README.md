@@ -1,7 +1,7 @@
 <h1 align="center">Auto Hide KB <sup>VS Code</sup></h1>
 
 <p align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=antfu.array-index-inlay" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/kevin-kwong.vscode-autohide-keyboard.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=kevin-kwong.vscode-autohide-keyboard" target="__blank"><img alt="Visual Studio Marketplace Version" src="https://img.shields.io/visual-studio-marketplace/v/kevin-kwong.vscode-autohide-keyboard?label=VS%20Code%20Marketplace&color=eee"></a>
 <a href="https://kermanx.github.io/reactive-vscode/" target="__blank"><img src="https://img.shields.io/badge/made_with-reactive--vscode-%23eee?style=flat"  alt="Made with reactive-vscode" /></a>
 </p>
 
