@@ -1,3 +1,7 @@
+<p align="center">
+<img  src="https://github.com/kvoon3/vscode-autohide-kb/blob/main/res/icon.png?raw=true" height="150" />
+</p>
+
 <h1 align="center">Auto Hide KB <sup>VS Code</sup></h1>
 
 <p align="center">
