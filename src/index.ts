@@ -1,5 +1,5 @@
 import { TextEditorSelectionChangeKind, commands, window } from 'vscode'
-import { computed, defineExtension, useActiveTextEditor, useTextEditorSelections, useVisibleTextEditors, useWindowState } from 'reactive-vscode'
+import { computed, defineExtension, useActiveTextEditor, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { registerCommands } from './commands'
 import { configs } from './config'
@@ -87,6 +87,4 @@ export const { activate, deactivate } = defineExtension(() => {
 
   if (configs.enable && configs.triggerOnOpen)
     setTimeout(() => runHide(), 300)
-
-  logger.info('123')
 })
