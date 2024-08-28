@@ -67,6 +67,13 @@
         "autoHide.ui": {
           "description": "UI hideable settings",
           "type": "object",
+          "default": {
+            "sidebar": true,
+            "auxiliaryBar": true,
+            "panel": true,
+            "references": false,
+            "notifications": true
+          },
           "properties": {
             "sidebar": {
               "type": "boolean",
