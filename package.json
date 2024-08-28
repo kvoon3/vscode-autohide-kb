@@ -163,7 +163,7 @@
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
     "update": "vscode-ext-gen --output src/generated/meta.ts --scope autoHide",
-    "prepare": "simple-git-hooks && esno scripts/prepare.js && nr update",
+    "prepare": "simple-git-hooks && nr update",
     "up": "taze -I major"
   },
   "devDependencies": {
