@@ -35,20 +35,14 @@ export async function runHide() {
   }
 
   try {
-    if (!cursor)
+    if (cursor === false)
       return
 
-    const {
-      // TODO: Open a issue to `vscode-ext-gen`
-      // @ts-expect-error type error from `vscode-ext-gen`
-      sidebar,
-    } = cursor as boolean | object
-
-    if (cursor === true || sidebar)
+    if (cursor === true || cursor.sidebar)
       await executeCommand('aichat.close-sidebar')
   }
   catch {
-    logger.error('You may not using Cursor IDE, please install Cursor first or turn off relative autoHide.ui settings')
+    logger.error('Seems like you are not using Cursor(https://cursor.com), but you have enabled Cursor config settings, please turn off settings or make sure Cursor working')
   }
 }
 
