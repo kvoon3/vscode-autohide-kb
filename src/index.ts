@@ -1,5 +1,5 @@
 import { TextEditorSelectionChangeKind, window } from 'vscode'
-import { computed, defineExtension, executeCommand, useActiveTextEditor, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useDisposable, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { registerCommands } from './commands'
 import { config } from './config'
@@ -73,7 +73,7 @@ export const { activate, deactivate } = defineExtension(() => {
 
   let changeEventKind: TextEditorSelectionChangeKind | undefined
 
-  window.onDidChangeTextEditorSelection(e => changeEventKind = e.kind)
+  useDisposable(window.onDidChangeTextEditorSelection(e => changeEventKind = e.kind))
 
   watchThrottled(textEditorSelections, () => {
     if (
