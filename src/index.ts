@@ -1,28 +1,54 @@
-import { TextEditorSelectionChangeKind, commands, window } from 'vscode'
-import { computed, defineExtension, useActiveTextEditor, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
+import { TextEditorSelectionChangeKind, window } from 'vscode'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { registerCommands } from './commands'
-import { configs } from './config'
+import { config } from './config'
 import { logger } from './log'
 
-export function runHide() {
-  const { executeCommand } = commands
+export async function runHide() {
+  const {
+    ui: {
+      sidebar,
+      cursor,
+      auxiliaryBar,
+      panel,
+      references,
+      notifications,
+    },
+  } = config
 
-  if (configs.ui.references)
+  if (references)
     executeCommand('closeReferenceSearch')
 
-  if (configs.ui.panel)
+  if (panel)
     executeCommand('workbench.action.closePanel')
 
-  if (configs.ui.sidebar)
+  if (sidebar)
     executeCommand('workbench.action.closeSidebar')
 
-  if (configs.ui.auxiliaryBar)
+  if (auxiliaryBar)
     executeCommand('workbench.action.closeAuxiliaryBar')
 
-  if (configs.ui.notifications) {
+  if (notifications) {
     executeCommand('notifications.hideList')
     executeCommand('notifications.hideToasts')
+  }
+
+  try {
+    if (!cursor)
+      return
+
+    const {
+      // TODO: Open a issue to `vscode-ext-gen`
+      // @ts-expect-error type error from `vscode-ext-gen`
+      sidebar,
+    } = cursor as boolean | object
+
+    if (cursor === true || sidebar)
+      await executeCommand('aichat.close-sidebar')
+  }
+  catch {
+    logger.error('You may not using Cursor IDE, please install Cursor first or turn off relative autoHide.ui settings')
   }
 }
 
@@ -40,7 +66,7 @@ export const { activate, deactivate } = defineExtension(() => {
   registerCommands()
 
   const triggerKinds = computed(() =>
-    configs.triggerKind.map(key => ({
+    config.triggerKind.map(key => ({
       mouse: TextEditorSelectionChangeKind.Mouse,
       keyboard: TextEditorSelectionChangeKind.Keyboard,
       command: TextEditorSelectionChangeKind.Command,
@@ -58,7 +84,7 @@ export const { activate, deactivate } = defineExtension(() => {
   watchThrottled(textEditorSelections, () => {
     if (
       !changeEventKind
-      || !configs.enable
+      || !config.enable
       || !activeEditor.value
     ) {
       return
@@ -73,7 +99,7 @@ export const { activate, deactivate } = defineExtension(() => {
     if (curScheme === 'output')
       return
 
-    const isInWhitelist = hasMatch(configs.whitelist, visibleShemes)
+    const isInWhitelist = hasMatch(config.whitelist, visibleShemes)
 
     if (isInWhitelist)
       return
@@ -82,9 +108,9 @@ export const { activate, deactivate } = defineExtension(() => {
     logger.info('trigger hide success')
     logger.info('-'.repeat(10))
   }, {
-    throttle: configs.throttleTime,
+    throttle: config.throttleTime,
   })
 
-  if (configs.enable && configs.triggerOnOpen)
+  if (config.enable && config.triggerOnOpen)
     setTimeout(() => runHide(), 300)
 })

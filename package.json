@@ -72,7 +72,8 @@
             "auxiliaryBar": true,
             "panel": true,
             "references": false,
-            "notifications": true
+            "notifications": true,
+            "cursor": false
           },
           "properties": {
             "sidebar": {
@@ -99,6 +100,18 @@
               "type": "boolean",
               "default": true,
               "description": "Notifications hideable"
+            },
+            "cursor": {
+              "type": ["boolean", "object"],
+              "default": false,
+              "description": "Cursor(https://www.cursor.com) ui hideable",
+              "properties": {
+                "sidebar": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Cursor sidebar hideable"
+                }
+              }
             }
           }
         },

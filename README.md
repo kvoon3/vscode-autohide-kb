@@ -19,7 +19,7 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 2. Throttle trigger event
 3. Auto/Manual mode switching
 4. Whitelist support
-5. More ui to hide
+5. More ui to hide, and [Cursor](https://www.trycursor.com) panel compatible
 
 ## Commands
 
@@ -37,15 +37,15 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 <!-- configs -->
 
-| Key                      | Description                                     | Type      | Default                                                                                     |
-| ------------------------ | ----------------------------------------------- | --------- | ------------------------------------------------------------------------------------------- |
-| `autoHide.enable`        | Whether enable Auto Hide                        | `boolean` | `true`                                                                                      |
-| `autoHide.ui`            | UI hideable settings                            | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true}` |
-| `autoHide.triggerOnOpen` | Whether trigger when open                       | `boolean` | `true`                                                                                      |
-| `autoHide.triggerKind`   | Use which kind of event to trigger hide         | `array`   | `["mouse","command","keyboard"]`                                                            |
-| `autoHide.mode`          | Auto/Manual mode                                | `string`  | `"auto"`                                                                                    |
-| `autoHide.throttleTime`  | Throttle trigger time in ms                     | `number`  | `500`                                                                                       |
-| `autoHide.whitelist`     | set whitelist for editor scheme, support RegExp | `array`   | `["git","debug"]`                                                                           |
+| Key                      | Description                                     | Type      | Default                                                                                                    |
+| ------------------------ | ----------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+| `autoHide.enable`        | Whether enable Auto Hide                        | `boolean` | `true`                                                                                                     |
+| `autoHide.ui`            | UI hideable settings                            | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true,"cursor":false}` |
+| `autoHide.triggerOnOpen` | Whether trigger when open                       | `boolean` | `true`                                                                                                     |
+| `autoHide.triggerKind`   | Use which kind of event to trigger hide         | `array`   | `["mouse","command","keyboard"]`                                                                           |
+| `autoHide.mode`          | Auto/Manual mode                                | `string`  | `"auto"`                                                                                                   |
+| `autoHide.throttleTime`  | Throttle trigger time in ms                     | `number`  | `500`                                                                                                      |
+| `autoHide.whitelist`     | set whitelist for editor scheme, support RegExp | `array`   | `["git","debug"]`                                                                                          |
 
 <!-- configs -->
 

@@ -14,5 +14,8 @@
         "cmd": "nr update"
       }
     ]
-  }
+  },
+  "cSpell.words": [
+    "aichat"
+  ]
 }
