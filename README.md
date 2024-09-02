@@ -37,15 +37,16 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 <!-- configs -->
 
-| Key                      | Description                                     | Type      | Default                                                                                                    |
-| ------------------------ | ----------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
-| `autoHide.enable`        | Whether enable Auto Hide                        | `boolean` | `true`                                                                                                     |
-| `autoHide.ui`            | UI hideable settings                            | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true,"cursor":false}` |
-| `autoHide.triggerOnOpen` | Whether trigger when open                       | `boolean` | `true`                                                                                                     |
-| `autoHide.triggerKind`   | Use which kind of event to trigger hide         | `array`   | `["mouse","command","keyboard"]`                                                                           |
-| `autoHide.mode`          | Auto/Manual mode                                | `string`  | `"auto"`                                                                                                   |
-| `autoHide.throttleTime`  | Throttle trigger time in ms                     | `number`  | `500`                                                                                                      |
-| `autoHide.whitelist`     | set whitelist for editor scheme, support RegExp | `array`   | `["git","debug"]`                                                                                          |
+| Key                      | Description                                                                                                            | Type      | Default                                                                                                    |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+| `autoHide.enable`        | Whether enable Auto Hide                                                                                               | `boolean` | `true`                                                                                                     |
+| `autoHide.ui`            | UI hideable settings                                                                                                   | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true,"cursor":false}` |
+| `autoHide.triggerOnOpen` | Whether trigger when open                                                                                              | `boolean` | `true`                                                                                                     |
+| `autoHide.triggerKind`   | Use which kind of event to trigger hide                                                                                | `array`   | `["mouse","command","keyboard"]`                                                                           |
+| `autoHide.mode`          | Auto/Manual mode                                                                                                       | `string`  | `"auto"`                                                                                                   |
+| `autoHide.throttleTime`  | Throttle trigger time in ms                                                                                            | `number`  | `500`                                                                                                      |
+| `autoHide.whitelist`     | set whitelist for editor scheme, support RegExp                                                                        | `array`   | `["git","debug"]`                                                                                          |
+| `autoHide.label`         | Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon | `string`  | `"$(eye-closed) Hide"`                                                                                     |
 
 <!-- configs -->
 

@@ -1,9 +1,10 @@
 import { TextEditorSelectionChangeKind, window } from 'vscode'
-import { computed, defineExtension, executeCommand, useActiveTextEditor, useDisposable, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { registerCommands } from './commands'
 import { config } from './config'
 import { logger } from './log'
+import { commands, name } from './generated/meta'
 
 export async function runHide() {
   const {
@@ -57,6 +58,9 @@ export function hasMatch(REList: string[], targets: string[]) {
 export const { activate, deactivate } = defineExtension(() => {
   logger.info('extension active')
 
+  if (config.enable && config.triggerOnOpen)
+    setTimeout(() => runHide(), 300)
+
   registerCommands()
 
   const triggerKinds = computed(() =>
@@ -105,6 +109,10 @@ export const { activate, deactivate } = defineExtension(() => {
     throttle: config.throttleTime,
   })
 
-  if (config.enable && config.triggerOnOpen)
-    setTimeout(() => runHide(), 300)
+  useStatusBarItem({
+    id: name,
+    text: () => config.label,
+    tooltip: 'Trigger hide',
+    command: commands.runHide,
+  }).show()
 })

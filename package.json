@@ -163,6 +163,11 @@
             "debug"
           ],
           "description": "set whitelist for editor scheme, support RegExp"
+        },
+        "autoHide.label": {
+          "type": "string",
+          "default": "$(eye-closed) Hide",
+          "description": "Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon"
         }
       }
     }
