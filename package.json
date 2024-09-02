@@ -162,7 +162,7 @@
             "git",
             "debug"
           ],
-          "description": "set whitelist for editor scheme, support RegExp"
+          "description": "Set whitelist for editor scheme, support RegExp"
         },
         "autoHide.label": {
           "type": "string",
