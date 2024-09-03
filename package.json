@@ -46,7 +46,7 @@
       {
         "command": "autoHide.toggleMode",
         "category": "Auto Hide",
-        "title": "toggle to manual/auto mode"
+        "title": "Toggle manual/auto mode"
       },
       {
         "command": "autoHide.runHide",

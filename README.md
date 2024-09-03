@@ -26,11 +26,11 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 <!-- commands -->
 
-| Command                 | Title                                 |
-| ----------------------- | ------------------------------------- |
-| `autoHide.toggleEnable` | Auto Hide: Toggle enable              |
-| `autoHide.toggleMode`   | Auto Hide: toggle to manual/auto mode |
-| `autoHide.runHide`      | Auto Hide: Run hide immediately       |
+| Command                 | Title                              |
+| ----------------------- | ---------------------------------- |
+| `autoHide.toggleEnable` | Auto Hide: Toggle enable           |
+| `autoHide.toggleMode`   | Auto Hide: Toggle manual/auto mode |
+| `autoHide.runHide`      | Auto Hide: Run hide immediately    |
 
 <!-- commands -->
 
@@ -58,6 +58,16 @@ Usage example:
 1. Commands palette:
 
     Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
+
+2. KeyBinding:
+    ```jsonc
+    // keybindings.json
+    {
+      "key": "ctrl+h",
+      "command": "autoHide.runHide",
+      "when": "editorFocus"
+    }
+    ```
 
 2. VSCodeVim:
 
