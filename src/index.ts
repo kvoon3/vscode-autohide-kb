@@ -121,7 +121,7 @@ export const { activate, deactivate } = defineExtension(() => {
       logger.info('-'.repeat(10))
     }
   }, {
-    throttle: config.throttleTime,
+    throttle: () => config.throttleTime,
   })
 
   useStatusBarItem({
