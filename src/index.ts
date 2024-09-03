@@ -47,14 +47,6 @@ export async function runHide() {
   }
 }
 
-export function hasMatch(REList: string[], targets: string[]) {
-  return targets.find((target) => {
-    return REList.some((re) => {
-      return new RegExp(re).test(target)
-    })
-  })
-}
-
 export const { activate, deactivate } = defineExtension(() => {
   logger.info('extension active')
 
@@ -88,16 +80,31 @@ export const { activate, deactivate } = defineExtension(() => {
       return
     }
 
-    const curScheme = activeEditor.value.document.uri.scheme
-    const visibleShemes = visibleTextEditors.value.map(editor => editor.document.uri.scheme)
+    const focusedScheme = activeEditor.value.document.uri.scheme
+    const visibleScheme = visibleTextEditors.value.map(editor => editor.document.uri.scheme)
 
-    logger.info('curScheme', curScheme)
-    logger.info('visibleShemes', visibleShemes)
+    logger.info('focusedScheme', focusedScheme)
+    logger.info('visibleScheme', visibleScheme)
 
-    if (curScheme === 'output')
-      return
+    const isInWhitelist = config.whitelist.find((i) => {
+      const { match, status } = typeof i === 'string' ? { match: i, status: ['focus'] } : i
 
-    const isInWhitelist = hasMatch(config.whitelist, visibleShemes)
+      if (
+        status.includes('focus')
+        && new RegExp(match).test(focusedScheme)
+      ) {
+        return true
+      }
+
+      if (
+        status.includes('visible')
+        && visibleScheme.some(visibleScheme => new RegExp(match).test(visibleScheme))
+      ) {
+        return true
+      }
+
+      return false
+    })
 
     if (isInWhitelist)
       return

@@ -156,13 +156,32 @@
         "autoHide.whitelist": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": [
+              "string",
+              "object"
+            ],
+            "properties": {
+              "match": {
+                "type": "string"
+              },
+              "status": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["focus", "visible"]
+                }
+              }
+            }
           },
           "default": [
             "git",
-            "debug"
+            "output",
+            {
+              "match": "debug",
+              "status": ["visible"]
+            }
           ],
-          "description": "Set whitelist for editor scheme, support RegExp"
+          "description": "Set editor whitelist , support RegExp, default match status is focus"
         },
         "autoHide.label": {
           "type": "string",
