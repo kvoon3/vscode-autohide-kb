@@ -71,47 +71,55 @@ export const { activate, deactivate } = defineExtension(() => {
 
   useDisposable(window.onDidChangeTextEditorSelection(e => changeEventKind = e.kind))
 
-  watchThrottled(textEditorSelections, () => {
-    if (
-      !changeEventKind
-      || !config.enable
-      || !activeEditor.value
-    ) {
-      return
+  watchThrottled(textEditorSelections, async () => {
+    try {
+      if (
+        !changeEventKind
+        || !config.enable
+        || !activeEditor.value
+      ) {
+        throw new Error('skip: disabled or not ready')
+      }
+
+      const focusedScheme = activeEditor.value.document.uri.scheme
+      const visibleScheme = visibleTextEditors.value.map(editor => editor.document.uri.scheme)
+
+      logger.info('focusedScheme: ', focusedScheme)
+      logger.info('visibleScheme: ', visibleScheme)
+
+      const isInWhitelist = config.whitelist.find((i) => {
+        const { match, status } = typeof i === 'string' ? { match: i, status: ['focus'] } : i
+
+        if (
+          status.includes('focus')
+          && new RegExp(match).test(focusedScheme)
+        ) {
+          return true
+        }
+
+        if (
+          status.includes('visible')
+          && visibleScheme.some(visibleScheme => new RegExp(match).test(visibleScheme))
+        ) {
+          return true
+        }
+
+        return false
+      })
+
+      if (isInWhitelist)
+        throw new Error('skip: in whitelist')
+
+      await runHide()
+      logger.info('trigger hide success')
     }
-
-    const focusedScheme = activeEditor.value.document.uri.scheme
-    const visibleScheme = visibleTextEditors.value.map(editor => editor.document.uri.scheme)
-
-    logger.info('focusedScheme', focusedScheme)
-    logger.info('visibleScheme', visibleScheme)
-
-    const isInWhitelist = config.whitelist.find((i) => {
-      const { match, status } = typeof i === 'string' ? { match: i, status: ['focus'] } : i
-
-      if (
-        status.includes('focus')
-        && new RegExp(match).test(focusedScheme)
-      ) {
-        return true
-      }
-
-      if (
-        status.includes('visible')
-        && visibleScheme.some(visibleScheme => new RegExp(match).test(visibleScheme))
-      ) {
-        return true
-      }
-
-      return false
-    })
-
-    if (isInWhitelist)
-      return
-
-    runHide()
-    logger.info('trigger hide success')
-    logger.info('-'.repeat(10))
+    catch (error: any) {
+      logger.warn(error?.message || JSON.stringify(error))
+    }
+    finally {
+      logger.info(new Date().toISOString())
+      logger.info('-'.repeat(10))
+    }
   }, {
     throttle: config.throttleTime,
   })
