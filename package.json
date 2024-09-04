@@ -194,7 +194,10 @@
           "description": "Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon"
         },
         "autoHide.statusBarText.mode": {
-          "type": ["string", "object"],
+          "type": [
+            "string",
+            "object"
+          ],
           "default": "-- $(mode) --",
           "description": "Status bar label for mode, use $(mode) to get current mode",
           "properties": {
@@ -226,7 +229,7 @@
     "up": "taze -I major"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.0.0",
+    "@antfu/eslint-config": "^3.2.0",
     "@antfu/ni": "^0.23.0",
     "@antfu/utils": "^0.7.10",
     "@reactive-vscode/vueuse": "^0.2.2",
@@ -234,7 +237,7 @@
     "@types/mocha": "^10.0.7",
     "@types/node": "^22.5.3",
     "@vscode/vsce": "^3.0.0",
-    "@vue/reactivity": "^3.5.0",
+    "@vue/reactivity": "^3.5.1",
     "bumpp": "^9.5.2",
     "eslint": "^9.9.1",
     "esno": "^4.7.0",
