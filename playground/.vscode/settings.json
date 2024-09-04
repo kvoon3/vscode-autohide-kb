@@ -1,7 +1,7 @@
 {
   "autoHide.ui": {
-    "sideBar": false,
+    "sidebar": false,
     "panel": false
   },
-  "autoHide.mode": "manual"
+  "autoHide.mode": "auto"
 }

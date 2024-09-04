@@ -195,16 +195,16 @@
         },
         "autoHide.statusBarText.mode": {
           "type": ["string", "object"],
-          "default": "--$(mode)--",
+          "default": "-- $(mode) --",
           "description": "Status bar label for mode, use $(mode) to get current mode",
           "properties": {
             "manual": {
               "type": "string",
-              "default": "--MANUAL--"
+              "default": "-- MANUAL --"
             },
             "auto": {
               "type": "string",
-              "default": "--AUTO--"
+              "default": "-- AUTO --"
             }
           }
         }

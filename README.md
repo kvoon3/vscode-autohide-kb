@@ -48,7 +48,7 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 | `autoHide.throttleTime`          | Throttle trigger time in ms                                                                                            | `number`        | `500`                                                                                                      |
 | `autoHide.whitelist`             | Set editor whitelist , support RegExp, default match status is focus                                                   | `array`         | `["git","output",{"match":"debug","status":["visible"]}]`                                                  |
 | `autoHide.statusBarText.trigger` | Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon | `string`        | `"$(eye-closed) Hide"`                                                                                     |
-| `autoHide.statusBarText.mode`    | Status bar label for mode, use $(mode) to get current mode                                                             | `string,object` | `"--$(mode)--"`                                                                                            |
+| `autoHide.statusBarText.mode`    | Status bar label for mode, use $(mode) to get current mode                                                             | `string,object` | `"-- $(mode) --"`                                                                                          |
 
 <!-- configs -->
 
