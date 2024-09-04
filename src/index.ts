@@ -81,6 +81,9 @@ export const { activate, deactivate } = defineExtension(() => {
         throw new Error('skip: disabled or not ready')
       }
 
+      if (config.mode === 'manual')
+        throw new Error('skip: manual mode')
+
       const focusedScheme = activeEditor.value.document.uri.scheme
       const visibleScheme = visibleTextEditors.value.map(editor => editor.document.uri.scheme)
 
