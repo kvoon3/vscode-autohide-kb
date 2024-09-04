@@ -125,9 +125,24 @@ export const { activate, deactivate } = defineExtension(() => {
   })
 
   useStatusBarItem({
-    id: name,
-    text: () => config.label,
+    id: `${name}-trigger`,
+    text: () => config['statusBarText.trigger'].replace('$(mode)', config.mode.toUpperCase()),
     tooltip: 'Trigger hide',
     command: commands.runHide,
+  }).show()
+
+  useStatusBarItem({
+    id: `${name}-mode`,
+    text: () => {
+      const { manual, auto } = typeof config['statusBarText.mode'] === 'string'
+        ? { manual: config['statusBarText.mode'], auto: config['statusBarText.mode'] }
+        : config['statusBarText.mode']
+
+      return config.mode === 'auto'
+        ? auto.replace('$(mode)', config.mode.toUpperCase())
+        : manual.replace('$(mode)', config.mode.toUpperCase())
+    },
+    tooltip: 'Toggle hide mode',
+    command: commands.toggleMode,
   }).show()
 })

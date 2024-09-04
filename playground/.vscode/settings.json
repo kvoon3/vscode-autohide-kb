@@ -2,5 +2,6 @@
   "autoHide.ui": {
     "sideBar": false,
     "panel": false
-  }
+  },
+  "autoHide.mode": "manual"
 }

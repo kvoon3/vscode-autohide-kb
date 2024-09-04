@@ -168,7 +168,10 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "enum": ["focus", "visible"]
+                  "enum": [
+                    "focus",
+                    "visible"
+                  ]
                 }
               }
             }
@@ -178,15 +181,32 @@
             "output",
             {
               "match": "debug",
-              "status": ["visible"]
+              "status": [
+                "visible"
+              ]
             }
           ],
           "description": "Set editor whitelist , support RegExp, default match status is focus"
         },
-        "autoHide.label": {
+        "autoHide.statusBarText.trigger": {
           "type": "string",
           "default": "$(eye-closed) Hide",
           "description": "Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon"
+        },
+        "autoHide.statusBarText.mode": {
+          "type": ["string", "object"],
+          "default": "--$(mode)--",
+          "description": "Status bar label for mode, use $(mode) to get current mode",
+          "properties": {
+            "manual": {
+              "type": "string",
+              "default": "--MANUAL--"
+            },
+            "auto": {
+              "type": "string",
+              "default": "--AUTO--"
+            }
+          }
         }
       }
     }
@@ -206,20 +226,20 @@
     "up": "taze -I major"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.3",
+    "@antfu/eslint-config": "^3.0.0",
     "@antfu/ni": "^0.23.0",
     "@antfu/utils": "^0.7.10",
     "@reactive-vscode/vueuse": "^0.2.2",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.3",
     "@vscode/vsce": "^3.0.0",
-    "@vue/reactivity": "^3.4.38",
+    "@vue/reactivity": "^3.5.0",
     "bumpp": "^9.5.2",
     "eslint": "^9.9.1",
     "esno": "^4.7.0",
     "fs-extra": "^11.2.0",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "mocha": "^10.7.3",
     "reactive-vscode": "^0.2.2",
     "simple-git-hooks": "^2.11.1",
