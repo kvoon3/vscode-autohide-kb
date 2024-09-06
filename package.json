@@ -210,6 +210,32 @@
               "default": "-- AUTO --"
             }
           }
+        },
+        "autoHide.navigateFallback": {
+          "type": "object",
+          "description": "Navigate fallback settings",
+          "default": {
+            "left": "sidebar",
+            "right": "auxiliaryBar",
+            "down": "panel"
+          },
+          "properties": {
+            "left": {
+              "type": "string",
+              "default": "sidebar",
+              "enum": ["sidebar", "auxiliaryBar", "panel"]
+            },
+            "right": {
+              "type": "string",
+              "default": "auxiliaryBar",
+              "enum": ["sidebar", "auxiliaryBar", "panel"]
+            },
+            "down": {
+              "type": "string",
+              "default": "panel",
+              "enum": ["sidebar", "auxiliaryBar", "panel"]
+            }
+          }
         }
       }
     }
@@ -225,6 +251,7 @@
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
     "update": "vscode-ext-gen --output src/generated/meta.ts --scope autoHide",
+    "update:commandTask": "vscode-ext-gen commandTask.package.json --output src/generated/commandTask.ts --scope commandTask --readme false",
     "prepare": "simple-git-hooks && nr update",
     "up": "taze -I major"
   },
@@ -260,5 +287,8 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  }
+  },
+  "extensionDependencies": [
+    "kvoon.command-task"
+  ]
 }

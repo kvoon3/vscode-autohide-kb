@@ -1,10 +1,12 @@
+import type { ViewColumn } from 'vscode'
 import { TextEditorSelectionChangeKind, window } from 'vscode'
-import { computed, defineExtension, executeCommand, useActiveTextEditor, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors } from 'reactive-vscode'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
-import { registerCommands } from './commands'
 import { config } from './config'
 import { logger } from './log'
 import { commands, name } from './generated/meta'
+import { registerCommands } from './commands'
+import { uiNameCommandKeyMap } from './constants'
 
 export async function runHide() {
   const {
@@ -47,7 +49,7 @@ export async function runHide() {
   }
 }
 
-export const { activate, deactivate } = defineExtension(() => {
+export const { activate, deactivate } = defineExtension(async () => {
   logger.info('extension active')
 
   if (config.enable && config.triggerOnOpen)
@@ -66,6 +68,7 @@ export const { activate, deactivate } = defineExtension(() => {
   const activeEditor = useActiveTextEditor()
   const textEditorSelections = useTextEditorSelections(activeEditor, triggerKinds)
   const visibleTextEditors = useVisibleTextEditors()
+  const allExtensions = useAllExtensions()
 
   let changeEventKind: TextEditorSelectionChangeKind | undefined
 
@@ -126,6 +129,66 @@ export const { activate, deactivate } = defineExtension(() => {
   }, {
     throttle: () => config.throttleTime,
   })
+
+  /**
+   * @see https://github.com/kvoon3/vscode-command-task
+   */
+  const commandTaskExtension = computed(() => allExtensions.value.find(ext => ext.id === 'kvoon.command-task'))
+  watch(commandTaskExtension, async (extension) => {
+    const addCommandTask = extension?.exports?.addCommandTask
+
+    if (typeof addCommandTask !== 'function')
+      return
+
+    try {
+      addCommandTask(
+        [
+          () => {
+            let oldViewColumn: ViewColumn | undefined
+            let newViewColumn: ViewColumn | undefined
+            return {
+              name: 'action.navigateLeft',
+              try: 'workbench.action.navigateLeft',
+              catch: uiNameCommandKeyMap[config.navigateFallback.left],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
+              type: 'async',
+            }
+          },
+          () => {
+            let oldViewColumn: ViewColumn | undefined
+            let newViewColumn: ViewColumn | undefined
+            return {
+              name: 'action.navigateRight',
+              try: 'workbench.action.navigateRight',
+              catch: uiNameCommandKeyMap[config.navigateFallback.right],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
+              type: 'async',
+            }
+          },
+          () => {
+            let oldViewColumn: ViewColumn | undefined
+            let newViewColumn: ViewColumn | undefined
+            return {
+              name: 'action.navigateDown',
+              try: 'workbench.action.navigateDown',
+              catch: uiNameCommandKeyMap[config.navigateFallback.down],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
+              type: 'async',
+            }
+          },
+        ],
+      )
+    }
+    catch (error) {
+      logger.error(error)
+    }
+  }, { immediate: true })
 
   useStatusBarItem({
     id: `${name}-trigger`,
