@@ -10,12 +10,12 @@
 </p>
 
 <p align="center">
-Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only usage experience.
+Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usage experience.
 </p>
 
 ## New Features
 
-1. Triggered by keyboard and commands
+1. Triggered by cursor, keyboard and commands
 2. Throttle trigger event
 3. Auto/Manual mode switching
 4. Whitelist support
@@ -34,6 +34,8 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 
 <!-- commands -->
 
+And [Extra Commands](#extra-commands)
+
 ## Configurations
 
 <!-- configs -->
@@ -49,6 +51,7 @@ Auto Hide VSCode sidebar, panel and notifications，with better keyboard-only us
 | `autoHide.whitelist`             | Set editor whitelist , support RegExp, default match status is focus                                                   | `array`         | `["git","output",{"match":"debug","status":["visible"]}]`                                                  |
 | `autoHide.statusBarText.trigger` | Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon | `string`        | `"$(eye-closed) Hide"`                                                                                     |
 | `autoHide.statusBarText.mode`    | Status bar label for mode, use $(mode) to get current mode                                                             | `string,object` | `"-- $(mode) --"`                                                                                          |
+| `autoHide.navigateFallback`      | Navigate fallback settings                                                                                             | `object`        | `{"left":"sidebar","right":"auxiliaryBar","down":"panel"}`                                                 |
 
 <!-- configs -->
 
@@ -105,14 +108,22 @@ Usage example:
     }
     ```
 
+## Extra Commands
+
 ### Navigate To Panel
 
-由于面板被隐藏，使用 `commandTask.action.navigateXXX` 命令跳转面板会失效
+Due to the panel being hidden, using the `workbench.action.navigateXXX` commands to switch panels will be ineffective.
 
-Auto Hide KB 提供了如下命令用于替代 vscode 的 navigate 命令
+Auto Hide KB provides the following commands as alternatives to VSCode's `navigateXXX` commands:
 
 | Navigate Command                   | Description                                                   |
 | ---------------------------------- | ------------------------------------------------------------- |
 | `commandTask.action.navigateLeft`  | workbench.action.navigateLeft with fallback to Sidebar        |
 | `commandTask.action.navigateRight` | workbench.action.navigateRight with fallback to Auxiliary Bar |
 | `commandTask.action.navigateDown`  | workbench.action.navigateDown with fallback to Panel          |
+
+See [Config: `autoHide.navigateFallback`](#configurations) to Customize
+
+## Credits
+
+- Enhanced functionality for VSCode commands, powered by [Command Task](https://github.com/kvoon3/vscode-command-task)

@@ -6,6 +6,7 @@ import { config } from './config'
 import { logger } from './log'
 import { commands, name } from './generated/meta'
 import { registerCommands } from './commands'
+import { uiNameCommandKeyMap } from './constants'
 
 export async function runHide() {
   const {
@@ -148,18 +149,10 @@ export const { activate, deactivate } = defineExtension(async () => {
             return {
               name: 'action.navigateLeft',
               try: 'workbench.action.navigateLeft',
-              catch: 'workbench.action.focusSideBar',
-              onBeforeExec: () => {
-                oldViewColumn = activeEditor.value?.viewColumn
-                logger.info('before viewColumn', activeEditor.value?.viewColumn)
-              },
-              onAfterExec: () => {
-                newViewColumn = activeEditor.value?.viewColumn
-                logger.info('after viewColumn', activeEditor.value?.viewColumn)
-              },
-              validator: () => {
-                return oldViewColumn !== newViewColumn
-              },
+              catch: uiNameCommandKeyMap[config.navigateFallback.left],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
               type: 'async',
             }
           },
@@ -169,18 +162,10 @@ export const { activate, deactivate } = defineExtension(async () => {
             return {
               name: 'action.navigateRight',
               try: 'workbench.action.navigateRight',
-              catch: 'workbench.action.focusAuxiliaryBar',
-              onBeforeExec: () => {
-                oldViewColumn = activeEditor.value?.viewColumn
-                logger.info('before viewColumn', oldViewColumn)
-              },
-              onAfterExec: () => {
-                newViewColumn = activeEditor.value?.viewColumn
-                logger.info('after viewColumn', newViewColumn)
-              },
-              validator: () => {
-                return oldViewColumn !== newViewColumn
-              },
+              catch: uiNameCommandKeyMap[config.navigateFallback.right],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
               type: 'async',
             }
           },
@@ -190,18 +175,10 @@ export const { activate, deactivate } = defineExtension(async () => {
             return {
               name: 'action.navigateDown',
               try: 'workbench.action.navigateDown',
-              catch: 'workbench.action.focusPanel',
-              onBeforeExec: () => {
-                oldViewColumn = activeEditor.value?.viewColumn
-                logger.info('before viewColumn', oldViewColumn)
-              },
-              onAfterExec: () => {
-                newViewColumn = activeEditor.value?.viewColumn
-                logger.info('after viewColumn', newViewColumn)
-              },
-              validator: () => {
-                return oldViewColumn !== newViewColumn
-              },
+              catch: uiNameCommandKeyMap[config.navigateFallback.down],
+              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+              validator: () => oldViewColumn !== newViewColumn,
               type: 'async',
             }
           },
