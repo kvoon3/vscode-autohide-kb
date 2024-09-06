@@ -260,5 +260,8 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  }
+  },
+  "extensionDependencies": [
+    "kvoon.command-task"
+  ]
 }

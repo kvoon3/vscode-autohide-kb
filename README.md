@@ -104,3 +104,15 @@ Usage example:
       ]
     }
     ```
+
+### Navigate To Panel
+
+由于面板被隐藏，使用 `commandTask.action.navigateXXX` 命令跳转面板会失效
+
+Auto Hide KB 提供了如下命令用于替代 vscode 的 navigate 命令
+
+| Navigate Command                   | Description                                                   |
+| ---------------------------------- | ------------------------------------------------------------- |
+| `commandTask.action.navigateLeft`  | workbench.action.navigateLeft with fallback to Sidebar        |
+| `commandTask.action.navigateRight` | workbench.action.navigateRight with fallback to Auxiliary Bar |
+| `commandTask.action.navigateDown`  | workbench.action.navigateDown with fallback to Panel          |
