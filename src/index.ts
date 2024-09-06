@@ -143,46 +143,32 @@ export const { activate, deactivate } = defineExtension(async () => {
     try {
       addCommandTask(
         [
-          () => {
-            let oldViewColumn: ViewColumn | undefined
-            let newViewColumn: ViewColumn | undefined
-            return {
-              name: 'action.navigateLeft',
-              try: 'workbench.action.navigateLeft',
-              catch: uiNameCommandKeyMap[config.navigateFallback.left],
-              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
-              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
-              validator: () => oldViewColumn !== newViewColumn,
-              type: 'async',
-            }
+          {
+            name: 'action.navigateLeft',
+            try: 'workbench.action.navigateLeft',
+            catch: uiNameCommandKeyMap[config.navigateFallback.left],
           },
-          () => {
-            let oldViewColumn: ViewColumn | undefined
-            let newViewColumn: ViewColumn | undefined
-            return {
-              name: 'action.navigateRight',
-              try: 'workbench.action.navigateRight',
-              catch: uiNameCommandKeyMap[config.navigateFallback.right],
-              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
-              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
-              validator: () => oldViewColumn !== newViewColumn,
-              type: 'async',
-            }
+          {
+            name: 'action.navigateRight',
+            try: 'workbench.action.navigateRight',
+            catch: uiNameCommandKeyMap[config.navigateFallback.right],
           },
-          () => {
-            let oldViewColumn: ViewColumn | undefined
-            let newViewColumn: ViewColumn | undefined
-            return {
-              name: 'action.navigateDown',
-              try: 'workbench.action.navigateDown',
-              catch: uiNameCommandKeyMap[config.navigateFallback.down],
-              onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
-              onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
-              validator: () => oldViewColumn !== newViewColumn,
-              type: 'async',
-            }
+          {
+            name: 'action.navigateDown',
+            try: 'workbench.action.navigateDown',
+            catch: uiNameCommandKeyMap[config.navigateFallback.down],
           },
-        ],
+        ].map((i) => {
+          let oldViewColumn: ViewColumn | undefined
+          let newViewColumn: ViewColumn | undefined
+          return {
+            ...i,
+            type: 'async',
+            onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
+            onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
+            validator: () => oldViewColumn !== newViewColumn,
+          }
+        }),
       )
     }
     catch (error) {
