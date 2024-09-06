@@ -127,3 +127,7 @@ See [Config: `autoHide.navigateFallback`](#configurations) to Customize
 ## Credits
 
 - Enhanced functionality for VSCode commands, powered by [Command Task](https://github.com/kvoon3/vscode-command-task)
+
+## License
+
+[MIT](./LICENSE.md) License © 2020-PRESENT [Kevin Kwong](https://github.com/kvoon3) & Matthew Spencer
