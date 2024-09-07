@@ -124,6 +124,72 @@ Auto Hide KB provides the following commands as alternatives to VSCode's `naviga
 
 See [Config: `autoHide.navigateFallback`](#configurations) to Customize
 
+<details>
+<summary>Usage example:</summary>
+
+[Full Example](./examples/navigate)
+
+Navigate to panel:
+
+1. editor -> panel:
+
+    ```jsonc
+    // keybindings.json
+    [
+      {
+        "key": "ctrl+w down",
+        "command": "commandTask.action.navigateDown",
+        "when": "editorFocus"
+      }
+    ]
+    ```
+
+2. panel -> editor:
+
+    ```jsonc
+    // keybindings.json
+    [
+      {
+        "key": "ctrl+w up",
+        "command": "commandTask.action.focusActiveEditorGroup",
+        "when": "panelFocus"
+      }
+    ]
+    ```
+
+    Use  `autoHide` when navigate back to editor (optional):
+
+    Create command by [Command Task](https://github.com/kvoon3/vscode-command-task)
+
+    ```jsonc
+    // settings.json
+    {
+      "commandTask.add": [
+        {
+          "name": "action.focusActiveEditorGroupWithHide",
+          "try": "workbench.action.focusActiveEditorGroup",
+          "finally": "autoHide.runHide"
+        }
+      ]
+    }
+    ```
+
+    Replace with new command
+
+    ```diff
+    // keybindings.json
+    [
+      {
+        "key": "ctrl+w k",
+    +   "command": "commandTask.action.focusActiveEditorGroupWithHide",
+    -   "command": "commandTask.action.focusActiveEditorGroup",
+        "when": "panelFocus"
+      }
+    ]
+    ```
+
+</details>
+
 ## Credits
 
 - Enhanced functionality for VSCode commands, powered by [Command Task](https://github.com/kvoon3/vscode-command-task)

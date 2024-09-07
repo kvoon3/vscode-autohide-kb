@@ -1,0 +1,9 @@
+{
+  "commandTask.add": [
+    {
+      "name": "action.focusActiveEditorGroupWithHide",
+      "try": "workbench.action.focusActiveEditorGroup",
+      "finally": "autoHide.runHide"
+    }
+  ]
+}
