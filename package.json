@@ -251,7 +251,6 @@
     "release": "bumpp && nr publish",
     "type-check": "tsc --noEmit",
     "update": "vscode-ext-gen --output src/generated/meta.ts --scope autoHide",
-    "update:commandTask": "vscode-ext-gen commandTask.package.json --output src/generated/commandTask.ts --scope commandTask --readme false",
     "prepare": "simple-git-hooks && nr update",
     "up": "taze -I major"
   },

@@ -53,21 +53,18 @@ Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usa
 
 <!-- commands -->
 
-And [Extra Commands](#extra-commands)
-
-## Extra Commands
-
 ### Navigate To Panel
 
 Due to the panel being hidden, using the `workbench.action.navigateXXX` commands to switch panels will be ineffective.
 
 Auto Hide KB provides the following commands as alternatives to VSCode's `navigateXXX` commands:
 
-| Navigate Command                   | Description                                                   |
-| ---------------------------------- | ------------------------------------------------------------- |
-| `commandTask.action.navigateLeft`  | workbench.action.navigateLeft with fallback to Sidebar        |
-| `commandTask.action.navigateRight` | workbench.action.navigateRight with fallback to Auxiliary Bar |
-| `commandTask.action.navigateDown`  | workbench.action.navigateDown with fallback to Panel          |
+| Navigate Command                                 | Description                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------- |
+| `autoHide.action.navigateLeft`                   | `workbench.action.navigateLeft` with fallback to Sidebar        |
+| `autoHide.action.navigateRight`                  | `workbench.action.navigateRight` with fallback to Auxiliary Bar |
+| `autoHide.action.navigateDown`                   | `workbench.action.navigateDown` with fallback to Panel          |
+| `autoHide.action.focusActiveEditorGroupWithHide` | `workbench.action.focusActiveEditorGroup` with autoHide         |
 
 See [Config: `autoHide.navigateFallback`](#configurations) to Customize
 
@@ -85,7 +82,7 @@ Navigate to panel:
     [
       {
         "key": "ctrl+w down",
-        "command": "commandTask.action.navigateDown",
+        "command": "autoHide.action.navigateDown",
         "when": "editorFocus"
       }
     ]
@@ -98,43 +95,11 @@ Navigate to panel:
     [
       {
         "key": "ctrl+w up",
-        "command": "commandTask.action.focusActiveEditorGroup",
+        "command": "autoHide.action.focusActiveEditorGroupWithHide",
         "when": "panelFocus"
       }
     ]
     ```
-
-    Use  `autoHide` when navigate back to editor (optional):
-
-    Create command by [Command Task](https://github.com/kvoon3/vscode-command-task)
-
-    ```jsonc
-    // settings.json
-    {
-      "commandTask.add": [
-        {
-          "name": "action.focusActiveEditorGroupWithHide",
-          "try": "workbench.action.focusActiveEditorGroup",
-          "finally": "autoHide.runHide"
-        }
-      ]
-    }
-    ```
-
-    Replace with new command
-
-    ```diff
-    // keybindings.json
-    [
-      {
-        "key": "ctrl+w k",
-    +   "command": "commandTask.action.focusActiveEditorGroupWithHide",
-    -   "command": "commandTask.action.focusActiveEditorGroup",
-        "when": "panelFocus"
-      }
-    ]
-    ```
-
 </details>
 
 ## Manual Mode

@@ -163,6 +163,7 @@ export const { activate, deactivate } = defineExtension(async () => {
           let newViewColumn: ViewColumn | undefined
           return {
             ...i,
+            scope: 'autoHide',
             type: 'async',
             onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
             onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,

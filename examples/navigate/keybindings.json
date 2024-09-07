@@ -2,34 +2,34 @@
   // navigate: editor -> sidebar, panel
   {
     "key": "ctrl+w right",
-    "command": "commandTask.action.navigateRight",
+    "command": "autoHide.action.navigateRight",
     "when": "editorFocus"
   },
   {
     "key": "ctrl+w left",
-    "command": "commandTask.action.navigateLeft",
+    "command": "autoHide.action.navigateLeft",
     "when": "editorFocus"
   },
   {
     "key": "ctrl+w down",
-    "command": "commandTask.action.navigateDown",
+    "command": "autoHide.action.navigateDown",
     "when": "editorFocus"
   },
 
   // navigate: sidebar, panel -> editor
   {
     "key": "ctrl+w right",
-    "command": "commandTask.action.focusActiveEditorGroupWithHide",
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
   },
   {
     "key": "ctrl+w left",
-    "command": "commandTask.action.focusActiveEditorGroupWithHide",
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
   },
   {
     "key": "ctrl+w up",
-    "command": "commandTask.action.focusActiveEditorGroupWithHide",
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
   }
 ]
