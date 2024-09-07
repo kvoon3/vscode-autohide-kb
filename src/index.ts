@@ -142,7 +142,7 @@ export const { activate, deactivate } = defineExtension(async () => {
 
     try {
       addCommandTask([
-        [
+        ...[
           {
             name: 'action.navigateLeft',
             try: 'workbench.action.navigateLeft',
@@ -158,7 +158,7 @@ export const { activate, deactivate } = defineExtension(async () => {
             try: 'workbench.action.navigateDown',
             catch: uiNameCommandKeyMap[config.navigateFallback.down],
           },
-        ].flatMap((i) => {
+        ].map((i) => {
           let oldViewColumn: ViewColumn | undefined
           let newViewColumn: ViewColumn | undefined
           return {
