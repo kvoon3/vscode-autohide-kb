@@ -22,20 +22,6 @@ Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usa
 5. More ui to hide, and [Cursor](https://www.trycursor.com) panel compatible
 6. Status bar button
 
-## Commands
-
-<!-- commands -->
-
-| Command                 | Title                              |
-| ----------------------- | ---------------------------------- |
-| `autoHide.toggleEnable` | Auto Hide: Toggle enable           |
-| `autoHide.toggleMode`   | Auto Hide: Toggle manual/auto mode |
-| `autoHide.runHide`      | Auto Hide: Run hide immediately    |
-
-<!-- commands -->
-
-And [Extra Commands](#extra-commands)
-
 ## Configurations
 
 <!-- configs -->
@@ -55,58 +41,19 @@ And [Extra Commands](#extra-commands)
 
 <!-- configs -->
 
-### Manual Mode
+## Commands
 
-Usage example:
+<!-- commands -->
 
-1. Commands palette:
+| Command                 | Title                              |
+| ----------------------- | ---------------------------------- |
+| `autoHide.toggleEnable` | Auto Hide: Toggle enable           |
+| `autoHide.toggleMode`   | Auto Hide: Toggle manual/auto mode |
+| `autoHide.runHide`      | Auto Hide: Run hide immediately    |
 
-    Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
+<!-- commands -->
 
-2. KeyBinding:
-    ```jsonc
-    // keybindings.json
-    {
-      "key": "ctrl+h",
-      "command": "autoHide.runHide",
-      "when": "editorFocus"
-    }
-    ```
-
-2. VSCodeVim:
-
-    ```jsonc
-    // settings.json
-    {
-      "vim.normalModeKeyBindingsNonRecursive": [
-        {
-          "after": ["i"],
-          "before": ["i"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["j"],
-          "before": ["j"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["k"],
-          "before": ["k"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["l"],
-          "before": ["l"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["h"],
-          "before": ["h"],
-          "commands": ["autoHide.runHide"]
-        }
-      ]
-    }
-    ```
+And [Extra Commands](#extra-commands)
 
 ## Extra Commands
 
@@ -189,6 +136,59 @@ Navigate to panel:
     ```
 
 </details>
+
+## Manual Mode
+
+Usage example:
+
+1. Commands palette:
+
+    Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
+
+2. KeyBinding:
+    ```jsonc
+    // keybindings.json
+    {
+      "key": "ctrl+h",
+      "command": "autoHide.runHide",
+      "when": "editorFocus"
+    }
+    ```
+
+2. VSCodeVim:
+
+    ```jsonc
+    // settings.json
+    {
+      "vim.normalModeKeyBindingsNonRecursive": [
+        {
+          "after": ["i"],
+          "before": ["i"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["j"],
+          "before": ["j"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["k"],
+          "before": ["k"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["l"],
+          "before": ["l"],
+          "commands": ["autoHide.runHide"]
+        },
+        {
+          "after": ["h"],
+          "before": ["h"],
+          "commands": ["autoHide.runHide"]
+        }
+      ]
+    }
+    ```
 
 ## Credits
 
