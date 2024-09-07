@@ -141,7 +141,7 @@ export const { activate, deactivate } = defineExtension(async () => {
       return
 
     try {
-      addCommandTask(
+      addCommandTask([
         [
           {
             name: 'action.navigateLeft',
@@ -158,19 +158,26 @@ export const { activate, deactivate } = defineExtension(async () => {
             try: 'workbench.action.navigateDown',
             catch: uiNameCommandKeyMap[config.navigateFallback.down],
           },
-        ].map((i) => {
+        ].flatMap((i) => {
           let oldViewColumn: ViewColumn | undefined
           let newViewColumn: ViewColumn | undefined
           return {
             ...i,
-            scope: 'autoHide',
             type: 'async',
             onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
             onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
             validator: () => oldViewColumn !== newViewColumn,
           }
         }),
-      )
+        {
+          name: 'action.focusActiveEditorGroupWithHide',
+          try: 'workbench.action.focusActiveEditorGroupWithHide',
+          finally: commands.runHide,
+        },
+      ].map(i => ({
+        ...i,
+        scope: 'autoHide',
+      })))
     }
     catch (error) {
       logger.error(error)
