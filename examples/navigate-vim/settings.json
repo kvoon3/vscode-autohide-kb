@@ -1,0 +1,15 @@
+{
+  "vim.normalModeKeyBindings": [
+    // navigate left
+    { "before": ["<c-w>", "<c-h>"], "after": ["<c-w>", "h"] },
+    { "before": ["<c-w>", "h"], "commands": ["autoHide.action.navigateLeft"] },
+
+    // navigate right
+    { "before": ["<c-w>", "<c-l>"], "after": ["<c-w>", "l"] },
+    { "before": ["<c-w>", "l"], "commands": ["autoHide.action.navigateRight"] },
+
+    // navigate down
+    { "before": ["<c-w>", "<c-j>"], "after": ["<c-w>", "j"] },
+    { "before": ["<c-w>", "j"], "commands": ["autoHide.action.navigateDown"] }
+  ]
+}
