@@ -20,16 +20,16 @@
   {
     "key": "ctrl+w right",
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && sideBarFocus"
   },
   {
     "key": "ctrl+w left",
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && auxiliaryBarFocus"
   },
   {
     "key": "ctrl+w up",
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && panelFocus"
   }
 ]

@@ -1,18 +1,36 @@
 [
   // navigate: sidebar, panel -> editor
+  // sidebar -> editor
   {
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "key": "ctrl+w l",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && sideBarFocus"
   },
+  {
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
+    "key": "ctrl+w ctrl+l",
+    "when": "!editorFocus && sideBarFocus"
+  },
+  // auxiliaryBar -> editor
   {
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "key": "ctrl+w h",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && auxiliaryBarFocus"
   },
   {
     "command": "autoHide.action.focusActiveEditorGroupWithHide",
+    "key": "ctrl+w ctrl+h",
+    "when": "!editorFocus && auxiliaryBarFocus"
+  },
+  // panel -> editor
+  {
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
     "key": "ctrl+w k",
-    "when": "!editorFocus && !sideBarFocus && !panelFocus && !auxiliaryBarFocus"
+    "when": "!editorFocus && panelFocus"
+  },
+  {
+    "command": "autoHide.action.focusActiveEditorGroupWithHide",
+    "key": "ctrl+w ctrl+k",
+    "when": "!editorFocus && panelFocus"
   }
 ]

@@ -1,0 +1,31 @@
+{
+  "vim.disableExtension": false,
+  "autoHide.mode": "manual",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": ["i"],
+      "before": ["i"],
+      "commands": ["autoHide.runHide"]
+    },
+    {
+      "after": ["j"],
+      "before": ["j"],
+      "commands": ["autoHide.runHide"]
+    },
+    {
+      "after": ["k"],
+      "before": ["k"],
+      "commands": ["autoHide.runHide"]
+    },
+    {
+      "after": ["l"],
+      "before": ["l"],
+      "commands": ["autoHide.runHide"]
+    },
+    {
+      "after": ["h"],
+      "before": ["h"],
+      "commands": ["autoHide.runHide"]
+    }
+  ]
+}
