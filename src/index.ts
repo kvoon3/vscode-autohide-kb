@@ -1,53 +1,12 @@
 import type { ViewColumn } from 'vscode'
-import { TextEditorSelectionChangeKind, window } from 'vscode'
-import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
-import { config } from './config'
-import { logger } from './log'
-import { commands, name } from './generated/meta'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
+import { TextEditorSelectionChangeKind, window } from 'vscode'
 import { registerCommands } from './commands'
+import { config } from './config'
 import { uiNameCommandKeyMap } from './constants'
-
-export async function runHide() {
-  const {
-    ui: {
-      sidebar,
-      cursor,
-      auxiliaryBar,
-      panel,
-      references,
-      notifications,
-    },
-  } = config
-
-  if (references)
-    executeCommand('closeReferenceSearch')
-
-  if (panel)
-    executeCommand('workbench.action.closePanel')
-
-  if (sidebar)
-    executeCommand('workbench.action.closeSidebar')
-
-  if (auxiliaryBar)
-    executeCommand('workbench.action.closeAuxiliaryBar')
-
-  if (notifications) {
-    executeCommand('notifications.hideList')
-    executeCommand('notifications.hideToasts')
-  }
-
-  try {
-    if (cursor === false)
-      return
-
-    if (cursor === true || cursor.sidebar)
-      await executeCommand('aichat.close-sidebar')
-  }
-  catch {
-    logger.error('Seems like you are not using Cursor(https://cursor.com), but you have enabled Cursor config settings, please turn off settings or make sure Cursor working')
-  }
-}
+import { commands, name } from './generated/meta'
+import { logger } from './log'
 
 export const { activate, deactivate } = defineExtension(async () => {
   logger.info('extension active')
@@ -94,10 +53,18 @@ export const { activate, deactivate } = defineExtension(async () => {
       logger.info('visibleScheme: ', visibleScheme)
 
       const isInWhitelist = config.whitelist.find((i) => {
-        const { match, status } = typeof i === 'string' ? { match: i, status: ['focus'] } : i
+        const {
+          match,
+          status,
+        } = typeof i === 'string'
+          ? { match: i, status: ['focus'] }
+          : i
+
+        if (!match || !status)
+          return false
 
         if (
-          status.includes('focus')
+          status?.includes('focus')
           && new RegExp(match).test(focusedScheme)
         ) {
           return true
@@ -146,17 +113,17 @@ export const { activate, deactivate } = defineExtension(async () => {
           {
             name: 'action.navigateLeft',
             try: 'workbench.action.navigateLeft',
-            catch: uiNameCommandKeyMap[config.navigateFallback.left],
+            catch: uiNameCommandKeyMap[config.navigateFallback.left || 'sidebar'],
           },
           {
             name: 'action.navigateRight',
             try: 'workbench.action.navigateRight',
-            catch: uiNameCommandKeyMap[config.navigateFallback.right],
+            catch: uiNameCommandKeyMap[config.navigateFallback.right || 'auxiliaryBar'],
           },
           {
             name: 'action.navigateDown',
             try: 'workbench.action.navigateDown',
-            catch: uiNameCommandKeyMap[config.navigateFallback.down],
+            catch: uiNameCommandKeyMap[config.navigateFallback.down || 'panel'],
           },
         ].map((i) => {
           let oldViewColumn: ViewColumn | undefined
@@ -186,7 +153,7 @@ export const { activate, deactivate } = defineExtension(async () => {
 
   useStatusBarItem({
     id: `${name}-trigger`,
-    text: () => config['statusBarText.trigger'].replace('$(mode)', config.mode.toUpperCase()),
+    text: () => config.statusBarText.trigger?.replace('$(mode)', config.mode.toUpperCase()),
     tooltip: 'Trigger hide',
     command: commands.runHide,
   }).show()
@@ -194,15 +161,60 @@ export const { activate, deactivate } = defineExtension(async () => {
   useStatusBarItem({
     id: `${name}-mode`,
     text: () => {
-      const { manual, auto } = typeof config['statusBarText.mode'] === 'string'
-        ? { manual: config['statusBarText.mode'], auto: config['statusBarText.mode'] }
-        : config['statusBarText.mode']
+      logger.info('config', JSON.stringify(config, null, 2))
+      const {
+        manual = '-- $(mode) --',
+        auto = '-- $(mode) --',
+      } = typeof config.statusBarText.mode === 'string'
+        ? { manual: config.statusBarText.mode, auto: config.statusBarText.mode }
+        : config.statusBarText.mode
 
       return config.mode === 'auto'
-        ? auto.replace('$(mode)', config.mode.toUpperCase())
-        : manual.replace('$(mode)', config.mode.toUpperCase())
+        ? auto?.replace('$(mode)', config.mode.toUpperCase())
+        : manual?.replace('$(mode)', config.mode.toUpperCase())
     },
     tooltip: 'Toggle hide mode',
     command: commands.toggleMode,
   }).show()
 })
+
+export async function runHide() {
+  const {
+    ui: {
+      sidebar,
+      cursor,
+      auxiliaryBar,
+      panel,
+      references,
+      notifications,
+    },
+  } = config
+
+  if (references)
+    executeCommand('closeReferenceSearch')
+
+  if (panel)
+    executeCommand('workbench.action.closePanel')
+
+  if (sidebar)
+    executeCommand('workbench.action.closeSidebar')
+
+  if (auxiliaryBar)
+    executeCommand('workbench.action.closeAuxiliaryBar')
+
+  if (notifications) {
+    executeCommand('notifications.hideList')
+    executeCommand('notifications.hideToasts')
+  }
+
+  try {
+    if (cursor === false)
+      return
+
+    if (cursor === true || cursor?.sidebar)
+      await executeCommand('aichat.close-sidebar')
+  }
+  catch {
+    logger.error('Seems like you are not using Cursor(https://cursor.com), but you have enabled Cursor config settings, please turn off settings or make sure Cursor working')
+  }
+}

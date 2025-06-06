@@ -1,8 +1,8 @@
-import { ConfigurationTarget } from 'vscode'
 import { useCommand } from 'reactive-vscode'
-import { commands } from './generated/meta'
-import { config } from './config'
+import { ConfigurationTarget } from 'vscode'
 import { runHide } from '.'
+import { config } from './config'
+import { commands } from './generated/meta'
 
 export function registerCommands() {
   useCommand(
