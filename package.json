@@ -146,7 +146,8 @@
             "manual"
           ],
           "default": "auto",
-          "description": "Auto/Manual mode"
+          "description": "Auto/Manual mode",
+          "scope": "machine"
         },
         "autoHide.throttleTime": {
           "type": "number",

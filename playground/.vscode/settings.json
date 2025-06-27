@@ -1,7 +1,11 @@
 {
   "autoHide.ui": {
-    "sidebar": false,
+    "sidebar": true,
     "panel": false
   },
-  "autoHide.mode": "auto"
+  "autoHide.triggerKind": [
+    "mouse",
+    "command",
+    "keyboard"
+  ]
 }
