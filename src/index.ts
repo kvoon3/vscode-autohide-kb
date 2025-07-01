@@ -154,7 +154,7 @@ export const { activate, deactivate } = defineExtension(async () => {
   useStatusBarItem({
     id: `${name}-trigger`,
     text: () => config.statusBarText.trigger?.replace('$(mode)', config.mode.toUpperCase()),
-    tooltip: 'Trigger hide',
+    tooltip: 'Run Auto Hide',
     command: commands.runHide,
   }).show()
 
@@ -173,8 +173,35 @@ export const { activate, deactivate } = defineExtension(async () => {
         ? auto?.replace('$(mode)', config.mode.toUpperCase())
         : manual?.replace('$(mode)', config.mode.toUpperCase())
     },
-    tooltip: 'Toggle hide mode',
+    tooltip: 'Auto Hide Mode',
     command: commands.toggleMode,
+  }).show()
+
+  useStatusBarItem({
+    id: `${name}-pin-sidebar`,
+    text: '$(layout-sidebar-left)',
+    tooltip: 'Pin Sidebar',
+    priority: 3,
+    color: () => config.ui.sidebar ? 'gray' : undefined,
+    command: commands.togglePinSidebar,
+  }).show()
+
+  useStatusBarItem({
+    id: `${name}-pin-panel`,
+    text: '$(layout-panel)',
+    tooltip: 'Pin Panel',
+    priority: 2,
+    color: () => config.ui.panel ? 'gray' : undefined,
+    command: commands.togglePinPanel,
+  }).show()
+
+  useStatusBarItem({
+    id: `${name}-pin-auxiliaryBar`,
+    text: '$(layout-sidebar-right)',
+    tooltip: 'Pin AuxiliaryBar',
+    priority: 1,
+    color: () => config.ui.auxiliaryBar ? 'gray' : undefined,
+    command: commands.togglePinAuxiliaryBar,
   }).show()
 })
 

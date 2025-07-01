@@ -52,6 +52,21 @@
         "command": "autoHide.runHide",
         "category": "Auto Hide",
         "title": "Run hide immediately"
+      },
+      {
+        "command": "autoHide.togglePinSidebar",
+        "category": "Auto Hide",
+        "title": "Toggle pin sidebar"
+      },
+      {
+        "command": "autoHide.togglePinAuxiliaryBar",
+        "category": "Auto Hide",
+        "title": "Toggle pin auxiliary bar"
+      },
+      {
+        "command": "autoHide.togglePinPanel",
+        "category": "Auto Hide",
+        "title": "Toggle pin panel"
       }
     ],
     "configuration": {
@@ -191,7 +206,7 @@
         },
         "autoHide.statusBarText.trigger": {
           "type": "string",
-          "default": "$(eye-closed) Hide",
+          "default": "$(eye-closed)",
           "description": "Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon"
         },
         "autoHide.statusBarText.mode": {

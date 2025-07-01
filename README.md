@@ -35,7 +35,7 @@ Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usa
 | `autoHide.mode`                  | Auto/Manual mode                                                                                                       | `string`        | `"auto"`                                                                                                   |
 | `autoHide.throttleTime`          | Throttle trigger time in ms                                                                                            | `number`        | `500`                                                                                                      |
 | `autoHide.whitelist`             | Set editor whitelist , support RegExp, default match status is focus                                                   | `array`         | `["git","output",{"match":"debug","status":["visible"]}]`                                                  |
-| `autoHide.statusBarText.trigger` | Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon | `string`        | `"$(eye-closed) Hide"`                                                                                     |
+| `autoHide.statusBarText.trigger` | Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon | `string`        | `"$(eye-closed)"`                                                                                          |
 | `autoHide.statusBarText.mode`    | Status bar label for mode, use $(mode) to get current mode                                                             | `string,object` | `"-- $(mode) --"`                                                                                          |
 | `autoHide.navigateFallback`      | Navigate fallback settings                                                                                             | `object`        | `{"left":"sidebar","right":"auxiliaryBar","down":"panel"}`                                                 |
 
@@ -45,11 +45,14 @@ Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usa
 
 <!-- commands -->
 
-| Command                 | Title                              |
-| ----------------------- | ---------------------------------- |
-| `autoHide.toggleEnable` | Auto Hide: Toggle enable           |
-| `autoHide.toggleMode`   | Auto Hide: Toggle manual/auto mode |
-| `autoHide.runHide`      | Auto Hide: Run hide immediately    |
+| Command                          | Title                               |
+| -------------------------------- | ----------------------------------- |
+| `autoHide.toggleEnable`          | Auto Hide: Toggle enable            |
+| `autoHide.toggleMode`            | Auto Hide: Toggle manual/auto mode  |
+| `autoHide.runHide`               | Auto Hide: Run hide immediately     |
+| `autoHide.togglePinSidebar`      | Auto Hide: Toggle pin sidebar       |
+| `autoHide.togglePinAuxiliaryBar` | Auto Hide: Toggle pin auxiliary bar |
+| `autoHide.togglePinPanel`        | Auto Hide: Toggle pin panel         |
 
 <!-- commands -->
 
