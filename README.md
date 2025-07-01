@@ -39,7 +39,7 @@ help you control auto-hide:
 > [!NOTE]
 > #### How do i use manual mode?
 >
-> In manual mode, we stop detecting your cursor or keyboard events.
+> In manual mode, we stop detecting all your events.
 >
 > Instead, you can now bind [`autoHide.runHide` command](./#commands) to your specific use case - custom keybindings in VS Code.
 >
@@ -81,7 +81,8 @@ help you control auto-hide:
 
 ### Navigate To Panel
 
-Due to the panel being hidden, using the `workbench.action.navigateXXX` commands to switch panels will be ineffective.
+> [!Tip]
+> Due to the panel being hidden, using the `workbench.action.navigateXXX` commands to switch panels will be ineffective.
 
 Auto Hide KB provides the following commands as alternatives to VSCode's `navigateXXX` commands:
 
