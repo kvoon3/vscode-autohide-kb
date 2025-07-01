@@ -15,12 +15,35 @@ Auto Hide VSCode sidebar, panel and notifications, with better keyboard-only usa
 
 ## New Features
 
-1. Triggered by cursor, keyboard and commands
-2. Throttle trigger event
-3. Auto/Manual mode switching
-4. Whitelist support
-5. More ui to hide, and [Cursor](https://www.trycursor.com) panel compatible
-6. Status bar button
+### 🎯 More Trigger Methods
+
+`Auto Hide KB` can be triggered by the cursor, keyboard, or even commands.
+
+### 🔄 Mode Switching
+
+Auto/Manual mode is provided.
+
+### 📊 Status Bar
+
+help you control auto-hide:
+
+1. Vim like mode toggle `--AUTO--`, `--MANUAL--`
+2. Pin sidebar
+3. Run hide immediately
+
+### 🚀 And More...
+
+1. [Cursor](https://www.trycursor.com) chat panel support
+2. Whitelist
+
+> [!NOTE]
+> #### How do i use manual mode?
+>
+> In manual mode, we stop detecting your cursor or keyboard events.
+>
+> Instead, you can now bind [`autoHide.runHide` command](./#commands) to your specific use case - custom keybindings in VS Code.
+>
+> See: [Full Example](./examples)
 
 ## Configurations
 
@@ -104,59 +127,6 @@ Navigate to panel:
     ]
     ```
 </details>
-
-## Manual Mode
-
-Usage example:
-
-1. Commands palette:
-
-    Open vscode commands palette with `ctrl/cmd+shift+p` and search 'Auto Hide: Run hide immediately' to trigger hide.
-
-2. KeyBinding:
-    ```jsonc
-    // keybindings.json
-    {
-      "key": "ctrl+h",
-      "command": "autoHide.runHide",
-      "when": "editorFocus"
-    }
-    ```
-
-2. VSCodeVim:
-
-    ```jsonc
-    // settings.json
-    {
-      "vim.normalModeKeyBindingsNonRecursive": [
-        {
-          "after": ["i"],
-          "before": ["i"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["j"],
-          "before": ["j"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["k"],
-          "before": ["k"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["l"],
-          "before": ["l"],
-          "commands": ["autoHide.runHide"]
-        },
-        {
-          "after": ["h"],
-          "before": ["h"],
-          "commands": ["autoHide.runHide"]
-        }
-      ]
-    }
-    ```
 
 ## Credits
 
