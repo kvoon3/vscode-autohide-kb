@@ -2,7 +2,7 @@
   "publisher": "kevin-kwong",
   "name": "vscode-autohide-keyboard",
   "displayName": "Auto Hide KB",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "packageManager": "pnpm@10.12.4",
   "description": "Keyboard friendly Auto Hide",
   "repository": {
