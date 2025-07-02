@@ -1,7 +1,7 @@
 import type { ViewColumn } from 'vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
-import { TextEditorSelectionChangeKind, window } from 'vscode'
+import { TextEditorSelectionChangeKind, ThemeColor, window } from 'vscode'
 import { registerCommands } from './commands'
 import { config } from './config'
 import { uiNameCommandKeyMap } from './constants'
@@ -177,12 +177,14 @@ export const { activate, deactivate } = defineExtension(async () => {
     command: commands.toggleMode,
   }).show()
 
+  const pinActiveColor = undefined // default color
+  const pinInactiveColor = computed(() => config.pinButtonInactiveColor || new ThemeColor('disabledForeground'))
   useStatusBarItem({
     id: `${name}-pin-sidebar`,
     text: '$(layout-sidebar-left)',
     tooltip: 'Pin Sidebar',
     priority: 3,
-    color: () => config.ui.sidebar ? '#ffffff30' : undefined,
+    color: () => config.ui.sidebar ? pinInactiveColor : pinActiveColor,
     command: commands.togglePinSidebar,
   }).show()
 
@@ -191,7 +193,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     text: '$(layout-panel)',
     tooltip: 'Pin Panel',
     priority: 2,
-    color: () => config.ui.panel ? '#ffffff30' : undefined,
+    color: () => config.ui.panel ? pinInactiveColor : pinActiveColor,
     command: commands.togglePinPanel,
   }).show()
 
@@ -200,7 +202,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     text: '$(layout-sidebar-right)',
     tooltip: 'Pin AuxiliaryBar',
     priority: 1,
-    color: () => config.ui.auxiliaryBar ? '#ffffff30' : undefined,
+    color: () => config.ui.auxiliaryBar ? pinInactiveColor : pinActiveColor,
     command: commands.togglePinAuxiliaryBar,
   }).show()
 })

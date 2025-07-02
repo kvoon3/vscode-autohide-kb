@@ -264,6 +264,11 @@
               ]
             }
           }
+        },
+        "autoHide.pinButtonInactiveColor": {
+          "type": "string",
+          "examples": ["#ddd", "#dddddd50"],
+          "description": "Custom pin button inactive color"
         }
       }
     }
