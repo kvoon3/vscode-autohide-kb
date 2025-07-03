@@ -184,7 +184,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     text: '$(layout-sidebar-left)',
     tooltip: 'Pin Sidebar',
     priority: 3,
-    color: () => config.ui.sidebar ? pinInactiveColor : pinActiveColor,
+    color: () => config.ui.sidebar ? pinInactiveColor.value : pinActiveColor,
     command: commands.togglePinSidebar,
   }).show()
 
@@ -193,7 +193,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     text: '$(layout-panel)',
     tooltip: 'Pin Panel',
     priority: 2,
-    color: () => config.ui.panel ? pinInactiveColor : pinActiveColor,
+    color: () => config.ui.panel ? pinInactiveColor.value : pinActiveColor,
     command: commands.togglePinPanel,
   }).show()
 
@@ -202,7 +202,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     text: '$(layout-sidebar-right)',
     tooltip: 'Pin AuxiliaryBar',
     priority: 1,
-    color: () => config.ui.auxiliaryBar ? pinInactiveColor : pinActiveColor,
+    color: () => config.ui.auxiliaryBar ? pinInactiveColor.value : pinActiveColor,
     command: commands.togglePinAuxiliaryBar,
   }).show()
 })
