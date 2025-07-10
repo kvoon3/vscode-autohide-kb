@@ -1,12 +1,13 @@
 import type { ViewColumn } from 'vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
-import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useStatusBarItem, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
-import { TextEditorSelectionChangeKind, ThemeColor, window } from 'vscode'
+import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
+import { TextEditorSelectionChangeKind, window } from 'vscode'
 import { registerCommands } from './commands'
 import { config } from './config'
 import { uiNameCommandKeyMap } from './constants'
-import { commands, name } from './generated/meta'
+import { commands } from './generated/meta'
 import { logger } from './log'
+import { useStatusBar } from './statusbar'
 
 export const { activate, deactivate } = defineExtension(async () => {
   logger.info('extension active')
@@ -151,60 +152,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     }
   }, { immediate: true })
 
-  useStatusBarItem({
-    id: `${name}-trigger`,
-    text: () => config.statusBarText.trigger?.replace('$(mode)', config.mode.toUpperCase()),
-    tooltip: 'Run Auto Hide',
-    command: commands.runHide,
-  }).show()
-
-  useStatusBarItem({
-    id: `${name}-mode`,
-    text: () => {
-      logger.info('config', JSON.stringify(config, null, 2))
-      const {
-        manual = '-- $(mode) --',
-        auto = '-- $(mode) --',
-      } = typeof config.statusBarText.mode === 'string'
-        ? { manual: config.statusBarText.mode, auto: config.statusBarText.mode }
-        : config.statusBarText.mode
-
-      return config.mode === 'auto'
-        ? auto?.replace('$(mode)', config.mode.toUpperCase())
-        : manual?.replace('$(mode)', config.mode.toUpperCase())
-    },
-    tooltip: 'Auto Hide Mode',
-    command: commands.toggleMode,
-  }).show()
-
-  const pinActiveColor = undefined // default color
-  const pinInactiveColor = computed(() => config.pinButtonInactiveColor || new ThemeColor('disabledForeground'))
-  useStatusBarItem({
-    id: `${name}-pin-sidebar`,
-    text: '$(layout-sidebar-left)',
-    tooltip: 'Pin Sidebar',
-    priority: 3,
-    color: () => config.ui.sidebar ? pinInactiveColor.value : pinActiveColor,
-    command: commands.togglePinSidebar,
-  }).show()
-
-  useStatusBarItem({
-    id: `${name}-pin-panel`,
-    text: '$(layout-panel)',
-    tooltip: 'Pin Panel',
-    priority: 2,
-    color: () => config.ui.panel ? pinInactiveColor.value : pinActiveColor,
-    command: commands.togglePinPanel,
-  }).show()
-
-  useStatusBarItem({
-    id: `${name}-pin-auxiliaryBar`,
-    text: '$(layout-sidebar-right)',
-    tooltip: 'Pin AuxiliaryBar',
-    priority: 1,
-    color: () => config.ui.auxiliaryBar ? pinInactiveColor.value : pinActiveColor,
-    command: commands.togglePinAuxiliaryBar,
-  }).show()
+  useStatusBar()
 })
 
 export async function runHide() {

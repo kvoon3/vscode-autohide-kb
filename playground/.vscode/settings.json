@@ -3,5 +3,12 @@
     "mouse",
     "command",
     "keyboard"
-  ]
+  ],
+  "autoHide.statusBar": {
+    "Pin AuxiliaryBar": "$(layout-sidebar-left)",
+    "Pin Panel": "$(layout-panel)",
+    "Pin Sidebar": "$(layout-sidebar-right)",
+    "AutoHide Mode": "-- $(mode) --",
+    "Trigger Hide": "$(eye-closed)"
+  }
 }

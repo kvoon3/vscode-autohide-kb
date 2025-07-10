@@ -204,27 +204,15 @@
           ],
           "description": "Set editor whitelist , support RegExp, default match status is focus"
         },
-        "autoHide.statusBarText.trigger": {
-          "type": "string",
-          "default": "$(eye-closed)",
-          "description": "Status bar item label, See https://code.visualstudio.com/api/references/icons-in-labels#icon-listing to customize icon"
-        },
-        "autoHide.statusBarText.mode": {
-          "type": [
-            "string",
-            "object"
-          ],
-          "default": "-- $(mode) --",
-          "description": "Status bar label for mode, use $(mode) to get current mode",
-          "properties": {
-            "manual": {
-              "type": "string",
-              "default": "-- MANUAL --"
-            },
-            "auto": {
-              "type": "string",
-              "default": "-- AUTO --"
-            }
+        "autoHide.statusBar": {
+          "type": "object",
+          "description": "Display format and order",
+          "default": {
+            "Pin AuxiliaryBar": "$(layout-sidebar-right)",
+            "Pin Panel": "$(layout-panel)",
+            "Pin Sidebar": "$(layout-sidebar-left)",
+            "AutoHide Mode": "-- $(mode) --",
+            "Trigger Hide": "$(eye-closed)"
           }
         },
         "autoHide.navigateFallback": {
