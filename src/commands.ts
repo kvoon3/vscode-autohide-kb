@@ -26,6 +26,8 @@ export function registerCommands() {
 
       if (!config.ui.sidebar)
         executeCommand('workbench.action.focusSideBar')
+      else
+        executeCommand('autoHide.runHide')
     },
     [commands.togglePinAuxiliaryBar]() {
       config.$set('ui', {
@@ -35,6 +37,8 @@ export function registerCommands() {
 
       if (!config.ui.auxiliaryBar)
         executeCommand('workbench.action.focusAuxiliaryBar')
+      else
+        executeCommand('autoHide.runHide')
     },
     [commands.togglePinPanel]() {
       config.$set('ui', {
@@ -44,6 +48,8 @@ export function registerCommands() {
 
       if (!config.ui.panel)
         executeCommand('workbench.action.focusPanel')
+      else
+        executeCommand('autoHide.runHide')
     },
   })
 }
