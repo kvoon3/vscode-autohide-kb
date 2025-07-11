@@ -5,10 +5,25 @@
     "keyboard"
   ],
   "autoHide.statusBar": {
-    "Pin AuxiliaryBar": "$(layout-sidebar-left)",
-    "Pin Panel": "$(layout-panel)",
-    "Pin Sidebar": "$(layout-sidebar-right)",
-    "AutoHide Mode": "-- $(mode) --",
-    "Trigger Hide": "$(eye-closed)"
+    "Pin AuxiliaryBar": {
+      "text": "$(layout-sidebar-left)",
+      "priority": 5
+    },
+    "Pin Panel": {
+      "text": "$(layout-panel)",
+      "priority": 4
+    },
+    "Pin Sidebar": {
+      "text": "$(layout-sidebar-right)",
+      "priority": 3
+    },
+    "AutoHide Mode": {
+      "text": "-- $(mode) --",
+      "priority": 2
+    },
+    "Trigger Hide": {
+      "text": "$(eye-closed)",
+      "priority": 1
+    }
   }
 }

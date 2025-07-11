@@ -152,7 +152,9 @@ export const { activate, deactivate } = defineExtension(async () => {
     }
   }, { immediate: true })
 
-  useStatusBar()
+  watch(config.statusBar, () => {
+    useStatusBar()
+  }, { immediate: true })
 })
 
 export async function runHide() {

@@ -206,13 +206,123 @@
         },
         "autoHide.statusBar": {
           "type": "object",
-          "description": "Display format and order",
+          "description": "Control statusBar display",
           "default": {
-            "Pin AuxiliaryBar": "$(layout-sidebar-right)",
-            "Pin Panel": "$(layout-panel)",
-            "Pin Sidebar": "$(layout-sidebar-left)",
-            "AutoHide Mode": "-- $(mode) --",
-            "Trigger Hide": "$(eye-closed)"
+            "Pin Sidebar": {
+              "text": "$(layout-sidebar-left)",
+              "priority": 5,
+              "inactiveColor": ""
+            },
+            "Pin Panel": {
+              "text": "$(layout-panel)",
+              "priority": 4,
+              "inactiveColor": ""
+            },
+            "Pin AuxiliaryBar": {
+              "text": "$(layout-sidebar-right)",
+              "priority": 3,
+              "inactiveColor": ""
+            },
+            "AutoHide Mode": {
+              "text": "-- $(mode) --",
+              "priority": 2
+            },
+            "Trigger Hide": {
+              "text": "$(eye-closed)",
+              "priority": 1
+            }
+          },
+          "properties": {
+            "Pin Sidebar": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "The text or icon to display for the Pin Sidebar button",
+                  "default": "$(layout-sidebar-left)"
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "The display priority (higher numbers appear first)",
+                  "default": 5
+                },
+                "inactiveColor": {
+                  "type": "string",
+                  "description": "Color of the item when inactive (CSS color value or theme color reference)",
+                  "default": ""
+                }
+              }
+            },
+            "Pin Panel": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "The text or icon to display for the Pin Panel button",
+                  "default": "$(layout-panel)"
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "The display priority (higher numbers appear first)",
+                  "default": 4
+                },
+                "inactiveColor": {
+                  "type": "string",
+                  "description": "Color of the item when inactive (CSS color value or theme color reference)",
+                  "default": ""
+                }
+              }
+            },
+            "Pin AuxiliaryBar": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "The text or icon to display for the Pin AuxiliaryBar button",
+                  "default": "$(layout-sidebar-right)"
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "The display priority (higher numbers appear first)",
+                  "default": 3
+                },
+                "inactiveColor": {
+                  "type": "string",
+                  "description": "Color of the item when inactive (CSS color value or theme color reference)",
+                  "default": ""
+                }
+              }
+            },
+            "AutoHide Mode": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "The text or icon to display for the AutoHide Mode indicator",
+                  "default": "-- $(mode) --"
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "The display priority (higher numbers appear first)",
+                  "default": 2
+                }
+              }
+            },
+            "Trigger Hide": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "description": "The text or icon to display for the Trigger Hide button",
+                  "default": "$(eye-closed)"
+                },
+                "priority": {
+                  "type": "number",
+                  "description": "The display priority (higher numbers appear first)",
+                  "default": 1
+                }
+              }
+            }
           }
         },
         "autoHide.navigateFallback": {
@@ -252,11 +362,6 @@
               ]
             }
           }
-        },
-        "autoHide.pinButtonInactiveColor": {
-          "type": "string",
-          "examples": ["#ddd", "#dddddd50"],
-          "description": "Custom pin button inactive color"
         }
       }
     }

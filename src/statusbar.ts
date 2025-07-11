@@ -1,14 +1,11 @@
 import type { UseStatusBarItemOptions } from 'reactive-vscode'
 import type { ConfigKeyTypeMap } from './generated/meta'
 import { objectEntries } from '@reactive-vscode/vueuse'
-import { computed, useStatusBarItem } from 'reactive-vscode'
-import { ThemeColor } from 'vscode'
+import { useStatusBarItem } from 'reactive-vscode'
 import { config } from './config'
 import { commands, name } from './generated/meta'
-import { logger } from './log'
 
 const pinActiveColor = undefined // default color
-const pinInactiveColor = computed(() => config.pinButtonInactiveColor || new ThemeColor('disabledForeground'))
 
 const statusBarIdOptionsMap: Record<
   keyof ConfigKeyTypeMap['autoHide.statusBar'],
@@ -21,15 +18,15 @@ const statusBarIdOptionsMap: Record<
     command: commands.toggleMode,
   },
   'Pin Sidebar': {
-    color: () => config.ui.sidebar ? pinInactiveColor.value : pinActiveColor,
+    color: () => config.ui.sidebar ? config.statusBar['Pin Sidebar']?.inactiveColor : pinActiveColor,
     command: commands.togglePinSidebar,
   },
   'Pin Panel': {
-    color: () => config.ui.panel ? pinInactiveColor.value : pinActiveColor,
+    color: () => config.ui.panel ? config.statusBar['Pin Sidebar']?.inactiveColor : pinActiveColor,
     command: commands.togglePinPanel,
   },
   'Pin AuxiliaryBar': {
-    color: () => config.ui.auxiliaryBar ? pinInactiveColor.value : pinActiveColor,
+    color: () => config.ui.auxiliaryBar ? config.statusBar['Pin AuxiliaryBar']?.inactiveColor : pinActiveColor,
     command: commands.togglePinAuxiliaryBar,
   },
 }
@@ -37,19 +34,18 @@ const statusBarIdOptionsMap: Record<
 export function useStatusBar() {
   objectEntries(config.statusBar)
     .reverse()
-    .forEach(([key, text], priority) => {
-      logger.info('key', key)
-      logger.info('text', text)
-      const item = useStatusBarItem({
-        ...statusBarIdOptionsMap[key],
-        id: `${name}-${key}`,
-        // FIXME: type
-        text: () => (text as string).replace('$(mode)', config.mode.toUpperCase()),
-        tooltip: key,
-        visible: true,
-        priority,
-      })
-      logger.info('item', item)
-      item.show()
+    .forEach(([tooltip, value]) => {
+      const { text, priority } = value || {}
+      if (text) {
+        const item = useStatusBarItem({
+          ...statusBarIdOptionsMap[tooltip],
+          id: `${name}-${tooltip}`,
+          text: () => (text as string).replace('$(mode)', config.mode.toUpperCase()),
+          tooltip,
+          visible: true,
+          priority,
+        })
+        item.show()
+      }
     })
 }

@@ -49,18 +49,17 @@ help you control auto-hide:
 
 <!-- configs -->
 
-| Key                               | Description                                                          | Type      | Default                                                                                                    |
-| --------------------------------- | -------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
-| `autoHide.enable`                 | Whether enable Auto Hide                                             | `boolean` | `true`                                                                                                     |
-| `autoHide.ui`                     | UI hideable settings                                                 | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true,"cursor":false}` |
-| `autoHide.triggerOnOpen`          | Whether trigger when open                                            | `boolean` | `true`                                                                                                     |
-| `autoHide.triggerKind`            | Use which kind of event to trigger hide                              | `array`   | `["mouse","command","keyboard"]`                                                                           |
-| `autoHide.mode`                   | Auto/Manual mode                                                     | `string`  | `"auto"`                                                                                                   |
-| `autoHide.throttleTime`           | Throttle trigger time in ms                                          | `number`  | `500`                                                                                                      |
-| `autoHide.whitelist`              | Set editor whitelist , support RegExp, default match status is focus | `array`   | `["git","output",{"match":"debug","status":["visible"]}]`                                                  |
-| `autoHide.statusBar`              | Display format and order                                             | `object`  | See package.json                                                                                           |
-| `autoHide.navigateFallback`       | Navigate fallback settings                                           | `object`  | `{"left":"sidebar","right":"auxiliaryBar","down":"panel"}`                                                 |
-| `autoHide.pinButtonInactiveColor` | Custom pin button inactive color                                     | `string`  | ``                                                                                                         |
+| Key                         | Description                                                          | Type      | Default                                                                                                    |
+| --------------------------- | -------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+| `autoHide.enable`           | Whether enable Auto Hide                                             | `boolean` | `true`                                                                                                     |
+| `autoHide.ui`               | UI hideable settings                                                 | `object`  | `{"sidebar":true,"auxiliaryBar":true,"panel":true,"references":false,"notifications":true,"cursor":false}` |
+| `autoHide.triggerOnOpen`    | Whether trigger when open                                            | `boolean` | `true`                                                                                                     |
+| `autoHide.triggerKind`      | Use which kind of event to trigger hide                              | `array`   | `["mouse","command","keyboard"]`                                                                           |
+| `autoHide.mode`             | Auto/Manual mode                                                     | `string`  | `"auto"`                                                                                                   |
+| `autoHide.throttleTime`     | Throttle trigger time in ms                                          | `number`  | `500`                                                                                                      |
+| `autoHide.whitelist`        | Set editor whitelist , support RegExp, default match status is focus | `array`   | `["git","output",{"match":"debug","status":["visible"]}]`                                                  |
+| `autoHide.statusBar`        | Control statusBar display                                            | `object`  | See package.json                                                                                           |
+| `autoHide.navigateFallback` | Navigate fallback settings                                           | `object`  | `{"left":"sidebar","right":"auxiliaryBar","down":"panel"}`                                                 |
 
 <!-- configs -->
 
