@@ -3,9 +3,8 @@ import type { ConfigKeyTypeMap } from './generated/meta'
 import { objectEntries } from '@reactive-vscode/vueuse'
 import { useStatusBarItem } from 'reactive-vscode'
 import { config } from './config'
+import { defaultPinActiveColor, defaultPinInActiveColor } from './constants'
 import { commands, name } from './generated/meta'
-
-const pinActiveColor = undefined // default color
 
 const statusBarIdOptionsMap: Record<
   keyof ConfigKeyTypeMap['autoHide.statusBar'],
@@ -18,15 +17,21 @@ const statusBarIdOptionsMap: Record<
     command: commands.toggleMode,
   },
   'Pin Sidebar': {
-    color: () => config.ui.sidebar ? config.statusBar['Pin Sidebar']?.inactiveColor : pinActiveColor,
+    color: () => config.ui.sidebar
+      ? config.statusBar['Pin Sidebar']?.inactiveColor || defaultPinInActiveColor
+      : defaultPinActiveColor,
     command: commands.togglePinSidebar,
   },
   'Pin Panel': {
-    color: () => config.ui.panel ? config.statusBar['Pin Sidebar']?.inactiveColor : pinActiveColor,
+    color: () => config.ui.panel
+      ? config.statusBar['Pin Sidebar']?.inactiveColor || defaultPinInActiveColor
+      : defaultPinActiveColor,
     command: commands.togglePinPanel,
   },
   'Pin AuxiliaryBar': {
-    color: () => config.ui.auxiliaryBar ? config.statusBar['Pin AuxiliaryBar']?.inactiveColor : pinActiveColor,
+    color: () => config.ui.auxiliaryBar
+      ? config.statusBar['Pin AuxiliaryBar']?.inactiveColor || defaultPinInActiveColor
+      : defaultPinActiveColor,
     command: commands.togglePinAuxiliaryBar,
   },
 }
