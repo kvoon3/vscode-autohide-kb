@@ -1,37 +1,8 @@
 {
+  "autoHide.triggerOnOpen": false,
   "autoHide.triggerKind": [
     "mouse",
     "command",
     "keyboard"
   ],
-  "autoHide.statusBar": {
-    "Pin Sidebar": {
-      "text": "$(layout-sidebar-left)",
-      "priority": 5,
-      "inactiveColor": "",
-      "visible": true
-    },
-    "Pin Panel": {
-      "text": "$(layout-panel)",
-      "priority": 4,
-      "inactiveColor": "",
-      "visible": true
-    },
-    "Pin AuxiliaryBar": {
-      "text": "$(layout-sidebar-right)",
-      "priority": 3,
-      "inactiveColor": "",
-      "visible": true
-    },
-    "AutoHide Mode": {
-      "text": "-- $(mode) --",
-      "priority": 2,
-      "visible": true
-    },
-    "Trigger Hide": {
-      "text": "$(eye-closed)",
-      "priority": 1,
-      "visible": true
-    }
-  }
 }

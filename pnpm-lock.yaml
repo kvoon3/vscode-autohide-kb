@@ -17,6 +17,9 @@ importers:
       '@antfu/utils':
         specifier: ^9.2.0
         version: 9.2.0
+      '@command-run-all/core':
+        specifier: ^0.0.4
+        version: 0.0.4
       '@reactive-vscode/vueuse':
         specifier: ^0.3.0
         version: 0.3.0
@@ -229,6 +232,9 @@ packages:
 
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
+
+  '@command-run-all/core@0.0.4':
+    resolution: {integrity: sha512-ctwpfvA+R5fArJ90pTdkhdCZZYd2bfTvNi7V0ZFNVpQJyb1er2j/CTWb6/nLOgiQFy6Sngqo1e1zsoFSL+3toA==}
 
   '@es-joy/jsdoccomment@0.50.2':
     resolution: {integrity: sha512-YAdE/IJSpwbOTiaURNCKECdAwqrJuFiZhylmesBcIRawtYKnBR2wxPhoIewMg+Yu+QuYvHfJNReWpoxGBKOChA==}
@@ -3657,6 +3663,8 @@ snapshots:
       '@clack/core': 0.5.0
       picocolors: 1.1.1
       sisteransi: 1.0.5
+
+  '@command-run-all/core@0.0.4': {}
 
   '@es-joy/jsdoccomment@0.50.2':
     dependencies:

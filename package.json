@@ -410,6 +410,7 @@
     "@antfu/eslint-config": "^4.16.1",
     "@antfu/ni": "^25.0.0",
     "@antfu/utils": "^9.2.0",
+    "@command-run-all/core": "^0.0.4",
     "@reactive-vscode/vueuse": "^0.3.0",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.10",

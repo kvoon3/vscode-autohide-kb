@@ -1,11 +1,12 @@
+import type { CommandTask } from '@command-run-all/core'
 import type { ViewColumn } from 'vscode'
-import { computed, executeCommand, useActiveTextEditor, useAllExtensions, useCommand, useCommands, watch } from 'reactive-vscode'
+import { addCommandTask } from '@command-run-all/core'
+import { executeCommand, useActiveTextEditor, useCommand, useCommands, useDisposable } from 'reactive-vscode'
 import { ConfigurationTarget } from 'vscode'
 import { executeHide } from '../core'
 import { commands } from '../generated/meta'
 import { config } from './config'
 import { uiNameCommandKeyMap } from './constants'
-import { logger } from './log'
 
 export function registerCommands() {
   useCommand(
@@ -57,61 +58,62 @@ export function registerCommands() {
   })
 
   const activeEditor = useActiveTextEditor()
-  const allExtensions = useAllExtensions()
 
-  /**
-   * @see https://github.com/kvoon3/vscode-command-task
-   */
-  const commandTaskExtension = computed(() => allExtensions.value.find(ext => ext.id === 'kvoon.command-task'))
-  const { stop } = watch(commandTaskExtension, async (extension) => {
-    const addCommandTask = extension?.exports?.addCommandTask
+  let oldViewColumn: ViewColumn | undefined
+  const updateOldViewColumn = () => (oldViewColumn = activeEditor.value?.viewColumn)
 
-    if (typeof addCommandTask !== 'function')
-      return
+  let newViewColumn: ViewColumn | undefined
+  const updateNewViewColumn = () => (newViewColumn = activeEditor.value?.viewColumn)
 
-    try {
-      addCommandTask([
-        ...[
-          {
-            name: 'action.navigateLeft',
-            try: 'workbench.action.navigateLeft',
-            catch: uiNameCommandKeyMap[config.navigateFallback.left || 'sidebar'],
-          },
-          {
-            name: 'action.navigateRight',
-            try: 'workbench.action.navigateRight',
-            catch: uiNameCommandKeyMap[config.navigateFallback.right || 'auxiliaryBar'],
-          },
-          {
-            name: 'action.navigateDown',
-            try: 'workbench.action.navigateDown',
-            catch: uiNameCommandKeyMap[config.navigateFallback.down || 'panel'],
-          },
-        ].map((i) => {
-          let oldViewColumn: ViewColumn | undefined
-          let newViewColumn: ViewColumn | undefined
-          return {
-            ...i,
-            type: 'async',
-            onBeforeExec: () => oldViewColumn = activeEditor.value?.viewColumn,
-            onAfterExec: () => newViewColumn = activeEditor.value?.viewColumn,
-            validator: () => oldViewColumn !== newViewColumn,
-          }
-        }),
-        {
-          name: 'action.focusActiveEditorGroupWithHide',
-          try: 'workbench.action.focusActiveEditorGroupWithHide',
-          finally: commands.runHide,
-        },
-      ].map(i => ({
-        ...i,
-        scope: 'autoHide',
-      })))
+  const cmds: CommandTask[] = [
+    {
+      type: 'queue',
+      name: 'autoHide.action.navigateLeft',
+      try: [
+        updateOldViewColumn,
+        'workbench.action.navigateLeft',
+        updateNewViewColumn,
+      ],
+      catch: uiNameCommandKeyMap[config.navigateFallback.left || 'sidebar'],
+      validator() {
+        return oldViewColumn !== newViewColumn
+      },
+    },
+    {
+      type: 'queue',
+      name: 'autoHide.action.navigateRight',
+      try: [
+        updateOldViewColumn,
+        'workbench.action.navigateRight',
+        updateNewViewColumn,
+      ],
+      catch: uiNameCommandKeyMap[config.navigateFallback.right || 'auxiliaryBar'],
+      validator() {
+        return oldViewColumn !== newViewColumn
+      },
+    },
+    {
+      type: 'queue',
+      name: 'autoHide.action.navigateDown',
+      try: [
+        updateOldViewColumn,
+        'workbench.action.navigateDown',
+        updateNewViewColumn,
+      ],
+      catch: uiNameCommandKeyMap[config.navigateFallback.down || 'panel'],
+      validator() {
+        return oldViewColumn !== newViewColumn
+      },
+    },
+    {
+      name: 'autoHide.action.focusActiveEditorGroupWithHide',
+      try: 'workbench.action.focusActiveEditorGroup',
+      finally() {
+        if (config.enable && config.mode === 'auto')
+          executeHide()
+      },
+    },
+  ]
 
-      stop()
-    }
-    catch (error) {
-      logger.error(error)
-    }
-  }, { immediate: true })
+  addCommandTask(cmds).forEach(useDisposable)
 }
