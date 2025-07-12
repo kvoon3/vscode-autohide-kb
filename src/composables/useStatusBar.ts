@@ -44,14 +44,13 @@ export function useStatusBars() {
       items.forEach(i => i.dispose())
 
     objectEntries(config.statusBar).forEach(([tooltip, value]) => {
-      const { text, priority } = value || {}
-      if (text) {
+      const { text, visible, priority } = value || {}
+      if (text && visible) {
         const item = useStatusBarItem({
           ...statusBarIdOptionsMap[tooltip],
           id: `${name}-${tooltip}`,
           text: () => replaceCustomTextSlot(text),
           tooltip,
-          visible: true,
           priority,
         })
         item.show()
