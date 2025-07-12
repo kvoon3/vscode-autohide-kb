@@ -25,11 +25,9 @@ Auto/Manual mode is provided.
 
 ### 📊 Status Bar
 
-help you control auto-hide:
-
-1. Vim like mode toggle `--AUTO--`, `--MANUAL--`
-2. Pin sidebar
-3. Run hide immediately
+- Pin sidebar
+- Display and toggle `--AUTO--`, `--MANUAL--`
+- Run hide immediately
 
 ### 🚀 And More...
 
@@ -78,59 +76,16 @@ help you control auto-hide:
 
 <!-- commands -->
 
-### Navigate To Panel
-
-> [!Tip]
-> Due to the panel being hidden, using the `workbench.action.navigateXXX` commands to switch panels will be ineffective.
-
-Auto Hide KB provides the following commands as alternatives to VSCode's `navigateXXX` commands:
+### Navigate
 
 | Navigate Command                                 | Description                                                     |
-| ------------------------------------------------ | --------------------------------------------------------------- |
+| ----------------------------------------------- | --------------------------------------------------------------- |
 | `autoHide.action.navigateLeft`                   | `workbench.action.navigateLeft` with fallback to Sidebar        |
 | `autoHide.action.navigateRight`                  | `workbench.action.navigateRight` with fallback to Auxiliary Bar |
 | `autoHide.action.navigateDown`                   | `workbench.action.navigateDown` with fallback to Panel          |
 | `autoHide.action.focusActiveEditorGroupWithHide` | `workbench.action.focusActiveEditorGroup` with autoHide         |
 
-See [Config: `autoHide.navigateFallback`](#configurations) to Customize
-
-<details>
-<summary>Usage example:</summary>
-
-[Full Example](./examples/navigate)
-
-Navigate to panel:
-
-1. editor -> panel:
-
-    ```jsonc
-    // keybindings.json
-    [
-      {
-        "key": "ctrl+w down",
-        "command": "autoHide.action.navigateDown",
-        "when": "editorFocus"
-      }
-    ]
-    ```
-
-2. panel -> editor:
-
-    ```jsonc
-    // keybindings.json
-    [
-      {
-        "key": "ctrl+w up",
-        "command": "autoHide.action.focusActiveEditorGroupWithHide",
-        "when": "panelFocus"
-      }
-    ]
-    ```
-</details>
-
-## Credits
-
-- Enhanced functionality for VSCode commands, powered by [Command Task](https://github.com/kvoon3/vscode-command-task)
+See [Usage](./examples/navigate)
 
 ## License
 
