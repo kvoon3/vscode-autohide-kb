@@ -1,13 +1,13 @@
-import type { ViewColumn } from 'vscode'
+import type { TextEditorSelectionChangeKind, ViewColumn } from 'vscode'
 import { watchThrottled } from '@reactive-vscode/vueuse'
 import { computed, defineExtension, executeCommand, useActiveTextEditor, useAllExtensions, useDisposable, useTextEditorSelections, useVisibleTextEditors, watch } from 'reactive-vscode'
-import { TextEditorSelectionChangeKind, window } from 'vscode'
+import { window } from 'vscode'
 import { registerCommands } from './commands'
-import { config } from './config'
+import { config, triggerKinds } from './config'
 import { uiNameCommandKeyMap } from './constants'
 import { commands } from './generated/meta'
 import { logger } from './log'
-import { useStatusBar } from './statusbar'
+import { useStatusBars } from './statusbar'
 
 export const { activate, deactivate } = defineExtension(async () => {
   logger.info('extension active')
@@ -16,14 +16,7 @@ export const { activate, deactivate } = defineExtension(async () => {
     setTimeout(() => runHide(), 300)
 
   registerCommands()
-
-  const triggerKinds = computed(() =>
-    config.triggerKind.map(key => ({
-      mouse: TextEditorSelectionChangeKind.Mouse,
-      keyboard: TextEditorSelectionChangeKind.Keyboard,
-      command: TextEditorSelectionChangeKind.Command,
-    }[key])),
-  )
+  useStatusBars()
 
   const activeEditor = useActiveTextEditor()
   const textEditorSelections = useTextEditorSelections(activeEditor, triggerKinds)
@@ -150,10 +143,6 @@ export const { activate, deactivate } = defineExtension(async () => {
     catch (error) {
       logger.error(error)
     }
-  }, { immediate: true })
-
-  watch(config.statusBar, () => {
-    useStatusBar()
   }, { immediate: true })
 })
 
