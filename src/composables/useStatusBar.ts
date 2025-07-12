@@ -1,11 +1,11 @@
 import type { UseStatusBarItemOptions } from 'reactive-vscode'
 import type { StatusBarItem } from 'vscode'
-import type { ConfigKeyTypeMap } from './generated/meta'
+import type { ConfigKeyTypeMap } from '../generated/meta'
 import { objectEntries, watchImmediate } from '@reactive-vscode/vueuse'
 import { useStatusBarItem } from 'reactive-vscode'
-import { config } from './config'
-import { defaultPinActiveColor, defaultPinInActiveColor } from './constants'
-import { commands, name } from './generated/meta'
+import { commands, name } from '../generated/meta'
+import { config } from '../shared/config'
+import { defaultPinActiveColor, defaultPinInActiveColor } from '../shared/constants'
 
 const statusBarIdOptionsMap: Record<
   keyof ConfigKeyTypeMap['autoHide.statusBar'],
